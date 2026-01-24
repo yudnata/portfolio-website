@@ -13,7 +13,7 @@ export default function SkillsContent() {
 
       <Header />
 
-      <main className="pt-[100px] pb-20 px-4 md:px-12 min-h-screen max-w-6xl mx-auto flex flex-col justify-center">
+      <main className="pt-[100px] pb-20 px-4 md:px-12 min-h-screen max-w-7xl mx-auto flex flex-col justify-center">
         <div className="text-center mb-10 animate-slide-up anim-delay-500">
           <h1 className="font-pixel text-2xl md:text-3xl text-white text-shadow-pixel mb-2">
             Technical Skills
@@ -61,6 +61,11 @@ export default function SkillsContent() {
                 name="WordPress"
                 iconSrc="/icons/WordPress.png"
                 color="text-gray-200"
+              />
+              <SkillChip
+                name="Next.js"
+                iconSrc="/icons/next.svg"
+                color="text-blue-500"
               />
             </div>
           </div>

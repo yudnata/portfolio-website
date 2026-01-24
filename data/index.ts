@@ -1,4 +1,4 @@
-import type { Project, SkillCategory, Education, ContactLink, DialogSegment } from '@/types';
+import type { Project, Education, ContactLink, DialogSegment } from '@/types';
 
 export const introDialogs: DialogSegment[] = [
   {
@@ -110,49 +110,6 @@ export const projects: Project[] = [
     category: 'Personal',
     status: 'Completed',
     githubUrl: 'https://github.com/yudnata/portfolio-website',
-  },
-];
-
-export const skillCategories: SkillCategory[] = [
-  {
-    title: 'Frontend',
-    icon: '',
-    skills: [
-      { name: 'HTML/CSS', level: 90, icon: '' },
-      { name: 'JavaScript', level: 85, icon: '' },
-      { name: 'TypeScript', level: 80, icon: '' },
-      { name: 'React', level: 85, icon: '' },
-      { name: 'Next.js', level: 80, icon: '' },
-      { name: 'Tailwind CSS', level: 85, icon: '' },
-    ],
-  },
-  {
-    title: 'Backend',
-    icon: '',
-    skills: [
-      { name: 'Node.js', level: 75, icon: '' },
-      { name: 'PHP/Laravel', level: 70, icon: '' },
-      { name: 'Python', level: 65, icon: '' },
-      { name: 'REST APIs', level: 80, icon: '' },
-    ],
-  },
-  {
-    title: 'Database',
-    icon: '',
-    skills: [
-      { name: 'MySQL', level: 75, icon: '' },
-      { name: 'PostgreSQL', level: 70, icon: '' },
-      { name: 'MongoDB', level: 65, icon: '' },
-    ],
-  },
-  {
-    title: 'Tools',
-    icon: '',
-    skills: [
-      { name: 'Git', level: 85, icon: '' },
-      { name: 'VS Code', level: 90, icon: '' },
-      { name: 'Figma', level: 70, icon: '' },
-    ],
   },
 ];
 

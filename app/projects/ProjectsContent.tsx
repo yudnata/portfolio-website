@@ -86,13 +86,15 @@ export default function ProjectsContent() {
 
           {featuredProject && (
             <section
+              key={`featured-${activeCategory}-${featuredProject.id}`}
               onClick={() => isDesktop && setSelectedProject(featuredProject)}
               className={`
                 mb-8 bg-black/60 backdrop-blur-md border border-white/10 rounded-3xl overflow-hidden 
                 transition-all duration-300 hover:bg-black/70 hover:border-white/20 hover:shadow-[0_0_40px_rgba(255,255,255,0.1)]
                 ${isDesktop ? 'cursor-pointer' : 'cursor-default'}
-                group animate-pixel-fade anim-delay-600
+                group animate-card-fade opacity-0
               `}
+              style={{ animationDelay: isFirstLoad ? '0.7s' : '0s' }}
             >
               <div className="flex flex-col lg:flex-row">
                 <div className="relative w-full lg:w-1/2 h-64 lg:h-auto lg:min-h-[400px] bg-gray-900 overflow-hidden">
