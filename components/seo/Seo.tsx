@@ -77,7 +77,7 @@ export const defaultMetadata: Metadata = {
   manifest: '/manifest.json',
   category: 'portfolio',
   verification: {
-    google: 'eVcq3lWGN8SHQpziCGhW59Je6Sk7fAzsWKCBIsjUf_w',
+    google: 'NBZn7-warBf4Q-g7yygdasfbP_V0wqkEYw2c2zocr20',
   },
 };
 
