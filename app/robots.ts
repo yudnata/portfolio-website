@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/private/',
     },
-    sitemap: 'https://yudnata.dev/sitemap.xml',
+    sitemap: 'https://yudnata-portfolio.vercel.app/sitemap.xml',
   };
 }

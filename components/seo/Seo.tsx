@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 
 export const defaultMetadata: Metadata = {
-  metadataBase: new URL('https://yudnata.dev'),
+  metadataBase: new URL('https://yudnata-portfolio.vercel.app'),
   title: {
     default: 'Gede Yudhi Adinata Putra Kurniawan | Fullstack Developer Portfolio',
     template: '%s | Yudhi Adinata',
@@ -20,7 +20,9 @@ export const defaultMetadata: Metadata = {
     'Frontend Developer',
     'Pixel Art Portfolio',
   ],
-  authors: [{ name: 'Gede Yudhi Adinata Putra Kurniawan', url: 'https://yudnata.dev' }],
+  authors: [
+    { name: 'Gede Yudhi Adinata Putra Kurniawan', url: 'https://yudnata-portfolio.vercel.app' },
+  ],
   creator: 'Gede Yudhi Adinata Putra Kurniawan',
   publisher: 'Gede Yudhi Adinata Putra Kurniawan',
   formatDetection: {
@@ -32,7 +34,7 @@ export const defaultMetadata: Metadata = {
     type: 'profile',
     locale: 'en_US',
     alternateLocale: 'id_ID',
-    url: 'https://yudnata.dev',
+    url: 'https://yudnata-portfolio.vercel.app',
     siteName: 'Yudhi Adinata Portfolio',
     title: 'Gede Yudhi Adinata Putra Kurniawan | Fullstack Developer',
     description:
@@ -75,7 +77,7 @@ export const defaultMetadata: Metadata = {
   manifest: '/manifest.json',
   category: 'portfolio',
   verification: {
-    google: 'google-site-verification-code',
+    google: 'google-site-verification=eVcq3lWGN8SHQpziCGhW59Je6Sk7fAzsWKCBIsjUf_w',
   },
 };
 
@@ -94,8 +96,8 @@ export const personJsonLd = {
   '@type': 'Person',
   name: 'Gede Yudhi Adinata Putra Kurniawan',
   alternateName: ['Yudhi Adinata', 'Yudnata'],
-  url: 'https://yudnata.dev',
-  image: 'https://yudnata.dev/images/home.webp',
+  url: 'https://yudnata-portfolio.vercel.app',
+  image: 'https://yudnata-portfolio.vercel.app/images/home.webp',
   sameAs: [
     'https://github.com/yudnata',
     'https://linkedin.com/in/yudnata',

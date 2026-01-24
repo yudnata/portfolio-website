@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://yudnata.dev';
+  const baseUrl = 'https://yudnata-portfolio.vercel.app';
 
   return [
     {

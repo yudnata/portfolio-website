@@ -54,7 +54,7 @@ export const projects: Project[] = [
       'Complete fullstack e-commerce solution with a powerful Admin Dashboard (CMS) for real-time inventory tracking, order processing, and customer inquiry management. Built with PHP and MySQL.',
     icon: '',
     image: '/assets/projects/CoreTI.png',
-    technologies: ['PHP', 'MySQL', 'JavaScript', 'HTML', 'CSS', 'CRUD'],
+    technologies: ['Laravel', 'PHP', 'MySQL', 'JavaScript', 'HTML', 'CSS', 'CRUD'],
     category: 'Web App',
     status: 'Completed',
     githubUrl: 'https://github.com/yudnata/CoreTI',
