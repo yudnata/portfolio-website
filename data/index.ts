@@ -98,6 +98,19 @@ export const projects: Project[] = [
     status: 'Completed',
     githubUrl: 'https://github.com/yudnata/sentiment-analysis-app',
   },
+  {
+    id: 'portfolio',
+    title: 'Portfolio Yudnata',
+    subtitle: 'Personal Portfolio Website',
+    description:
+      'A web-based portfolio implementation using React and Next.js with TypeScript and Tailwind CSS.',
+    icon: '',
+    image: '/assets/projects/portfolio.png',
+    technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+    category: 'Personal',
+    status: 'Completed',
+    githubUrl: 'https://github.com/yudnata/portfolio-website',
+  },
 ];
 
 export const skillCategories: SkillCategory[] = [
@@ -149,7 +162,8 @@ export const educationList: Education[] = [
     institution: 'Udayana University, Bali',
     degree: 'Bachelor of Information Technology',
     period: 'Sep 2023 – Present',
-    description: 'Information Technology Student with GPA 3.77/4.00. Actively engaged in student organizations focusing on design and publication.',
+    description:
+      'Information Technology Student with GPA 3.77/4.00. Actively engaged in student organizations focusing on design and publication.',
     icon: '/icons/unud.png',
     achievements: [
       'GPA 3.77 / 4.00',
@@ -163,7 +177,8 @@ export const educationList: Education[] = [
     institution: 'Dicoding & Accenture',
     degree: 'React – Backend Cohort (Asah Program)',
     period: 'Aug 2025 – Feb 2026',
-    description: 'Intensive Fullstack Development program. Collaborating on web applications using React.js, Node.js, and Agile SDLC methodologies.',
+    description:
+      'Intensive Fullstack Development program. Collaborating on web applications using React.js, Node.js, and Agile SDLC methodologies.',
     icon: '/icons/asah.png',
     achievements: [
       'Awarded as Best Capstone Project',

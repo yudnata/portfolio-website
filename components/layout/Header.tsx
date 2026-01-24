@@ -110,7 +110,7 @@ export default function Header() {
         </nav>
 
         <button
-          className="md:hidden bg-transparent border-2 border-primary/50 text-white font-pixel cursor-pointer p-2 rounded-md hover:bg-white/10"
+          className="md:hidden bg-transparent text-white font-pixel cursor-pointer p-1  rounded-md hover:bg-white/10"
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMobileMenuOpen}

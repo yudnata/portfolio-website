@@ -112,10 +112,7 @@ export default function ContactContent() {
         <section className="w-full max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-start animate-pixel-fade anim-delay-800 transform transition-all duration-700">
             <div>
-              <p className="font-pixel text-primary text-xs mb-2 uppercase tracking-widest">
-                Contact
-              </p>
-              <h1 className="font-pixel text-3xl md:text-5xl font-bold mb-4 text-white text-shadow-pixel">
+              <h1 className="font-pixel text-2xl md:text-3xl font-bold mb-4 text-white text-shadow-pixel mt-10">
                 Get In Touch
               </h1>
               <p className="font-retro text-gray-300 text-lg mb-8 leading-relaxed">
@@ -164,7 +161,7 @@ export default function ContactContent() {
               </ul>
             </div>
 
-            <address className="not-italic space-y-4">
+            <address className="not-italic space-y-2">
               {contactInfo.map((info, idx) => (
                 <div
                   key={info.label}

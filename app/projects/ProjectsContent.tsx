@@ -12,6 +12,14 @@ const categories = ['All', 'Personal', 'Web App', 'Enterprise'];
 export default function ProjectsContent() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsFirstLoad(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const filteredProjects =
     activeCategory === 'All' ? projects : projects.filter((p) => p.category === activeCategory);
@@ -36,7 +44,7 @@ export default function ProjectsContent() {
 
       <main className="pt-[100px] pb-20 px-4 md:px-12 min-h-screen">
         <article className="max-w-6xl mx-auto">
-          <header className="text-center mb-10 animate-slide-up anim-delay-800">
+          <header className="text-center mb-10 animate-slide-up anim-delay-500">
             <h1 className="font-pixel text-2xl md:text-3xl text-accent-alt text-shadow-pixel flex justify-center items-center gap-4">
               My Projects
             </h1>
@@ -44,7 +52,7 @@ export default function ProjectsContent() {
               Project completed & Project in progress
             </p>
           </header>
-          <nav className="flex justify-center flex-wrap gap-2 mb-10 animate-pixel-fade anim-delay-900">
+          <nav className="flex justify-center flex-wrap gap-2 mb-10 animate-pixel-fade anim-delay-600">
             {categories.map((category) => (
               <button
                 key={category}
@@ -65,10 +73,10 @@ export default function ProjectsContent() {
           <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {filteredProjects.map((project, index) => (
               <article
-                key={project.id}
+                key={`${activeCategory}-${project.id}`}
                 onClick={() => setSelectedProject(project)}
-                className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:bg-black/70 hover:shadow-[0_0_25px_rgba(255,255,255,0.15)] cursor-pointer group animate-pixel-fade opacity-0 flex flex-col h-full"
-                style={{ animationDelay: `${0.8 + index * 0.1}s` }}
+                className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:bg-black/70 hover:shadow-[0_0_25px_rgba(255,255,255,0.15)] cursor-pointer group animate-card-fade opacity-0 flex flex-col h-full"
+                style={{ animationDelay: isFirstLoad ? `${0.7 + index * 0.08}s` : `${index * 0.05}s` }}
               >
                 <figure className="relative w-full h-48 bg-gray-900 border-b border-white/5 overflow-hidden">
                   {project.image ? (
