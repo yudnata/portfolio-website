@@ -13,6 +13,14 @@ export default function ProjectsContent() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkIsDesktop = () => setIsDesktop(window.innerWidth >= 768);
+    checkIsDesktop();
+    window.addEventListener('resize', checkIsDesktop);
+    return () => window.removeEventListener('resize', checkIsDesktop);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -74,8 +82,8 @@ export default function ProjectsContent() {
             {filteredProjects.map((project, index) => (
               <article
                 key={`${activeCategory}-${project.id}`}
-                onClick={() => setSelectedProject(project)}
-                className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:bg-black/70 hover:shadow-[0_0_25px_rgba(255,255,255,0.15)] cursor-pointer group animate-card-fade opacity-0 flex flex-col h-full"
+                onClick={() => isDesktop && setSelectedProject(project)}
+                className={`bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:bg-black/70 hover:shadow-[0_0_25px_rgba(255,255,255,0.15)] ${isDesktop ? 'cursor-pointer' : 'cursor-default'} group animate-card-fade opacity-0 flex flex-col h-full`}
                 style={{ animationDelay: isFirstLoad ? `${0.7 + index * 0.08}s` : `${index * 0.05}s` }}
               >
                 <figure className="relative w-full h-48 bg-gray-900 border-b border-white/5 overflow-hidden">
@@ -84,6 +92,7 @@ export default function ProjectsContent() {
                       src={project.image}
                       alt={project.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover object-center transition-opacity duration-300 opacity-80 group-hover:opacity-100"
                     />
                   ) : (
@@ -91,7 +100,7 @@ export default function ProjectsContent() {
                       <span className="font-pixel text-xs text-gray-500">NO IMAGE</span>
                     </div>
                   )}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
+                  <div className="absolute inset-0 hidden md:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
                     <span className="font-pixel text-[0.6rem] text-white border border-white/30 bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm">
                       Click for Details
                     </span>

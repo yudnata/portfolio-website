@@ -70,9 +70,9 @@ export const defaultMetadata: Metadata = {
     },
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
+    icon: '/favicon/next.svg',
+    shortcut: '/favicon/next.svg',
+    apple: '/favicon/next.svg',
   },
   manifest: '/manifest.json',
   category: 'portfolio',
