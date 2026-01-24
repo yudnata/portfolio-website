@@ -72,7 +72,7 @@ export default function HomePage() {
         <h1 className="sr-only">
           Gede Yudhi Adinata Putra Kurniawan - Fullstack Web Developer Portfolio
         </h1>
-        <section className="flex flex-col items-center text-center w-full relative h-[600px] lg:h-[700px] justify-end animate-pixel-fade">
+        <section className="flex flex-col items-center text-center w-full relative h-[600px] lg:h-[700px] justify-end animate-pixel-fade anim-delay-700">
           <figure className="absolute bottom-[200px] left-1/2 -translate-x-1/2 w-[300px] lg:w-[400px] pointer-events-none z-10 animate-float drop-shadow-[0_0_20px_rgba(255,255,255,0.2)] opacity-100 hover:scale-105 transition-transform duration-500">
             <Image
               src="/assets/introduction.png"

@@ -1,36 +1,36 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   /* Colors - Monochrome Modern Pixel Theme */
-  
+
   /* Primary: Pure White & Light Greys */
-  --color-primary-light: #E5E5E5;
-  --color-primary: #FFFFFF;
-  --color-primary-dark: #A3A3A3;
-  
+  --color-primary-light: #e5e5e5;
+  --color-primary: #ffffff;
+  --color-primary-dark: #a3a3a3;
+
   /* Accent: High Contrast Greyscale */
-  --color-accent-light: #F0F0F0;
-  --color-accent: #FFFFFF;
-  --color-accent-dark: #D4D4D4;
-  --color-accent-alt: #CCCCCC;
-  
+  --color-accent-light: #f0f0f0;
+  --color-accent: #ffffff;
+  --color-accent-dark: #d4d4d4;
+  --color-accent-alt: #cccccc;
+
   /* Background: Deep Void / Matte Black */
-  --color-pixel-bg-dark: #0A0A0A;
+  --color-pixel-bg-dark: #0a0a0a;
   --color-pixel-bg-medium: #171717;
   --color-pixel-bg-light: #262626;
-  
+
   /* UI Panels: Black Transparent */
   --color-ui-panel: rgba(0, 0, 0, 0.85);
-  
+
   /* Text */
-  --color-pixel-text-primary: #FFFFFF;
-  --color-pixel-text-secondary: #D4D4D4;
+  --color-pixel-text-primary: #ffffff;
+  --color-pixel-text-secondary: #d4d4d4;
   --color-pixel-text-muted: #737373;
 
   /* Typography */
-  --font-pixel: "Press Start 2P", cursive;
-  --font-retro: "VT323", monospace;
-  --font-silkscreen: "Silkscreen", cursive;
+  --font-pixel: 'Press Start 2P', cursive;
+  --font-retro: 'VT323', monospace;
+  --font-silkscreen: 'Silkscreen', cursive;
 
   /* Shadows: Sharp White Glows (Subtle) */
   --shadow-glow: 0 0 15px rgba(255, 255, 255, 0.15);
@@ -40,25 +40,38 @@
   /* Animations */
   --animate-pixel-fade: pixelFadeIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   --animate-float: float 4s ease-in-out infinite;
-  
+
   @keyframes pixelFadeIn {
-    0% { opacity: 0; transform: translateY(4px); }
-    100% { opacity: 1; transform: translateY(0); }
+    0% {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  
+
   @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
   }
 }
 
 @layer base {
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-pixel-bg-dark text-pixel-text-primary font-retro leading-relaxed antialiased;
     image-rendering: pixelated;
   }
-  
+
   /* Selection color */
   ::selection {
     @apply bg-white text-black;
@@ -69,10 +82,85 @@
 @utility bg-speech-bubble {
   background-color: rgba(20, 20, 20, 0.9);
   backdrop-filter: blur(4px);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
 }
 
 @utility text-shadow-pixel {
   text-shadow: 2px 2px 0 rgba(100, 100, 100, 0.5);
+}
+
+/* Animation Utilities */
+@utility animate-slide-up {
+  opacity: 0;
+  animation: slideUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@utility animate-pixel-fade {
+  opacity: 0;
+  animation: pixelFade 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Animation Delay Utilities */
+@utility anim-delay-300 {
+  animation-delay: 300ms;
+}
+
+@utility anim-delay-500 {
+  animation-delay: 500ms;
+}
+
+@utility anim-delay-600 {
+  animation-delay: 600ms;
+}
+
+@utility anim-delay-700 {
+  animation-delay: 700ms;
+}
+
+@utility anim-delay-800 {
+  animation-delay: 800ms;
+}
+
+@utility anim-delay-900 {
+  animation-delay: 900ms;
+}
+
+@utility anim-delay-1000 {
+  animation-delay: 1000ms;
+}
+
+@utility anim-delay-1100 {
+  animation-delay: 1100ms;
+}
+
+@utility anim-delay-1200 {
+  animation-delay: 1200ms;
+}
+
+/* Animation Keyframes - Smoother transitions */
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes pixelFade {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+    filter: blur(3px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
 }

@@ -15,11 +15,11 @@ export default function AboutContent() {
       <Header />
 
       <main className="pt-[100px] pb-20 px-4 md:px-12 min-h-screen max-w-7xl mx-auto flex flex-col justify-center">
-        <h1 className="font-pixel text-2xl md:text-3xl text-white mb-10 animate-[translate-y-from-n20_0.6s_ease-out]">
+        <h1 className="font-pixel text-2xl md:text-3xl text-white mb-10 animate-slide-up anim-delay-500">
           A bit about myself
         </h1>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-pixel-fade delay-100">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-pixel-fade anim-delay-600">
           <div className="lg:col-span-1 h-full">
             <figure className="relative w-full h-full min-h-[300px] bg-black/40 backdrop-blur-md rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
               <Image
@@ -29,11 +29,16 @@ export default function AboutContent() {
                 className="object-cover object-center transition-all duration-500 scale-100 group-hover:scale-105"
                 priority
               />
-              <figcaption className="sr-only">Portrait of Gede Yudhi Adinata Putra Kurniawan</figcaption>
+              <figcaption className="sr-only">
+                Portrait of Gede Yudhi Adinata Putra Kurniawan
+              </figcaption>
             </figure>
           </div>
           <div className="lg:col-span-2 flex flex-col gap-2">
-            <section className="bg-black/70 rounded-2xl p-8 shadow-lg" aria-label="Introduction">
+            <section
+              className="bg-black/70 rounded-2xl p-8 shadow-lg"
+              aria-label="Introduction"
+            >
               <p className="font-retro text-xl leading-relaxed text-gray-200">
                 Hi my name is{' '}
                 <strong className="text-white">Gede Yudhi Adinata Putra Kurniawan</strong>. I&apos;m
@@ -45,7 +50,10 @@ export default function AboutContent() {
               </p>
             </section>
 
-            <section className="grid grid-cols-1 md:grid-cols-3 gap-4" aria-label="Personal Details">
+            <section
+              className="grid grid-cols-1 md:grid-cols-3 gap-4"
+              aria-label="Personal Details"
+            >
               <div className="bg-black/70 border border-white/5 rounded-2xl p-6 shadow-md transition-colors">
                 <span className="block font-pixel text-[0.6rem] text-gray-500 mb-2 uppercase tracking-wide">
                   Location
@@ -75,7 +83,10 @@ export default function AboutContent() {
               </a>
             </section>
 
-            <section className="bg-black/70 border border-white/5 rounded-2xl p-8 shadow-lg" aria-label="Core Values">
+            <section
+              className="bg-black/70 border border-white/5 rounded-2xl p-8 shadow-lg"
+              aria-label="Core Values"
+            >
               <span className="block font-pixel text-[0.6rem] text-gray-500 mb-4 uppercase tracking-wide">
                 Values
               </span>

@@ -14,14 +14,14 @@ export default function SkillsContent() {
       <Header />
 
       <main className="pt-[100px] pb-20 px-4 md:px-12 min-h-screen max-w-6xl mx-auto flex flex-col justify-center">
-        <div className="text-center mb-10 animate-[translate-y-from-n20_0.6s_ease-out]">
+        <div className="text-center mb-10 animate-slide-up anim-delay-500">
           <h1 className="font-pixel text-2xl md:text-3xl text-white text-shadow-pixel mb-2">
             Technical Skills
           </h1>
           <p className="font-retro text-lg text-gray-400">My arsenal of tools & technologies</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 animate-pixel-fade delay-100">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 animate-pixel-fade anim-delay-700">
           <div className="md:row-span-2 bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:bg-black/70 transition-colors shadow-lg flex flex-col">
             <h2 className="font-pixel text-sm text-white mb-6 flex items-center gap-3 border-l-4 border-blue-400 pl-3">
               Frontend Development
@@ -185,7 +185,7 @@ export default function SkillsContent() {
   );
 }
 
-function SkillChip({ name, iconSrc, }: { name: string; iconSrc?: string; color?: string }) {
+function SkillChip({ name, iconSrc }: { name: string; iconSrc?: string; color?: string }) {
   return (
     <div className="flex items-center gap-2 bg-white/5 border border-white/5 px-3 py-2 rounded-xl hover:bg-white/10 hover:border-white/10 transition-all cursor-default group">
       {iconSrc && (

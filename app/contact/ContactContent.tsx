@@ -110,7 +110,7 @@ export default function ContactContent() {
 
       <main className="pt-[100px] pb-20 px-4 md:px-12 min-h-screen flex items-center justify-center">
         <section className="w-full max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-start animate-pixel-fade transform transition-all duration-700">
+          <div className="grid md:grid-cols-2 gap-12 items-start animate-pixel-fade anim-delay-800 transform transition-all duration-700">
             <div>
               <p className="font-pixel text-primary text-xs mb-2 uppercase tracking-widest">
                 Contact
@@ -169,7 +169,7 @@ export default function ContactContent() {
                 <div
                   key={info.label}
                   className="rounded-2xl p-6 flex items-start gap-5 bg-black/40 border border-white/5 hover:bg-black/60 hover:border-white/10 transition-colors shadow-lg animate-pixel-fade opacity-0"
-                  style={{ animationDelay: `${0.2 + idx * 0.1}s` }}
+                  style={{ animationDelay: `${0.8 + idx * 0.1}s` }}
                 >
                   <div className="mt-1 p-2 bg-white/10 rounded-lg">{info.icon}</div>
                   <div>

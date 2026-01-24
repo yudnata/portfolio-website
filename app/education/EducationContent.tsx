@@ -18,7 +18,7 @@ export default function EducationContent() {
 
       <main className="pt-[100px] pb-20 px-4 md:px-12 min-h-screen">
         <article className="max-w-4xl mx-auto">
-          <header className="text-center mb-10 animate-[translate-y-from-n20_0.6s_ease-out]">
+          <header className="text-center mb-10 animate-slide-up anim-delay-800">
             <h1 className="font-pixel text-2xl md:text-3xl text-accent-alt text-shadow-pixel">
               Education
             </h1>
@@ -34,7 +34,7 @@ export default function EducationContent() {
               <section
                 key={edu.id}
                 className="relative md:pl-16 mb-10 last:mb-0 animate-pixel-fade"
-                style={{ animationDelay: `${index * 0.2}s` }}
+                style={{ animationDelay: `${0.8 + index * 0.2}s` }}
               >
                 <div className="absolute left-[26px] top-0 w-4 h-4 bg-primary rounded-full hidden md:block shadow-[0_0_15px_rgba(255,255,255,0.6)] border-2 border-primary-light z-10" />
 
