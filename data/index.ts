@@ -27,7 +27,7 @@ export const projects: Project[] = [
     description:
       'A full-stack CRM microservices solution that predicts customer conversion probability using machine learning. Features Role-Based Access Control (RBAC) for Admin and Sales workflows, real-time analytics dashboard, and lead management.',
     icon: '',
-    image: '/assets/projects/leadgo.png',
+    image: '/assets/projects/LeadGo.png',
     technologies: ['React', 'Node.js', 'PostgreSQL', 'Docker', 'Tailwind CSS', 'CRUD'],
     category: 'Enterprise',
     status: 'Completed',
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     description:
       'A native Android application built with Kotlin following Clean MVVM Architecture. Features beautiful Material Design UI with ViewPager2 for onboarding, Lottie animations, and offline-first data persistence.',
     icon: '',
-    image: '/assets/projects/letmecook.png',
+    image: '/assets/projects/LetMeCook.png',
     technologies: ['Kotlin', 'Android', 'MVVM', 'Firebase', 'Cloudinary'],
     category: 'Personal',
     status: 'Completed',
@@ -53,7 +53,7 @@ export const projects: Project[] = [
     description:
       'Complete fullstack e-commerce solution with a powerful Admin Dashboard (CMS) for real-time inventory tracking, order processing, and customer inquiry management. Built with PHP and MySQL.',
     icon: '',
-    image: '/assets/projects/coreti.png',
+    image: '/assets/projects/CoreTI.png',
     technologies: ['PHP', 'MySQL', 'JavaScript', 'HTML', 'CSS', 'CRUD'],
     category: 'Web App',
     status: 'Completed',
@@ -79,7 +79,7 @@ export const projects: Project[] = [
     description:
       'An immersive technology course project featuring interactive 3D visualization of planet Earth. Built with React, Three.js, and React Three Fiber for smooth WebGL rendering and intuitive user interactions.',
     icon: '',
-    image: '/assets/projects/earth3d.png',
+    image: '/assets/projects/Earth3d.png',
     technologies: ['React', 'Three.js', 'React Three Fiber', 'WebGL', '3D', 'JavaScript'],
     category: 'Personal',
     status: 'Completed',
@@ -92,7 +92,7 @@ export const projects: Project[] = [
     description:
       'A web-based sentiment analysis implementation using React and Flask with Naive Bayes method from scikit-learn. Classifies Indonesian public opinions about products into positive or negative sentiments.',
     icon: '',
-    image: '/assets/projects/sentiment.png',
+    image: '/assets/projects/Sentiment.png',
     technologies: ['React', 'Flask', 'Python', 'scikit-learn', 'NLP', 'Machine Learning'],
     category: 'Personal',
     status: 'Completed',
