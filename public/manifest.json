@@ -1,0 +1,17 @@
+{
+  "name": "Yudhi Adinata Portfolio",
+  "short_name": "Yudnata",
+  "description": "Portfolio of Gede Yudhi Adinata Putra Kurniawan - Fullstack Developer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ]
+}
