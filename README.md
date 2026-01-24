@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Yudnata Portfolio
+
+A personal portfolio website featuring a retro pixel-art aesthetic, built with modern web technologies. This project showcases my work, skills, and background as a Fullstack Developer.
+
+## Tech Stack
+
+- **Framework**: [Next.js 15 (App Router)](https://nextjs.org/)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: Custom Pixel Art Assets & React Icons
+- **Fonts**: Google Fonts (Press Start 2P, VT323, Silkscreen) loaded via `next/font`
+- **Deployment**: Vercel
+
+## Features
+
+- **Pixel Art Theme**: Consistent retro design system with custom interactive elements.
+- **Responsive Design**: Fully optimized for desktop and mobile devices.
+- **Interactive UI**:
+  - Typewriter effect intro dialogs.
+  - Project cards with modal details.
+  - Custom pixel-styled navigation and buttons.
+- **SEO Optimized**:
+  - Fully configured Metadata API.
+  - Semantic HTML structure (`<figure>`, `<section>`, etc).
+  - Dynamic `sitemap.xml` and `robots.txt`.
+  - JSON-LD Structured Data for rich search results.
+  - Open Graph tags for social media sharing.
+- **Performance**:
+  - Optimized images with `next/image`.
+  - Google Fonts optimization (zero layout shift).
+  - Security headers configuration via `vercel.json`.
 
 ## Getting Started
 
-First, run the development server:
+1.  **Clone the repository**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+    ```bash
+    git clone https://github.com/yudnata/portfolio.git
+    cd portfolio
+    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2.  **Install dependencies**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+    ```bash
+    npm install
+    # or
+    yarn install
+    # or
+    pnpm install
+    ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3.  **Run the development server**
 
-## Learn More
+    ```bash
+    npm run dev
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `app/`: Application routes and page logic (App Router).
+- `components/`: Reusable UI components (Layout, SEO, Pixel UI).
+- `data/`: Static content data (Projects, Experience, Skills).
+- `public/`: Static assets (Images, Icons).
+- `styles/`: Global styles and Tailwind configuration.
+- `types/`: TypeScript type definitions.
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is optimized for deployment on [Vercel](https://vercel.com).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1.Push your code to a Git repository (GitHub/GitLab).
+2.Import the project into Vercel.
+3.Vercel will automatically detect Next.js and configure the build settings.
+4.Your site will be live within minutes.
+
+## License
+
+[MIT](LICENSE)
