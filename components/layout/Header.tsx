@@ -18,7 +18,6 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Mounted check to prevent any hydration mismatch or unsafe state updates
   const isMounted = useRef(false);
 
   useEffect(() => {
@@ -42,7 +41,6 @@ export default function Header() {
       }
     };
 
-    // Initial check
     updateScrollState();
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -53,7 +51,6 @@ export default function Header() {
     };
   }, []);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     if (isMounted.current) {
       setTimeout(() => {
@@ -65,7 +62,7 @@ export default function Header() {
   }, [pathname]);
 
   const headerBaseClass =
-    'fixed top-0 left-0 right-0 py-4 px-6 md:px-8 z-200 transition-all duration-300';
+    'fixed top-0 left-0 right-0 py-4 px-6 md:px-8 z-200 transition-all duration-300 select-none';
   const headerScrolledClass = isScrolled
     ? 'bg-pixel-bg-medium/95 shadow-md backdrop-blur-sm'
     : 'bg-linear-to-b from-pixel-bg-medium/95 to-transparent';
@@ -76,7 +73,6 @@ export default function Header() {
       role="banner"
     >
       <div className="w-full max-w-7xl mx-auto flex justify-between items-center">
-        {/* Logo */}
         <Link
           href="/"
           className="flex items-center gap-2 font-pixel text-sm md:text-base text-primary text-shadow-sm group no-underline"
@@ -84,7 +80,6 @@ export default function Header() {
           <span>YUDNATA</span>
         </Link>
 
-        {/* Desktop Navigation */}
         <nav
           className="hidden md:block"
           role="navigation"
@@ -114,7 +109,6 @@ export default function Header() {
           </ul>
         </nav>
 
-        {/* Mobile Menu Button */}
         <button
           className="md:hidden bg-transparent border-2 border-primary/50 text-white font-pixel cursor-pointer p-2 rounded-md hover:bg-white/10"
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
@@ -125,7 +119,6 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile Navigation */}
       <nav
         className={`
           md:hidden fixed top-[60px] left-0 right-0 bg-pixel-bg-medium/98 backdrop-blur-md border-b border-white/10
@@ -158,7 +151,6 @@ export default function Header() {
         </ul>
       </nav>
 
-      {/* Mobile Menu Backdrop */}
       {isMobileMenuOpen && (
         <div
           className="md:hidden fixed inset-0 top-[60px] bg-black/80 backdrop-blur-sm z-180"

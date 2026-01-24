@@ -1,14 +1,36 @@
 import type { Metadata, Viewport } from 'next';
+import { Press_Start_2P, VT323, Silkscreen } from 'next/font/google';
 import '@/styles/globals.css';
 
-// SEO Metadata Configuration
+const pressStart2P = Press_Start_2P({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-press-start',
+  display: 'swap',
+});
+
+const vt323 = VT323({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-vt323',
+  display: 'swap',
+});
+
+const silkscreen = Silkscreen({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  variable: '--font-silkscreen',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://yudnata.dev'),
   title: {
     default: 'Yudnata | Pixel Art Portfolio - Web Developer',
-    template: '%s | Yudnata Portfolio'
+    template: '%s | Yudnata Portfolio',
   },
-  description: 'Welcome to Yudnata\'s pixel art portfolio. A passionate web developer specializing in modern web technologies, creating beautiful and functional digital experiences.',
+  description:
+    "Welcome to Yudnata's pixel art portfolio. A passionate web developer specializing in modern web technologies, creating beautiful and functional digital experiences.",
   keywords: [
     'web developer',
     'frontend developer',
@@ -19,7 +41,7 @@ export const metadata: Metadata = {
     'JavaScript',
     'portfolio',
     'Yudnata',
-    'Indonesia developer'
+    'Indonesia developer',
   ],
   authors: [{ name: 'Yudnata', url: 'https://yudnata.dev' }],
   creator: 'Yudnata',
@@ -36,14 +58,15 @@ export const metadata: Metadata = {
     url: 'https://yudnata.dev',
     siteName: 'Yudnata Portfolio',
     title: 'Yudnata | Pixel Art Portfolio - Web Developer',
-    description: 'Explore my pixel art themed portfolio showcasing web development projects, skills, and experiences.',
+    description:
+      'Explore my pixel art themed portfolio showcasing web development projects, skills, and experiences.',
     images: [
       {
         url: '/images/home.webp',
         width: 1200,
         height: 630,
         alt: 'Yudnata Portfolio Preview',
-      }
+      },
     ],
   },
   twitter: {
@@ -83,7 +106,6 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
-// JSON-LD Structured Data
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -110,19 +132,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" dir="ltr">
+    <html
+      lang="en"
+      dir="ltr"
+      className={`${pressStart2P.variable} ${vt323.variable} ${silkscreen.variable}`}
+    >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body className="antialiased">
-        <a 
-          href="#main-content" 
+        <a
+          href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 px-4 py-2 bg-primary text-white font-pixel"
         >
           Skip to main content

@@ -28,25 +28,28 @@ const PixelButton = forwardRef<HTMLButtonElement, PixelButtonProps>(
       className = '',
       ...props
     },
-    ref
+    ref,
   ) => {
-    // Tailwind classes mapping
-    const baseClasses = "inline-flex items-center justify-center gap-2 font-pixel tracking-widest uppercase transition-all duration-150 border-3 border-pixel-bg-dark shadow-pixel hover:-translate-y-0.5 hover:shadow-pixel-lg active:translate-y-0.5 active:shadow-pixel-sm disabled:opacity-60 disabled:cursor-not-allowed";
-    
+    const baseClasses =
+      'inline-flex items-center justify-center gap-2 font-pixel tracking-widest uppercase transition-all duration-150 border-3 border-pixel-bg-dark shadow-pixel hover:-translate-y-0.5 hover:shadow-pixel-lg active:translate-y-0.5 active:shadow-pixel-sm disabled:opacity-60 disabled:cursor-not-allowed';
+
     const variantClasses = {
-      primary: "bg-white text-black border-2 border-white hover:bg-gray-200 shadow-[0_0_10px_rgba(255,255,255,0.4)]",
-      accent: "bg-black/80 text-white border-2 border-white hover:bg-black shadow-[0_0_10px_rgba(255,255,255,0.2)]",
-      gold: "bg-gray-300 text-black border-2 border-white hover:bg-white",
-      outline: "bg-transparent text-white border-2 border-white hover:bg-white/10 hover:shadow-[0_0_10px_rgba(255,255,255,0.3)]",
+      primary:
+        'bg-white text-black border-2 border-white hover:bg-gray-200 shadow-[0_0_10px_rgba(255,255,255,0.4)]',
+      accent:
+        'bg-black/80 text-white border-2 border-white hover:bg-black shadow-[0_0_10px_rgba(255,255,255,0.2)]',
+      gold: 'bg-gray-300 text-black border-2 border-white hover:bg-white',
+      outline:
+        'bg-transparent text-white border-2 border-white hover:bg-white/10 hover:shadow-[0_0_10px_rgba(255,255,255,0.3)]',
     };
 
     const sizeClasses = {
-      sm: "text-[0.5rem] px-3 py-1",
-      md: "text-[0.65rem] px-5 py-2",
-      lg: "text-[0.8rem] px-8 py-3",
+      sm: 'text-[0.5rem] px-3 py-1',
+      md: 'text-[0.65rem] px-5 py-2',
+      lg: 'text-[0.8rem] px-8 py-3',
     };
 
-    const widthClass = fullWidth ? "w-full" : "w-auto";
+    const widthClass = fullWidth ? 'w-full' : 'w-auto';
     const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${widthClass} ${className}`;
 
     const content = (
@@ -62,7 +65,10 @@ const PixelButton = forwardRef<HTMLButtonElement, PixelButtonProps>(
 
     if (href && !props.disabled) {
       return (
-        <Link href={href} className={combinedClasses}>
+        <Link
+          href={href}
+          className={combinedClasses}
+        >
           {content}
         </Link>
       );
@@ -78,7 +84,7 @@ const PixelButton = forwardRef<HTMLButtonElement, PixelButtonProps>(
         {content}
       </button>
     );
-  }
+  },
 );
 
 PixelButton.displayName = 'PixelButton';

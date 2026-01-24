@@ -1,27 +1,28 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Header } from '@/components/layout';
 import { PageBackground } from '@/components/ui';
 import { projects } from '@/data';
+import { Project } from '@/types';
 
 const categories = ['All', 'Personal', 'Web App', 'Enterprise'];
 
 export default function ProjectsContent() {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filteredProjects =
-    activeCategory === 'All'
-      ? projects
-      : projects.filter((p) => p.category === activeCategory);
+    activeCategory === 'All' ? projects : projects.filter((p) => p.category === activeCategory);
 
-  const getStatusColorClass = (status: string) => {
-    switch (status) {
-      case 'Completed': return 'text-white border-white';
-      case 'In Progress': return 'text-gray-300 border-gray-300';
-      default: return 'text-gray-500 border-gray-500';
-    }
-  };
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedProject(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <div className="relative min-h-screen">
@@ -40,11 +41,9 @@ export default function ProjectsContent() {
               My Projects
             </h1>
             <p className="font-retro text-xl md:text-2xl text-pixel-text-muted mt-2">
-              Quests completed & adventures in progress
+              Project completed & Project in progress
             </p>
           </header>
-
-          {/* Filter */}
           <nav className="flex justify-center flex-wrap gap-2 mb-10 animate-pixel-fade delay-100">
             {categories.map((category) => (
               <button
@@ -52,9 +51,10 @@ export default function ProjectsContent() {
                 onClick={() => setActiveCategory(category)}
                 className={`
                   font-pixel text-[0.6rem] px-5 py-2 cursor-pointer transition-all duration-300 rounded-full border shadow-sm backdrop-blur-sm
-                  ${activeCategory === category
-                    ? 'bg-primary text-pixel-bg-dark border-primary shadow-[0_0_10px_rgba(255,255,255,0.3)] font-bold scale-105'
-                    : 'bg-black/40 text-gray-300 border-white/10 hover:border-white/30 hover:bg-black/60'
+                  ${
+                    activeCategory === category
+                      ? 'bg-primary text-pixel-bg-dark border-primary shadow-[0_0_10px_rgba(255,255,255,0.3)] font-bold scale-105'
+                      : 'bg-black/40 text-gray-300 border-white/10 hover:border-white/30 hover:bg-black/60'
                   }
                 `}
               >
@@ -62,58 +62,62 @@ export default function ProjectsContent() {
               </button>
             ))}
           </nav>
-
-          {/* Grid */}
-          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {filteredProjects.map((project, index) => (
               <article
                 key={project.id}
-                className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:bg-black/70 hover:shadow-[0_0_25px_rgba(255,255,255,0.15)] hover:border-primary/40 group animate-pixel-fade flex flex-col h-full"
+                onClick={() => setSelectedProject(project)}
+                className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:bg-black/70 hover:shadow-[0_0_25px_rgba(255,255,255,0.15)] cursor-pointer group animate-pixel-fade opacity-0 flex flex-col h-full"
                 style={{ animationDelay: `${0.2 + index * 0.1}s` }}
               >
-                <header className="flex justify-between items-start mb-4">
-                  <div className="flex items-center gap-3">
-                    <h2 className="font-pixel text-xs md:text-sm text-primary group-hover:text-white transition-colors leading-snug max-w-[150px] tracking-wide">
-                      {project.title}
-                    </h2>
-                  </div>
-                  {project.status && (
-                     <span className={`font-pixel text-[0.4rem] px-2 py-1 rounded-full border bg-black/40 ${getStatusColorClass(project.status)}`}>
-                        {project.status}
-                     </span>
+                <div className="relative w-full h-48 bg-gray-900 border-b border-white/5 overflow-hidden">
+                  {project.image ? (
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover object-center transition-opacity duration-300 opacity-80 group-hover:opacity-100"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-gray-800 to-black">
+                      <span className="font-pixel text-xs text-gray-500">NO IMAGE</span>
+                    </div>
                   )}
-                </header>
-
-                <p className="font-retro text-lg text-gray-300 leading-relaxed mb-6 h-20 overflow-hidden text-ellipsis opacity-90">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-6 min-h-12 content-start">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="font-pixel text-[0.5rem] px-2 py-1 bg-white/5 text-gray-400 border border-white/10 rounded-md group-hover:border-primary/30 transition-colors"
-                    >
-                      {tech}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
+                    <span className="font-pixel text-[0.6rem] text-white border border-white/30 bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm">
+                      Click for Details
                     </span>
-                  ))}
+                  </div>
                 </div>
 
-                <div className="flex gap-3 mt-auto pt-4 border-t border-white/10">
-                  {project.liveUrl && (
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
-                       <div className="bg-primary/90 hover:bg-primary text-pixel-bg-dark font-pixel text-[0.6rem] py-2.5 rounded-lg text-center font-bold shadow-[0_0_10px_rgba(255,255,255,0.2)] transition-all">
-                          Demo
-                       </div>
-                    </a>
-                  )}
-                  {project.githubUrl && (
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
-                       <div className="bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 font-pixel text-[0.6rem] py-2.5 rounded-lg text-center transition-all">
-                          Code
-                       </div>
-                    </a>
-                  )}
+                <div className="p-6 flex flex-col flex-1">
+                  <span className="font-pixel text-[0.55rem] text-gray-500 uppercase tracking-widest mb-1">
+                    {project.category}
+                  </span>
+                  <h3 className="font-retro text-xl md:text-2xl text-white font-bold mb-3 group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="font-pixel text-[0.6rem] text-gray-400 mb-3">{project.subtitle}</p>
+                  <p className="font-retro text-sm text-gray-400 mb-6 line-clamp-3 leading-relaxed flex-1">
+                    {project.description}
+                  </p>
+                  <div className="mt-auto">
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.slice(0, 3).map((tech) => (
+                        <span
+                          key={tech}
+                          className="font-pixel text-[0.5rem] text-gray-400 bg-white/5 border border-white/5 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.technologies.length > 3 && (
+                        <span className="font-pixel text-[0.5rem] text-gray-500 px-2 py-1.5">
+                          +{project.technologies.length - 3}
+                        </span>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </article>
             ))}
@@ -121,11 +125,126 @@ export default function ProjectsContent() {
 
           {filteredProjects.length === 0 && (
             <div className="text-center py-12 font-retro text-2xl text-pixel-text-muted">
-              No projects found in this category... yet! 🎮
+              No projects found in this category... yet!
             </div>
           )}
         </article>
       </main>
+
+      {selectedProject && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200"
+          onClick={() => setSelectedProject(null)}
+        >
+          <div
+            className="relative w-full max-w-4xl bg-pixel-bg-dark border border-white/10 rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200 flex flex-col md:flex-row max-h-[90vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelectedProject(null)}
+              className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-red-500 text-white rounded-full p-2 transition-colors border border-white/10"
+              aria-label="Close modal"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line
+                  x1="18"
+                  y1="6"
+                  x2="6"
+                  y2="18"
+                ></line>
+                <line
+                  x1="6"
+                  y1="6"
+                  x2="18"
+                  y2="18"
+                ></line>
+              </svg>
+            </button>
+
+            <div className="w-full md:w-2/5 h-64 md:h-auto relative bg-gray-900 border-b md:border-b-0 md:border-r border-white/10">
+              {selectedProject.image ? (
+                <Image
+                  src={selectedProject.image}
+                  alt={selectedProject.title}
+                  fill
+                  className="object-cover object-center"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-gray-800 to-black">
+                  <span className="font-pixel text-sm text-gray-500">NO IMAGE</span>
+                </div>
+              )}
+            </div>
+
+            <div className="w-full md:w-3/5 p-8 flex flex-col overflow-y-auto">
+              <div className="mb-6">
+                <span className="font-pixel text-xs text-primary uppercase tracking-widest mb-1 block">
+                  {selectedProject.category}
+                </span>
+                <h2 className="font-retro text-3xl md:text-4xl text-white font-bold mb-2">
+                  {selectedProject.title}
+                </h2>
+                <p className="font-retro text-lg text-gray-400 italic">
+                  {selectedProject.subtitle}
+                </p>
+              </div>
+
+              <div className="prose prose-invert max-w-none mb-8 font-retro text-gray-300 leading-relaxed">
+                <p>{selectedProject.description}</p>
+              </div>
+
+              <div className="mt-auto">
+                <h3 className="font-pixel text-xs text-gray-500 uppercase tracking-widest mb-3">
+                  Technologies
+                </h3>
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {selectedProject.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="font-pixel text-[0.6rem] text-gray-300 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex gap-4 pt-6 border-t border-white/10">
+                  {selectedProject.liveUrl && (
+                    <a
+                      href={selectedProject.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 bg-white hover:bg-gray-200 text-black font-pixel text-xs py-3 rounded-xl text-center font-bold transition-all shadow-lg flex items-center justify-center gap-2"
+                    >
+                      <span>🚀</span> Live Demo
+                    </a>
+                  )}
+
+                  {selectedProject.githubUrl && (
+                    <a
+                      href={selectedProject.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 bg-transparent hover:bg-white/5 text-white border border-white/20 font-pixel text-xs py-3 rounded-xl text-center font-bold transition-all flex items-center justify-center gap-2"
+                    >
+                    Source Code
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

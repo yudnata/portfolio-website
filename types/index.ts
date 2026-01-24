@@ -8,6 +8,8 @@ export interface Project {
   status: 'Completed' | 'In Progress' | 'Planned';
   liveUrl?: string;
   githubUrl?: string;
+  image?: string;
+  subtitle?: string;
 }
 
 export interface Skill {
@@ -38,7 +40,7 @@ export interface ContactLink {
   value: string;
   url: string;
   icon: string;
-  color: string; // Tailwind class identifier or hex
+  color: string;
 }
 
 export interface DialogSegment {

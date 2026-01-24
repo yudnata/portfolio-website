@@ -3,7 +3,7 @@ import ContactContent from '@/app/contact/ContactContent';
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: 'Get in touch with Yudnata. Let\'s discuss projects and opportunities.',
+  description: "Get in touch with Yudnata. Let's discuss projects and opportunities.",
   openGraph: {
     title: 'Contact | Yudnata Portfolio',
     description: 'Get in touch with Yudnata for projects and collaborations.',

@@ -20,7 +20,6 @@ export const useTypewriter = ({
   const isMounted = useRef(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Keep latest onComplete callback ref to prevent stale closures effects
   const onCompleteRef = useRef(onComplete);
   useEffect(() => {
     onCompleteRef.current = onComplete;
@@ -57,7 +56,6 @@ export const useTypewriter = ({
         } else {
           setIsTyping(false);
           setIsComplete(true);
-          // Safely call onComplete in next tick to avoid sync update during render cycle
           if (onCompleteRef.current) {
             setTimeout(() => onCompleteRef.current?.(), 0);
           }
@@ -85,7 +83,6 @@ export const useTypewriter = ({
     setDisplayedText(text);
     setIsTyping(false);
     setIsComplete(true);
-    // Defer callback
     if (onCompleteRef.current) {
       setTimeout(() => onCompleteRef.current?.(), 0);
     }

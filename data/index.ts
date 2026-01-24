@@ -1,70 +1,102 @@
-import type { 
-  Project, 
-  SkillCategory, 
-  Education, 
-  ContactLink, 
-  DialogSegment 
-} from '@/types';
+import type { Project, SkillCategory, Education, ContactLink, DialogSegment } from '@/types';
 
 export const introDialogs: DialogSegment[] = [
   {
-    speaker: 'Welcome',
-    text: 'Hello, adventurer! Welcome to my digital realm...',
+    speaker: 'Yudhi',
+    text: 'Hello, adventurer! Welcome to my Personal Portfolio Website',
   },
   {
-    speaker: 'Yudnata',
-    text: "I'm Yudnata, a passionate Web Developer on a quest to build amazing digital experiences!",
+    speaker: 'Yudhi',
+    text: "I'm Yudhi Adinata, a passionate Web Developer based in Bali, Indonesia",
   },
   {
-    speaker: 'Yudnata',
-    text: 'This portfolio is my treasure chest of projects, skills, and adventures in the world of code.',
+    speaker: 'Yudhi',
+    text: 'focused on creating modern web applications that simplify complexity.',
   },
   {
-    speaker: 'Guide',
-    text: 'Use the navigation above to explore different areas. Each section reveals more about this developer!',
+    speaker: 'Yudhi',
+    text: 'My work turns challenging technical problems into clean, intuitive, and delightful digital experiences for users.',
   },
 ];
 
 export const projects: Project[] = [
   {
-    id: 'portfolio',
-    title: 'Pixel Portfolio',
-    description: 'A pixel art themed portfolio website built with Next.js and TypeScript. Features visual novel-style navigation and retro gaming aesthetics.',
+    id: 'leadgo',
+    title: 'LeadGo',
+    subtitle: 'Predictive Lead Scoring Portal',
+    description:
+      'A full-stack CRM microservices solution that predicts customer conversion probability using machine learning. Features Role-Based Access Control (RBAC) for Admin and Sales workflows, real-time analytics dashboard, and lead management.',
     icon: '',
-    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS'],
-    category: 'Personal',
-    status: 'In Progress',
-    githubUrl: '#',
-  },
-  {
-    id: 'ecommerce',
-    title: 'E-Commerce Platform',
-    description: 'A full-featured e-commerce platform with user authentication, product management, and payment processing.',
-    icon: '',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    category: 'Web App',
-    status: 'Completed',
-    liveUrl: '#',
-    githubUrl: '#',
-  },
-  {
-    id: 'crm',
-    title: 'LeadGo CRM',
-    description: 'Customer Relationship Management system with lead scoring, tracking, and AI-powered sales assistance.',
-    icon: '',
-    technologies: ['React', 'Python', 'FastAPI', 'PostgreSQL'],
+    image: '/assets/projects/leadgo.png',
+    technologies: ['React', 'Node.js', 'PostgreSQL', 'Docker', 'Tailwind CSS', 'CRUD'],
     category: 'Enterprise',
     status: 'Completed',
-    liveUrl: '#',
+    githubUrl: 'https://github.com/yudnata/predictive-lead-scoring-portal',
   },
   {
-    id: 'taskmanager',
-    title: 'Quest Tracker',
-    description: 'A gamified task management app that turns your daily tasks into quests with XP and achievements.',
+    id: 'letmecook',
+    title: 'LetMeCook',
+    subtitle: 'Recipe App',
+    description:
+      'A native Android application built with Kotlin following Clean MVVM Architecture. Features beautiful Material Design UI with ViewPager2 for onboarding, Lottie animations, and offline-first data persistence.',
     icon: '',
-    technologies: ['Next.js', 'Prisma', 'PostgreSQL'],
+    image: '/assets/projects/letmecook.png',
+    technologies: ['Kotlin', 'Android', 'MVVM', 'Firebase', 'Cloudinary'],
     category: 'Personal',
-    status: 'Planned',
+    status: 'Completed',
+    githubUrl: 'https://github.com/yudnata/LetMeCook',
+  },
+  {
+    id: 'coreti',
+    title: 'CoreTI',
+    subtitle: 'E-Commerce Platform',
+    description:
+      'Complete fullstack e-commerce solution with a powerful Admin Dashboard (CMS) for real-time inventory tracking, order processing, and customer inquiry management. Built with PHP and MySQL.',
+    icon: '',
+    image: '/assets/projects/coreti.png',
+    technologies: ['PHP', 'MySQL', 'JavaScript', 'HTML', 'CSS', 'CRUD'],
+    category: 'Web App',
+    status: 'Completed',
+    githubUrl: 'https://github.com/yudnata/CoreTI',
+  },
+  {
+    id: 'cogika',
+    title: 'Cogika',
+    subtitle: 'Real-time Chat Application',
+    description:
+      'A modern, responsive messaging platform utilizing WebSocket for instant communication. Features include real-time private and group chats, friend request system, and a seamless adaptive layout for both desktop and mobile devices.',
+    icon: '',
+    image: '/assets/projects/cogika.png',
+    technologies: ['React', 'TypeScript', 'Node.js', 'Socket.IO', 'PostgreSQL', 'Tailwind CSS'],
+    category: 'Web App',
+    status: 'Completed',
+    githubUrl: 'https://github.com/yudnata/cogika',
+  },
+  {
+    id: 'earth3d',
+    title: 'Earth3D',
+    subtitle: 'Interactive 3D Earth Visualization',
+    description:
+      'An immersive technology course project featuring interactive 3D visualization of planet Earth. Built with React, Three.js, and React Three Fiber for smooth WebGL rendering and intuitive user interactions.',
+    icon: '',
+    image: '/assets/projects/earth3d.png',
+    technologies: ['React', 'Three.js', 'React Three Fiber', 'WebGL', '3D', 'JavaScript'],
+    category: 'Personal',
+    status: 'Completed',
+    githubUrl: 'https://github.com/yudnata/imersif-globe-3d',
+  },
+  {
+    id: 'sentimentapp',
+    title: 'SentimentAPP',
+    subtitle: 'Sentiment Analysis Website',
+    description:
+      'A web-based sentiment analysis implementation using React and Flask with Naive Bayes method from scikit-learn. Classifies Indonesian public opinions about products into positive or negative sentiments.',
+    icon: '',
+    image: '/assets/projects/sentiment.png',
+    technologies: ['React', 'Flask', 'Python', 'scikit-learn', 'NLP', 'Machine Learning'],
+    category: 'Personal',
+    status: 'Completed',
+    githubUrl: 'https://github.com/yudnata/sentiment-analysis-app',
   },
 ];
 
@@ -113,30 +145,32 @@ export const skillCategories: SkillCategory[] = [
 
 export const educationList: Education[] = [
   {
-    id: 'university',
-    institution: 'Your University Name',
-    degree: 'Bachelor of Computer Science',
-    period: '2020 - 2024',
-    description: 'Focused on software engineering and web development.',
-    icon: '',
-    achievements: ['Dean\'s List', 'Programming Club Leader', 'Best Project Award'],
+    id: 'udayana',
+    institution: 'Udayana University, Bali',
+    degree: 'Bachelor of Information Technology',
+    period: 'Sep 2023 – Present',
+    description: 'Information Technology Student with GPA 3.77/4.00. Actively engaged in student organizations focusing on design and publication.',
+    icon: '/icons/unud.png',
+    achievements: [
+      'GPA 3.77 / 4.00',
+      'Head of Publication Documentation and Design KWU 2025',
+      'Staff of Student Association – Bulletin Division 2025',
+      'Staff of Publication Documentation and Design ITCC & Sporti 2024',
+    ],
   },
   {
-    id: 'bootcamp',
-    institution: 'Web Dev Bootcamp',
-    degree: 'Full Stack Web Development',
-    period: '2023',
-    description: 'Intensive program covering modern web technologies.',
-    icon: '',
-    achievements: ['Top Graduate', 'Completed 10+ Projects'],
-  },
-  {
-    id: 'highschool',
-    institution: 'Your High School',
-    degree: 'Science Major',
-    period: '2017 - 2020',
-    description: 'Foundation in science and technology.',
-    icon: '',
+    id: 'asah-program',
+    institution: 'Dicoding & Accenture',
+    degree: 'React – Backend Cohort (Asah Program)',
+    period: 'Aug 2025 – Feb 2026',
+    description: 'Intensive Fullstack Development program. Collaborating on web applications using React.js, Node.js, and Agile SDLC methodologies.',
+    icon: '/icons/asah.png',
+    achievements: [
+      'Awarded as Best Capstone Project',
+      'Full Stack Web Development (React & Node.js)',
+      'Agile SDLC Implementation',
+      'API Integration & Backend Development',
+    ],
   },
 ];
 

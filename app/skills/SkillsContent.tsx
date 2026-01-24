@@ -1,31 +1,6 @@
-'use client';
-
+import Image from 'next/image';
 import { Header } from '@/components/layout';
 import { PageBackground } from '@/components/ui';
-import { skillCategories } from '@/data';
-
-function SkillBar({ skill, delay }: { skill: { name: string; level: number; icon: string }; delay: number }) {
-  return (
-    <div className="mb-5 group">
-      <div className="flex justify-between mb-2">
-        <span className="font-retro text-lg text-gray-200 flex items-center gap-2 group-hover:text-primary transition-colors">
-          {skill.name}
-        </span>
-        <span className="font-pixel text-[0.5rem] text-primary/80 opacity-60 group-hover:opacity-100 transition-opacity">
-          {skill.level}%
-        </span>
-      </div>
-      <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden backdrop-blur-sm border border-white/5">
-        <div
-          className="h-full bg-primary shadow-[0_0_10px_rgba(255,255,255,0.5)] relative animate-[width_1s_ease-out_forwards]"
-          style={{ width: `${skill.level}%`, animationDelay: `${delay}s` }}
-        >
-           <div className="absolute right-0 top-0 bottom-0 w-2 bg-white/50 blur-[2px]" />
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export default function SkillsContent() {
   return (
@@ -38,42 +13,194 @@ export default function SkillsContent() {
 
       <Header />
 
-      <main className="pt-[100px] pb-20 px-4 md:px-12 min-h-screen">
-        <article className="max-w-5xl mx-auto">
-          <header className="text-center mb-10 animate-[translate-y-from-n20_0.6s_ease-out]">
-            <h1 className="font-pixel text-2xl md:text-3xl text-accent-alt text-shadow-pixel">
-              My Skills
-            </h1>
-            <p className="font-retro text-xl md:text-2xl text-pixel-text-muted mt-2">
-              Abilities & Stats Unlocked
-            </p>
-          </header>
+      <main className="pt-[100px] pb-20 px-4 md:px-12 min-h-screen max-w-6xl mx-auto flex flex-col justify-center">
+        <div className="text-center mb-10 animate-[translate-y-from-n20_0.6s_ease-out]">
+          <h1 className="font-pixel text-2xl md:text-3xl text-white text-shadow-pixel mb-2">
+            Technical Skills
+          </h1>
+          <p className="font-retro text-lg text-gray-400">My arsenal of tools & technologies</p>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {skillCategories.map((category, catIndex) => (
-              <section
-                key={category.title}
-                className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl p-6 animate-pixel-fade hover:bg-black/70 transition-colors shadow-lg"
-                style={{ animationDelay: `${catIndex * 0.15}s` }}
-              >
-                <h2 className="font-pixel text-xs text-primary mb-6 flex items-center gap-3 uppercase tracking-widest border-b border-white/10 pb-4">
-                  {category.title}
-                </h2>
-
-                <div>
-                  {category.skills.map((skill, skillIndex) => (
-                    <SkillBar
-                      key={skill.name}
-                      skill={skill}
-                      delay={0.3 + catIndex * 0.15 + skillIndex * 0.1}
-                    />
-                  ))}
-                </div>
-              </section>
-            ))}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 animate-pixel-fade delay-100">
+          <div className="md:row-span-2 bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:bg-black/70 transition-colors shadow-lg flex flex-col">
+            <h2 className="font-pixel text-sm text-white mb-6 flex items-center gap-3 border-l-4 border-blue-400 pl-3">
+              Frontend Development
+            </h2>
+            <div className="flex flex-wrap gap-3">
+              <SkillChip
+                name="React"
+                iconSrc="/icons/React.png"
+                color="text-cyan-400"
+              />
+              <SkillChip
+                name="TypeScript"
+                iconSrc="/icons/typescript.png"
+                color="text-blue-500"
+              />
+              <SkillChip
+                name="JavaScript"
+                iconSrc="/icons/JavaScript.png"
+                color="text-yellow-400"
+              />
+              <SkillChip
+                name="HTML"
+                iconSrc="/icons/HTML5.png"
+                color="text-orange-500"
+              />
+              <SkillChip
+                name="CSS"
+                iconSrc="/icons/css.png"
+                color="text-blue-400"
+              />
+              <SkillChip
+                name="Tailwind"
+                iconSrc="/icons/Tailwind CSS.png"
+                color="text-cyan-300"
+              />
+              <SkillChip
+                name="WordPress"
+                iconSrc="/icons/WordPress.png"
+                color="text-gray-200"
+              />
+            </div>
           </div>
-        </article>
+
+          <div className="md:col-span-2 bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:bg-black/70 transition-colors shadow-lg">
+            <h2 className="font-pixel text-sm text-white mb-6 flex items-center gap-3 border-l-4 border-green-500 pl-3">
+              Backend Development
+            </h2>
+            <div className="flex flex-wrap gap-3">
+              <SkillChip
+                name="Node.js"
+                iconSrc="/icons/Node.js.png"
+                color="text-green-500"
+              />
+              <SkillChip
+                name="Express"
+                iconSrc="/icons/Express.png"
+                color="text-gray-400"
+              />
+              <SkillChip
+                name="Python"
+                iconSrc="/icons/Python.png"
+                color="text-yellow-300"
+              />
+              <SkillChip
+                name="MySQL"
+                iconSrc="/icons/MySQL.png"
+                color="text-blue-300"
+              />
+              <SkillChip
+                name="PostgreSQL"
+                iconSrc="/icons/PostgresSQL.png"
+                color="text-blue-400"
+              />
+              <SkillChip
+                name="MongoDB"
+                iconSrc="/icons/MongoDB.png"
+                color="text-green-400"
+              />
+              <SkillChip
+                name="Postman"
+                iconSrc="/icons/postman.png"
+                color="text-orange-500"
+              />
+            </div>
+          </div>
+
+          <div className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:bg-black/70 transition-colors shadow-lg">
+            <h2 className="font-pixel text-sm text-white mb-6 flex items-center gap-3 border-l-4 border-purple-500 pl-3">
+              Design Tools
+            </h2>
+            <div className="flex flex-wrap gap-3">
+              <SkillChip
+                name="Figma"
+                iconSrc="/icons/Figma.png"
+                color="text-purple-400"
+              />
+              <SkillChip
+                name="Canva"
+                iconSrc="/icons/Canva.png"
+                color="text-cyan-400"
+              />
+              <SkillChip
+                name="Photoshop"
+                iconSrc="/icons/AdobePhotoshop.png"
+                color="text-blue-600"
+              />
+              <SkillChip
+                name="Illustrator"
+                iconSrc="/icons/AdobeIllustrator.png"
+                color="text-orange-500"
+              />
+              <SkillChip
+                name="Premiere"
+                iconSrc="/icons/AdobePremierePro.png"
+                color="text-purple-600"
+              />
+            </div>
+          </div>
+
+          <div className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:bg-black/70 transition-colors shadow-lg">
+            <h2 className="font-pixel text-sm text-white mb-6 flex items-center gap-3 border-l-4 border-red-500 pl-3">
+              DevOps
+            </h2>
+            <div className="flex flex-wrap gap-3">
+              <SkillChip
+                name="Docker"
+                iconSrc="/icons/docker.png"
+                color="text-blue-500"
+              />
+              <SkillChip
+                name="Git"
+                iconSrc="/icons/Git.png"
+                color="text-red-500"
+              />
+            </div>
+          </div>
+
+          <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl p-6 flex items-center justify-between hover:bg-black/70 transition-colors">
+              <div>
+                <h3 className="font-pixel text-sm text-white mb-1">Indonesian</h3>
+                <p className="font-retro text-xs text-gray-400">Native Speaker</p>
+              </div>
+              <span className="font-pixel text-xs bg-white/10 px-3 py-1 rounded-full text-gray-300">
+                IN
+              </span>
+            </div>
+            <div className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl p-6 flex items-center justify-between hover:bg-black/70 transition-colors">
+              <div>
+                <h3 className="font-pixel text-sm text-white mb-1">English</h3>
+                <p className="font-retro text-xs text-gray-400">Professional Working</p>
+              </div>
+              <span className="font-pixel text-xs bg-white/10 px-3 py-1 rounded-full text-gray-300">
+                EN
+              </span>
+            </div>
+          </div>
+        </div>
       </main>
+    </div>
+  );
+}
+
+function SkillChip({ name, iconSrc, }: { name: string; iconSrc?: string; color?: string }) {
+  return (
+    <div className="flex items-center gap-2 bg-white/5 border border-white/5 px-3 py-2 rounded-xl hover:bg-white/10 hover:border-white/10 transition-all cursor-default group">
+      {iconSrc && (
+        <div className="relative w-5 h-5 shrink-0">
+          <Image
+            src={iconSrc}
+            alt={name}
+            fill
+            className="object-contain"
+          />
+        </div>
+      )}
+      <span className={`font-retro text-sm text-gray-300 group-hover:text-white transition-colors`}>
+        {name}
+      </span>
     </div>
   );
 }

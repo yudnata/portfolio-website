@@ -38,11 +38,11 @@
   --shadow-panel: 0 4px 20px rgba(0, 0, 0, 0.8);
 
   /* Animations */
-  --animate-pixel-fade: pixelFadeIn 0.8s ease-out forwards;
+  --animate-pixel-fade: pixelFadeIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   --animate-float: float 4s ease-in-out infinite;
   
   @keyframes pixelFadeIn {
-    0% { opacity: 0; transform: translateY(10px); }
+    0% { opacity: 0; transform: translateY(4px); }
     100% { opacity: 1; transform: translateY(0); }
   }
   

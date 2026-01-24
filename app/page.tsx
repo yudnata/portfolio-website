@@ -1,34 +1,64 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { Header } from '@/components/layout';
 import { PageBackground, PixelButton } from '@/components/ui';
 import { introDialogs } from '@/data';
-import Link from 'next/link';
 
 export default function HomePage() {
   const [dialogIndex, setDialogIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
   const isMounted = useRef(false);
+  const isSkipped = useRef(false);
 
   useEffect(() => {
     isMounted.current = true;
+    isSkipped.current = false;
+
+    setDisplayedText('');
+
+    const currentText = introDialogs[dialogIndex].text;
+    let charIndex = 0;
+
+    const typingInterval = setInterval(() => {
+      if (!isMounted.current || isSkipped.current) {
+        clearInterval(typingInterval);
+        return;
+      }
+
+      if (charIndex < currentText.length) {
+        setDisplayedText(currentText.slice(0, charIndex + 1));
+        charIndex++;
+      } else {
+        clearInterval(typingInterval);
+      }
+    }, 30);
+
     return () => {
       isMounted.current = false;
+      clearInterval(typingInterval);
     };
-  }, []);
+  }, [dialogIndex]);
 
   const handleNextDialog = () => {
+    const currentFullText = introDialogs[dialogIndex].text;
+
+    if (displayedText !== currentFullText) {
+      isSkipped.current = true;
+      setDisplayedText(currentFullText);
+      return;
+    }
+
     if (dialogIndex < introDialogs.length - 1) {
       setDialogIndex((prev) => prev + 1);
     } else {
-      // Loop back to start or handle completion
-      // For now, let's just loop or stop. Let's restart for interactivity.
       setDialogIndex(0);
     }
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden select-none">
       <PageBackground
         imageSrc="/images/home.webp"
         alt="Home page background"
@@ -38,82 +68,57 @@ export default function HomePage() {
 
       <Header />
 
-      <main className="relative z-10 min-h-screen flex flex-col items-center justify-center p-4 md:p-12 pt-[100px] mb-20 md:mb-0">
-        <section className="text-center max-w-3xl animate-pixel-fade w-full">
-          <h1 className="font-pixel text-2xl md:text-3xl text-primary text-shadow-pixel mb-4 leading-tight tracking-wide">
-            Hi, I&apos;m Yudnata!
-          </h1>
+      <main className="relative z-10 min-h-screen flex items-center justify-center p-4 md:p-12 pt-[100px] mb-20 md:mb-0 max-w-7xl mx-auto w-full">
+        <section className="flex flex-col items-center text-center w-full relative h-[600px] lg:h-[700px] justify-end animate-pixel-fade">
+          <div className="absolute bottom-[200px] left-1/2 -translate-x-1/2 w-[300px] lg:w-[400px] pointer-events-none z-10 animate-float drop-shadow-[0_0_20px_rgba(255,255,255,0.2)] opacity-100 hover:scale-105 transition-transform duration-500">
+            <Image
+              src="/assets/introduction.png"
+              alt="Character Portrait"
+              width={600}
+              height={800}
+              priority
+              className="w-full h-auto object-contain contrast-110"
+            />
+          </div>
 
-          <p className="font-retro text-2xl md:text-4xl text-white drop-shadow-md mb-2">
-            Web Developer | Code Adventurer
-          </p>
+          <div
+            className="relative w-full max-w-2xl mx-auto bg-black/80 backdrop-blur-sm rounded-2xl p-6 cursor-pointer hover:bg-black/90 transition-colors shadow-2xl border border-white/5 z-20 mt-auto min-h-[160px]"
+            onClick={handleNextDialog}
+            role="button"
+            aria-label="Next dialog message"
+          >
+            <span className="block font-pixel text-[0.6rem] text-primary mb-2 uppercase tracking-widest opacity-80 text-left">
+              {introDialogs[dialogIndex].speaker}
+            </span>
+            <p className="font-retro text-xl md:text-2xl text-white leading-relaxed min-h-16 text-left">
+              {displayedText}
+              {displayedText !== introDialogs[dialogIndex].text && (
+                 <span className="inline-block w-2 h-5 bg-primary ml-1 animate-pulse align-middle" />
+              )}
+            </p>
+            <div className={`absolute bottom-4 right-6 font-pixel text-[0.5rem] text-gray-500 opacity-50 ${displayedText === introDialogs[dialogIndex].text ? 'animate-bounce text-primary opacity-100' : ''}`}>
+              ▼
+            </div>
+          </div>
 
-          <p className="font-retro text-lg md:text-xl text-gray-300 mb-8 max-w-xl mx-auto drop-shadow-sm">
-            Crafting beautiful, functional, and pixel-perfect web experiences. Let&apos;s embark on
-            a coding adventure together!
-          </p>
-
-          <div className="flex flex-wrap gap-4 justify-center mt-8 mb-16">
+          <div className="flex flex-col sm:flex-row gap-4 mt-8 w-full justify-center items-center z-30 px-6 sm:px-0">
             <PixelButton
               variant="primary"
               size="lg"
               href="/projects"
+              className="w-full sm:w-auto"
             >
-              View Projects
+              View my Projects
             </PixelButton>
-
             <PixelButton
               variant="outline"
               size="lg"
               href="/contact"
+              className="w-full sm:w-auto"
             >
-              Contact Me
+              Send Message
             </PixelButton>
           </div>
-
-          {/* Inline Introduction Dialog - "Until Then" Style (Black Bubble) */}
-          <div className="relative max-w-2xl mx-auto mt-8 min-h-[140px]">
-            <div
-              className="relative md:static w-full text-left bg-black/80 backdrop-blur-sm rounded-2xl p-6 cursor-pointer hover:bg-black/90 transition-colors shadow-2xl border border-white/5"
-              onClick={handleNextDialog}
-              role="button"
-              aria-label="Next dialog message"
-            >
-              {/* Speaker */}
-              <span className="block font-pixel text-[0.6rem] text-primary mb-2 uppercase tracking-widest opacity-80">
-                {introDialogs[dialogIndex].speaker}
-              </span>
-
-              {/* Text */}
-              <p className="font-retro text-2xl md:text-3xl text-white leading-relaxed min-h-[3rem]">
-                {introDialogs[dialogIndex].text}
-                <span className="inline-block w-2 h-5 bg-primary ml-2 animate-pulse align-middle" />
-              </p>
-
-              <div className="absolute bottom-4 right-6 font-pixel text-[0.5rem] text-gray-500 opacity-50">
-                ▼
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Quick Nav Grid */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl w-full mt-16 px-4">
-          {[
-            { title: 'About Me', desc: 'My story & journey', href: '/about' },
-            { title: 'Skills', desc: 'Tech & abilities', href: '/skills' },
-            { title: 'Education', desc: 'Learning path', href: '/education' },
-          ].map((item, index) => (
-            <Link
-              key={item.title}
-              href={item.href}
-              className="block bg-black/60 border border-white/10 rounded-xl p-6 text-center no-underline transition-all hover:bg-black/80 hover:border-primary/50 hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] group animate-pixel-fade backdrop-blur-sm"
-              style={{ animationDelay: `${0.2 + index * 0.1}s` }}
-            >
-              <h3 className="font-pixel text-xs text-accent-alt mb-2">{item.title}</h3>
-              <p className="font-retro text-lg text-pixel-text-muted m-0">{item.desc}</p>
-            </Link>
-          ))}
         </section>
       </main>
     </div>

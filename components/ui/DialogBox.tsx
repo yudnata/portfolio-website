@@ -19,10 +19,7 @@ export default function DialogBox({
     text: data.text,
     onComplete,
   });
-
-  // Re-trigger typing when text changes
   useEffect(() => {
-    // Hook already handles text changes dependency
   }, [data.text]);
 
   return (
@@ -32,10 +29,7 @@ export default function DialogBox({
       role="dialog"
       aria-live="polite"
     >
-      {/* Decorative corner */}
       <div className="absolute -top-2 left-5 w-[120px] h-2 bg-primary [clip-path:polygon(0_100%,10px_0,calc(100%-10px)_0,100%_100%)]" />
-      
-      {/* Speaker Name Tag */}
       {data.speaker && (
         <div className="absolute -top-6 left-10 py-1.5 px-5 bg-linear-to-b from-accent-alt to-[#e6c200] border-3 border-pixel-bg-dark shadow-pixel-sm">
           <span className="font-pixel text-xs text-pixel-bg-dark uppercase block">
@@ -43,23 +37,17 @@ export default function DialogBox({
           </span>
         </div>
       )}
-
-      {/* Dialog Text */}
       <p className="font-retro text-lg md:text-2xl leading-relaxed text-pixel-text-primary min-h-12 mt-2">
         {displayedText}
         {isTyping && (
           <span className="inline-block w-2.5 h-[1.2em] bg-accent ml-0.5 animate-pulse" />
         )}
       </p>
-
-      {/* Continue Indicator */}
       {showContinueIndicator && isComplete && (
         <div className="absolute bottom-4 right-6 font-pixel text-[0.6rem] text-accent animate-bounce flex items-center gap-2">
           <span>▼</span>
         </div>
       )}
-
-      {/* Click hint */}
       {isTyping && (
         <div className="absolute bottom-4 right-6 font-retro text-sm text-pixel-text-muted opacity-70">
           Click to skip...
