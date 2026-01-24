@@ -1,0 +1,94 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Colors - Pixel Theme */
+  --color-primary-light: #7986cb;
+  --color-primary: #5c6bc0;
+  --color-primary-dark: #3f51b5;
+
+  --color-accent-light: #ff8fb3;
+  --color-accent: #ff6b9d;
+  --color-accent-dark: #e05580;
+  --color-accent-alt: #ffd93d;
+
+  --color-pixel-bg-dark: #1a1a2e;
+  --color-pixel-bg-medium: #16213e;
+  --color-pixel-bg-light: #0f3460;
+
+  --color-pixel-text-primary: #ffffff;
+  --color-pixel-text-secondary: #e8e8e8;
+  --color-pixel-text-muted: #a0a0a0;
+
+  /* Typography */
+  --font-pixel: 'Press Start 2P', cursive;
+  --font-retro: 'VT323', monospace;
+  --font-silkscreen: 'Silkscreen', cursive;
+
+  /* Shadows for pixel depth */
+  --shadow-pixel: 4px 4px 0 rgba(0, 0, 0, 0.4);
+  --shadow-pixel-lg: 8px 8px 0 rgba(0, 0, 0, 0.4);
+  --shadow-pixel-sm: 2px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-pixel-inset:
+    inset -2px -2px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 0 rgba(255, 255, 255, 0.2);
+
+  /* Animations */
+  --animate-pixel-fade: pixelFadeIn 0.6s ease-out forwards;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-pulse-glow: pulseGlow 2s ease-in-out infinite;
+
+  @keyframes pixelFadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes pulseGlow {
+    0%,
+    100% {
+      box-shadow:
+        0 0 5px var(--color-accent),
+        0 0 10px var(--color-accent);
+    }
+    50% {
+      box-shadow:
+        0 0 10px var(--color-accent),
+        0 0 20px var(--color-accent);
+    }
+  }
+}
+
+/* Base resets & utilities */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-pixel-bg-dark text-pixel-text-primary font-retro leading-relaxed antialiased;
+    image-rendering: pixelated;
+  }
+}
+
+/* Custom Utilities if needed that can't be handled by theme */
+@utility text-shadow-pixel {
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.5);
+}
+
+@utility text-shadow-sm {
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
