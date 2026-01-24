@@ -27,7 +27,7 @@ export const projects: Project[] = [
     description:
       'A full-stack CRM microservices solution that predicts customer conversion probability using machine learning. Features Role-Based Access Control (RBAC) for Admin and Sales workflows, real-time analytics dashboard, and lead management.',
     icon: '',
-    image: '/assets/projects/LeadGo.png',
+    image: '/assets/projects/LeadGo.jpg',
     technologies: ['React', 'Node.js', 'PostgreSQL', 'Docker', 'Tailwind CSS', 'CRUD'],
     category: 'Enterprise',
     status: 'Completed',

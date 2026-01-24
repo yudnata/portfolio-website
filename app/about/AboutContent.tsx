@@ -36,7 +36,7 @@ export default function AboutContent() {
           </div>
           <div className="lg:col-span-2 flex flex-col gap-2">
             <section
-              className="bg-black/70 rounded-2xl p-8 shadow-lg"
+              className="bg-black/60 rounded-2xl p-8 shadow-lg"
               aria-label="Introduction"
             >
               <p className="font-retro text-xl leading-relaxed text-gray-200">
@@ -54,14 +54,14 @@ export default function AboutContent() {
               className="grid grid-cols-1 md:grid-cols-3 gap-4"
               aria-label="Personal Details"
             >
-              <div className="bg-black/70 border border-white/5 rounded-2xl p-6 shadow-md transition-colors">
+              <div className="bg-black/60 border border-white/5 rounded-2xl p-6 shadow-md transition-colors">
                 <span className="block font-pixel text-[0.6rem] text-gray-500 mb-2 uppercase tracking-wide">
                   Location
                 </span>
                 <p className="font-retro text-lg text-white">Denpasar, Bali</p>
               </div>
 
-              <div className="bg-black/70 border border-white/5 rounded-2xl p-6 shadow-md transition-colors">
+              <div className="bg-black/60 border border-white/5 rounded-2xl p-6 shadow-md transition-colors">
                 <span className="block font-pixel text-[0.6rem] text-gray-500 mb-2 uppercase tracking-wide">
                   Education
                 </span>
@@ -71,7 +71,7 @@ export default function AboutContent() {
               <a
                 href="/assets/resume.pdf"
                 target="_blank"
-                className="bg-white text-black rounded-2xl p-6 shadow-md hover:bg-gray-200 transition-colors flex flex-col justify-center cursor-pointer group no-underline"
+                className="bg-white/80 text-black rounded-2xl p-6 shadow-md hover:bg-gray-200 transition-colors flex flex-col justify-center cursor-pointer group no-underline"
               >
                 <span className="block font-pixel text-[0.6rem] text-gray-600 mb-1 uppercase tracking-wide group-hover:text-black">
                   Resume
@@ -84,7 +84,7 @@ export default function AboutContent() {
             </section>
 
             <section
-              className="bg-black/70 border border-white/5 rounded-2xl p-8 shadow-lg"
+              className="bg-black/60 border border-white/5 rounded-2xl p-8 shadow-lg"
               aria-label="Core Values"
             >
               <span className="block font-pixel text-[0.6rem] text-gray-500 mb-4 uppercase tracking-wide">
