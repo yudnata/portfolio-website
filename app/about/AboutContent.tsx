@@ -21,18 +21,19 @@ export default function AboutContent() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-pixel-fade delay-100">
           <div className="lg:col-span-1 h-full">
-            <div className="relative w-full h-full min-h-[300px] bg-black/40 backdrop-blur-md rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
+            <figure className="relative w-full h-full min-h-[300px] bg-black/40 backdrop-blur-md rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
               <Image
                 src="/assets/me.png"
-                alt="Me"
+                alt="Portrait of Yudhi Adinata"
                 fill
                 className="object-cover object-center transition-all duration-500 scale-100 group-hover:scale-105"
                 priority
               />
-            </div>
+              <figcaption className="sr-only">Portrait of Gede Yudhi Adinata Putra Kurniawan</figcaption>
+            </figure>
           </div>
           <div className="lg:col-span-2 flex flex-col gap-2">
-            <div className="bg-black/70 rounded-2xl p-8 shadow-lg">
+            <section className="bg-black/70 rounded-2xl p-8 shadow-lg" aria-label="Introduction">
               <p className="font-retro text-xl leading-relaxed text-gray-200">
                 Hi my name is{' '}
                 <strong className="text-white">Gede Yudhi Adinata Putra Kurniawan</strong>. I&apos;m
@@ -42,9 +43,9 @@ export default function AboutContent() {
                 <span className="text-white font-bold">modern, user-centered web applications</span>{' '}
                 that solve real problems.
               </p>
-            </div>
+            </section>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <section className="grid grid-cols-1 md:grid-cols-3 gap-4" aria-label="Personal Details">
               <div className="bg-black/70 border border-white/5 rounded-2xl p-6 shadow-md transition-colors">
                 <span className="block font-pixel text-[0.6rem] text-gray-500 mb-2 uppercase tracking-wide">
                   Location
@@ -72,9 +73,9 @@ export default function AboutContent() {
                   <span className="text-sm">↓</span>
                 </p>
               </a>
-            </div>
+            </section>
 
-            <div className="bg-black/70 border border-white/5 rounded-2xl p-8 shadow-lg">
+            <section className="bg-black/70 border border-white/5 rounded-2xl p-8 shadow-lg" aria-label="Core Values">
               <span className="block font-pixel text-[0.6rem] text-gray-500 mb-4 uppercase tracking-wide">
                 Values
               </span>
@@ -94,7 +95,7 @@ export default function AboutContent() {
                   </span>
                 ))}
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </main>

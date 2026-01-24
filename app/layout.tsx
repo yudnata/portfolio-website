@@ -1,6 +1,7 @@
-import type { Metadata, Viewport } from 'next';
+import React from 'react';
 import { Press_Start_2P, VT323, Silkscreen } from 'next/font/google';
 import '@/styles/globals.css';
+import { defaultMetadata, defaultViewport, personJsonLd } from '@/components/seo/Seo';
 
 const pressStart2P = Press_Start_2P({
   weight: '400',
@@ -23,108 +24,8 @@ const silkscreen = Silkscreen({
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://yudnata.dev'),
-  title: {
-    default: 'Yudnata | Pixel Art Portfolio - Web Developer',
-    template: '%s | Yudnata Portfolio',
-  },
-  description:
-    "Welcome to Yudnata's pixel art portfolio. A passionate web developer specializing in modern web technologies, creating beautiful and functional digital experiences.",
-  keywords: [
-    'web developer',
-    'frontend developer',
-    'pixel art portfolio',
-    'React developer',
-    'Next.js developer',
-    'TypeScript',
-    'JavaScript',
-    'portfolio',
-    'Yudnata',
-    'Indonesia developer',
-  ],
-  authors: [{ name: 'Yudnata', url: 'https://yudnata.dev' }],
-  creator: 'Yudnata',
-  publisher: 'Yudnata',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    alternateLocale: 'id_ID',
-    url: 'https://yudnata.dev',
-    siteName: 'Yudnata Portfolio',
-    title: 'Yudnata | Pixel Art Portfolio - Web Developer',
-    description:
-      'Explore my pixel art themed portfolio showcasing web development projects, skills, and experiences.',
-    images: [
-      {
-        url: '/images/home.webp',
-        width: 1200,
-        height: 630,
-        alt: 'Yudnata Portfolio Preview',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Yudnata | Pixel Art Portfolio',
-    description: 'A pixel art themed portfolio by a passionate web developer',
-    images: ['/images/home.webp'],
-    creator: '@yudnata',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
-  },
-  manifest: '/manifest.json',
-  category: 'portfolio',
-};
-
-export const viewport: Viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#5c6bc0' },
-    { media: '(prefers-color-scheme: dark)', color: '#1a1a2e' },
-  ],
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 5,
-};
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Yudnata',
-  url: 'https://yudnata.dev',
-  image: 'https://yudnata.dev/images/home.webp',
-  sameAs: [
-    'https://github.com/yudnata',
-    'https://linkedin.com/in/yudnata',
-    'https://twitter.com/yudnata',
-  ],
-  jobTitle: 'Web Developer',
-  worksFor: {
-    '@type': 'Organization',
-    name: 'Freelance',
-  },
-  description: 'A passionate web developer specializing in modern web technologies',
-  knowsAbout: ['Web Development', 'React', 'Next.js', 'TypeScript', 'JavaScript', 'UI/UX Design'],
-};
+export const metadata = defaultMetadata;
+export const viewport = defaultViewport;
 
 export default function RootLayout({
   children,
@@ -140,7 +41,7 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
       </head>
       <body className="antialiased">

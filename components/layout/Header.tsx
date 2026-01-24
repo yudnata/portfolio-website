@@ -72,7 +72,7 @@ export default function Header() {
       className={`${headerBaseClass} ${headerScrolledClass}`}
       role="banner"
     >
-      <div className="w-full max-w-7xl mx-auto flex justify-between items-center">
+      <div className="w-full max-w-6xl mx-auto flex justify-between items-center">
         <Link
           href="/"
           className="flex items-center gap-2 font-pixel text-sm md:text-base text-primary text-shadow-sm group no-underline"

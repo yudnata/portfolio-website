@@ -70,7 +70,7 @@ export default function ProjectsContent() {
                 className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:bg-black/70 hover:shadow-[0_0_25px_rgba(255,255,255,0.15)] cursor-pointer group animate-pixel-fade opacity-0 flex flex-col h-full"
                 style={{ animationDelay: `${0.2 + index * 0.1}s` }}
               >
-                <div className="relative w-full h-48 bg-gray-900 border-b border-white/5 overflow-hidden">
+                <figure className="relative w-full h-48 bg-gray-900 border-b border-white/5 overflow-hidden">
                   {project.image ? (
                     <Image
                       src={project.image}
@@ -88,7 +88,7 @@ export default function ProjectsContent() {
                       Click for Details
                     </span>
                   </div>
-                </div>
+                </figure>
 
                 <div className="p-6 flex flex-col flex-1">
                   <span className="font-pixel text-[0.55rem] text-gray-500 uppercase tracking-widest mb-1">
@@ -225,7 +225,7 @@ export default function ProjectsContent() {
                       rel="noopener noreferrer"
                       className="flex-1 bg-white hover:bg-gray-200 text-black font-pixel text-xs py-3 rounded-xl text-center font-bold transition-all shadow-lg flex items-center justify-center gap-2"
                     >
-                      <span>🚀</span> Live Demo
+                      Live Demo
                     </a>
                   )}
 
@@ -236,7 +236,7 @@ export default function ProjectsContent() {
                       rel="noopener noreferrer"
                       className="flex-1 bg-transparent hover:bg-white/5 text-white border border-white/20 font-pixel text-xs py-3 rounded-xl text-center font-bold transition-all flex items-center justify-center gap-2"
                     >
-                    Source Code
+                      Source Code
                     </a>
                   )}
                 </div>
