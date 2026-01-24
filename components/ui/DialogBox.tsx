@@ -27,7 +27,7 @@ export default function DialogBox({
 
   return (
     <section
-      className="fixed bottom-0 left-0 right-0 p-4 md:p-8 z-50 min-h-[140px] flex flex-col justify-center cursor-pointer border-t-4 border-primary shadow-[inset_0_4px_0_var(--color-primary-light)] bg-linear-to-b from-[#0f3460f0] to-[#16213ef7]"
+      className="fixed bottom-0 left-0 right-0 p-4 md:p-8 z-50 min-h-[140px] flex flex-col justify-center cursor-pointer border-t-4 border-primary shadow-[inset_0_4px_0_var(--color-primary-light)] bg-linear-to-b from-pixel-bg-light/95 to-pixel-bg-medium/95"
       onClick={skipTyping}
       role="dialog"
       aria-live="polite"

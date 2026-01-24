@@ -61,7 +61,7 @@ export default function ContactContent() {
         <article className="max-w-5xl mx-auto">
           <header className="text-center mb-10 animate-[translate-y-from-n20_0.6s_ease-out]">
             <h1 className="font-pixel text-2xl md:text-3xl text-accent-alt text-shadow-pixel">
-              ✉️ Contact Me
+              Contact Me
             </h1>
             <p className="font-retro text-xl md:text-2xl text-pixel-text-muted mt-2">
               Let&apos;s start an adventure together!
@@ -71,8 +71,8 @@ export default function ContactContent() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Links */}
             <section className="animate-pixel-fade">
-              <h2 className="font-pixel text-xs text-accent mb-6 uppercase tracking-wider">
-                🔗 Find Me Online
+              <h2 className="font-pixel text-xs text-primary mb-6 uppercase tracking-wider">
+                Find Me Online
               </h2>
               <div className="space-y-4">
                 {contactLinks.map((link, index) => (
@@ -81,17 +81,17 @@ export default function ContactContent() {
                     href={link.url}
                     target={link.id !== 'email' ? '_blank' : undefined}
                     rel={link.id !== 'email' ? 'noopener noreferrer' : undefined}
-                    className="flex items-center gap-4 p-4 bg-[#16213ef2] border-3 border-gray-600 shadow-pixel group no-underline transition-all hover:-translate-y-1 hover:border-accent hover:shadow-pixel-lg"
+                    className="flex items-center gap-4 p-4 bg-black/60 backdrop-blur-sm border border-white/10 rounded-xl group no-underline transition-all hover:-translate-y-1 hover:bg-black/80 hover:border-primary/50 hover:shadow-[0_0_15px_rgba(255,255,255,0.15)]"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <span className="text-3xl group-hover:scale-110 transition-transform">
+                    <span className="text-3xl group-hover:scale-110 transition-transform filter drop-shadow-md">
                       {link.icon}
                     </span>
                     <div>
-                      <span className="block font-pixel text-[0.5rem] text-pixel-text-muted mb-1 opacity-70">
+                      <span className="block font-pixel text-[0.5rem] text-gray-400 mb-1 opacity-70 group-hover:text-primary transition-colors">
                         {link.platform}
                       </span>
-                      <span className={`font-retro text-xl ${link.color}`}>{link.value}</span>
+                      <span className="font-retro text-xl text-white group-hover:text-accent-light transition-colors">{link.value}</span>
                     </div>
                   </a>
                 ))}
@@ -101,16 +101,16 @@ export default function ContactContent() {
             {/* Form */}
             <section className="animate-pixel-fade delay-200">
               <h2 className="font-pixel text-xs text-accent mb-6 uppercase tracking-wider">
-                💬 Send a Message
+                Send a Message
               </h2>
 
               {submitted ? (
-                <div className="bg-[#16213ef2] border-4 border-green-500 p-8 text-center shadow-pixel animate-pixel-fade">
-                  <span className="text-6xl block mb-4">✅</span>
-                  <h3 className="font-pixel text-sm text-green-400 mb-4 uppercase">
+                <div className="bg-black/60 backdrop-blur-md border border-white/30 rounded-2xl p-8 text-center shadow-lg animate-pixel-fade">
+                  <span className="text-6xl block mb-4 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]"></span>
+                  <h3 className="font-pixel text-sm text-white mb-4 uppercase tracking-widest">
                     Message Sent!
                   </h3>
-                  <p className="font-retro text-xl text-pixel-text-secondary mb-6">
+                  <p className="font-retro text-xl text-gray-300 mb-6">
                     Thank you for reaching out! I&apos;ll respond soon.
                   </p>
                   <PixelButton
@@ -124,12 +124,12 @@ export default function ContactContent() {
               ) : (
                 <form
                   onSubmit={handleSubmit}
-                  className="bg-[#16213ef2] border-4 border-primary p-6 shadow-pixel"
+                  className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl p-8 shadow-lg"
                 >
                   <div className="mb-4">
                     <label
                       htmlFor="name"
-                      className="block font-pixel text-[0.5rem] text-pixel-text-muted mb-2 uppercase"
+                      className="block font-pixel text-[0.5rem] text-gray-400 mb-2 uppercase tracking-wider"
                     >
                       Your Name
                     </label>
@@ -140,14 +140,14 @@ export default function ContactContent() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full bg-black/40 border-2 border-gray-600 p-3 font-retro text-lg text-white outline-none focus:border-accent transition-colors placeholder:text-gray-700"
+                      className="w-full bg-white/5 border border-white/10 rounded-lg p-3 font-retro text-lg text-white outline-none focus:border-primary/50 focus:bg-white/10 transition-colors placeholder:text-gray-600"
                       placeholder="Enter your name..."
                     />
                   </div>
                   <div className="mb-4">
                     <label
                       htmlFor="email"
-                      className="block font-pixel text-[0.5rem] text-pixel-text-muted mb-2 uppercase"
+                      className="block font-pixel text-[0.5rem] text-gray-400 mb-2 uppercase tracking-wider"
                     >
                       Your Email
                     </label>
@@ -158,14 +158,14 @@ export default function ContactContent() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full bg-black/40 border-2 border-gray-600 p-3 font-retro text-lg text-white outline-none focus:border-accent transition-colors placeholder:text-gray-700"
+                      className="w-full bg-white/5 border border-white/10 rounded-lg p-3 font-retro text-lg text-white outline-none focus:border-primary/50 focus:bg-white/10 transition-colors placeholder:text-gray-600"
                       placeholder="youremail@example.com"
                     />
                   </div>
                   <div className="mb-6">
                     <label
                       htmlFor="message"
-                      className="block font-pixel text-[0.5rem] text-pixel-text-muted mb-2 uppercase"
+                      className="block font-pixel text-[0.5rem] text-gray-400 mb-2 uppercase tracking-wider"
                     >
                       Message
                     </label>
@@ -176,18 +176,18 @@ export default function ContactContent() {
                       rows={5}
                       value={formData.message}
                       onChange={handleChange}
-                      className="w-full bg-black/40 border-2 border-gray-600 p-3 font-retro text-lg text-white outline-none focus:border-accent transition-colors placeholder:text-gray-700 resize-none"
+                      className="w-full bg-white/5 border border-white/10 rounded-lg p-3 font-retro text-lg text-white outline-none focus:border-primary/50 focus:bg-white/10 transition-colors placeholder:text-gray-600 resize-none"
                       placeholder="Write your message here..."
                     />
                   </div>
 
                   <PixelButton
                     type="submit"
-                    variant="accent"
+                    variant="primary"
                     size="lg"
                     fullWidth
                     isLoading={isSubmitting}
-                    icon="📤"
+                    icon=""
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                   </PixelButton>

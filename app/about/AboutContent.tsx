@@ -18,7 +18,6 @@ export default function AboutContent() {
         <article className="max-w-4xl mx-auto">
           <header className="text-center mb-12 animate-[translate-y-from-n20_0.6s_ease-out]">
             <h1 className="font-pixel text-2xl md:text-3xl text-accent-alt text-shadow-pixel flex items-center justify-center gap-4">
-              <span aria-hidden="true">👤</span>
               About Me
             </h1>
             <p className="font-retro text-xl md:text-2xl text-pixel-text-muted mt-2">
@@ -27,9 +26,8 @@ export default function AboutContent() {
           </header>
 
           {/* Player Stats */}
-          <section className="bg-[#16213ef2] border-4 border-primary shadow-[inset_0_0_0_2px_var(--color-pixel-bg-dark),inset_0_0_0_4px_var(--color-primary-light),8px_8px_0_rgba(0,0,0,0.3)] p-6 md:p-10 mb-8 animate-pixel-fade">
-            <h2 className="font-pixel text-sm md:text-base text-accent mb-6 flex items-center gap-3">
-              <span aria-hidden="true">🎮</span>
+          <section className="bg-black/60 backdrop-blur-md border border-white/10 rounded-xl p-6 md:p-10 mb-8 animate-pixel-fade shadow-lg hover:bg-black/70 transition-colors">
+            <h2 className="font-pixel text-sm md:text-base text-primary mb-6 flex items-center gap-3 drop-shadow-sm">
               Player Stats
             </h2>
 
@@ -38,16 +36,16 @@ export default function AboutContent() {
                 { label: 'Name', value: 'Yudnata' },
                 { label: 'Class', value: 'Web Developer' },
                 { label: 'Level', value: 'Junior/Mid' },
-                { label: 'Location', value: 'Indonesia 🇮🇩' },
+                { label: 'Location', value: 'Indonesia' },
               ].map((stat) => (
                 <div
                   key={stat.label}
-                  className="bg-black/30 border-2 border-gray-600 p-4"
+                  className="bg-white/5 border border-white/10 p-4 rounded-lg hover:bg-white/10 transition-colors"
                 >
-                  <span className="font-pixel text-[0.5rem] text-pixel-text-muted block mb-2 uppercase">
+                  <span className="font-pixel text-[0.5rem] text-gray-400 block mb-2 uppercase tracking-wider">
                     {stat.label}
                   </span>
-                  <span className="font-retro text-xl md:text-2xl text-accent-alt block">
+                  <span className="font-retro text-xl md:text-2xl text-accent-light block">
                     {stat.value}
                   </span>
                 </div>
@@ -56,18 +54,20 @@ export default function AboutContent() {
           </section>
 
           {/* Bio */}
-          <section className="bg-[#16213ef2] border-4 border-primary shadow-[inset_0_0_0_2px_var(--color-pixel-bg-dark),inset_0_0_0_4px_var(--color-primary-light),8px_8px_0_rgba(0,0,0,0.3)] p-6 md:p-10 mb-8 animate-pixel-fade delay-100">
-            <h2 className="font-pixel text-sm md:text-base text-accent mb-6 flex items-center gap-3">
-              <span aria-hidden="true">📜</span>
+          <section className="bg-black/60 backdrop-blur-md border border-white/10 rounded-xl p-6 md:p-10 mb-8 animate-pixel-fade delay-100 shadow-lg relative overflow-hidden">
+            {/* Decorative soft glow */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -z-10" />
+
+            <h2 className="font-pixel text-sm md:text-base text-primary mb-6 flex items-center gap-3 drop-shadow-sm">
               My Story
             </h2>
 
-            <div className="font-retro text-lg md:text-2xl text-pixel-text-secondary leading-relaxed space-y-6">
+            <div className="font-retro text-lg md:text-2xl text-gray-200 leading-relaxed space-y-6">
               <p>
                 Greetings, fellow adventurer! I&apos;m{' '}
-                <strong className="text-accent-alt">Yudnata</strong>, a passionate Web Developer who
-                embarked on this coding journey to create meaningful digital experiences that make a
-                difference.
+                <strong className="text-accent-light">Yudnata</strong>, a passionate Web Developer
+                who embarked on this coding journey to create meaningful digital experiences that
+                make a difference.
               </p>
               <p>
                 My quest began when I discovered the magical world of programming. Since then,
@@ -78,32 +78,30 @@ export default function AboutContent() {
           </section>
 
           {/* What I Do */}
-          <section className="bg-[#16213ef2] border-4 border-primary shadow-[inset_0_0_0_2px_var(--color-pixel-bg-dark),inset_0_0_0_4px_var(--color-primary-light),8px_8px_0_rgba(0,0,0,0.3)] p-6 md:p-10 mb-8 animate-pixel-fade delay-200">
-            <h2 className="font-pixel text-sm md:text-base text-accent mb-6 flex items-center gap-3">
-              <span aria-hidden="true">⚡</span>
+          <section className="bg-black/60 backdrop-blur-md border border-white/10 rounded-xl p-6 md:p-10 mb-8 animate-pixel-fade delay-200 shadow-lg">
+            <h2 className="font-pixel text-sm md:text-base text-primary mb-6 flex items-center gap-3 drop-shadow-sm">
               What I Do
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {[
                 {
-                  icon: '🌐',
                   title: 'Web Development',
                   desc: 'Building responsive, modern websites',
                 },
-                { icon: '⚛️', title: 'Frontend Dev', desc: 'Interactive UIs with React & Next.js' },
-                { icon: '🎨', title: 'UI/UX Design', desc: 'Designing user-friendly interfaces' },
-                { icon: '🔧', title: 'Problem Solving', desc: 'Finding creative solutions' },
+                { title: 'Frontend Dev', desc: 'Interactive UIs with React & Next.js' },
+                { title: 'UI/UX Design', desc: 'Designing user-friendly interfaces' },
+                { title: 'Problem Solving', desc: 'Finding creative solutions' },
               ].map((service) => (
                 <div
                   key={service.title}
-                  className="bg-black/30 border-3 border-gray-600 p-6 text-center transition-transform hover:-translate-y-1"
+                  className="bg-white/5 border border-white/10 rounded-lg p-6 text-center transition-all hover:-translate-y-1 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(244,208,63,0.1)] group"
                 >
-                  <span className="text-4xl block mb-4">{service.icon}</span>
-                  <h3 className="font-pixel text-[0.6rem] text-accent-alt mb-3 uppercase">
+                  <span className="text-4xl block mb-4 group-hover:scale-110 transition-transform duration-300"></span>
+                  <h3 className="font-pixel text-[0.6rem] text-accent-light mb-3 uppercase tracking-wide">
                     {service.title}
                   </h3>
-                  <p className="font-retro text-lg text-pixel-text-muted m-0">{service.desc}</p>
+                  <p className="font-retro text-lg text-gray-300 m-0">{service.desc}</p>
                 </div>
               ))}
             </div>
@@ -115,16 +113,14 @@ export default function AboutContent() {
             </p>
             <div className="flex justify-center gap-4 flex-wrap">
               <PixelButton
-                variant="accent"
+                variant="outline"
                 href="/contact"
-                icon="✉️"
               >
                 Contact Me
               </PixelButton>
               <PixelButton
                 variant="primary"
                 href="/projects"
-                icon="💻"
               >
                 View Projects
               </PixelButton>

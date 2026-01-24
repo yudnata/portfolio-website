@@ -6,22 +6,22 @@ import { skillCategories } from '@/data';
 
 function SkillBar({ skill, delay }: { skill: { name: string; level: number; icon: string }; delay: number }) {
   return (
-    <div className="mb-4 group">
-      <div className="flex justify-between mb-1">
-        <span className="font-retro text-lg text-pixel-text-secondary flex items-center gap-2">
-          <span>{skill.icon}</span> {skill.name}
+    <div className="mb-5 group">
+      <div className="flex justify-between mb-2">
+        <span className="font-retro text-lg text-gray-200 flex items-center gap-2 group-hover:text-primary transition-colors">
+          {skill.name}
         </span>
-        <span className="font-pixel text-[0.5rem] text-accent-alt opacity-0 group-hover:opacity-100 transition-opacity">
-          LV.{skill.level}
+        <span className="font-pixel text-[0.5rem] text-primary/80 opacity-60 group-hover:opacity-100 transition-opacity">
+          {skill.level}%
         </span>
       </div>
-      <div className="bg-black/40 border-2 border-gray-600 h-5 relative">
+      <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden backdrop-blur-sm border border-white/5">
         <div
-          className="h-full bg-linear-to-r from-primary via-accent to-accent-alt animate-[width_1s_ease-out_forwards]"
+          className="h-full bg-primary shadow-[0_0_10px_rgba(255,255,255,0.5)] relative animate-[width_1s_ease-out_forwards]"
           style={{ width: `${skill.level}%`, animationDelay: `${delay}s` }}
-        />
-        {/* Pixel grid overlay */}
-        <div className="absolute inset-0 w-full h-full bg-[repeating-linear-gradient(90deg,transparent_0,transparent_10%,rgba(0,0,0,0.2)_10%,rgba(0,0,0,0.2)_10.5%)] pointer-events-none" />
+        >
+           <div className="absolute right-0 top-0 bottom-0 w-2 bg-white/50 blur-[2px]" />
+        </div>
       </div>
     </div>
   );
@@ -42,7 +42,7 @@ export default function SkillsContent() {
         <article className="max-w-5xl mx-auto">
           <header className="text-center mb-10 animate-[translate-y-from-n20_0.6s_ease-out]">
             <h1 className="font-pixel text-2xl md:text-3xl text-accent-alt text-shadow-pixel">
-              ⚔️ My Skills
+              My Skills
             </h1>
             <p className="font-retro text-xl md:text-2xl text-pixel-text-muted mt-2">
               Abilities & Stats Unlocked
@@ -53,11 +53,10 @@ export default function SkillsContent() {
             {skillCategories.map((category, catIndex) => (
               <section
                 key={category.title}
-                className="bg-[#16213ef2] border-4 border-primary shadow-pixel p-6 animate-pixel-fade"
+                className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl p-6 animate-pixel-fade hover:bg-black/70 transition-colors shadow-lg"
                 style={{ animationDelay: `${catIndex * 0.15}s` }}
               >
-                <h2 className="font-pixel text-xs text-accent mb-5 flex items-center gap-2 uppercase tracking-wide border-b-2 border-primary/30 pb-2">
-                  <span className="text-lg">{category.icon}</span>
+                <h2 className="font-pixel text-xs text-primary mb-6 flex items-center gap-3 uppercase tracking-widest border-b border-white/10 pb-4">
                   {category.title}
                 </h2>
 

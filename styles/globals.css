@@ -1,94 +1,78 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
-  /* Colors - Pixel Theme */
-  --color-primary-light: #7986cb;
-  --color-primary: #5c6bc0;
-  --color-primary-dark: #3f51b5;
-
-  --color-accent-light: #ff8fb3;
-  --color-accent: #ff6b9d;
-  --color-accent-dark: #e05580;
-  --color-accent-alt: #ffd93d;
-
-  --color-pixel-bg-dark: #1a1a2e;
-  --color-pixel-bg-medium: #16213e;
-  --color-pixel-bg-light: #0f3460;
-
-  --color-pixel-text-primary: #ffffff;
-  --color-pixel-text-secondary: #e8e8e8;
-  --color-pixel-text-muted: #a0a0a0;
+  /* Colors - Monochrome Modern Pixel Theme */
+  
+  /* Primary: Pure White & Light Greys */
+  --color-primary-light: #E5E5E5;
+  --color-primary: #FFFFFF;
+  --color-primary-dark: #A3A3A3;
+  
+  /* Accent: High Contrast Greyscale */
+  --color-accent-light: #F0F0F0;
+  --color-accent: #FFFFFF;
+  --color-accent-dark: #D4D4D4;
+  --color-accent-alt: #CCCCCC;
+  
+  /* Background: Deep Void / Matte Black */
+  --color-pixel-bg-dark: #0A0A0A;
+  --color-pixel-bg-medium: #171717;
+  --color-pixel-bg-light: #262626;
+  
+  /* UI Panels: Black Transparent */
+  --color-ui-panel: rgba(0, 0, 0, 0.85);
+  
+  /* Text */
+  --color-pixel-text-primary: #FFFFFF;
+  --color-pixel-text-secondary: #D4D4D4;
+  --color-pixel-text-muted: #737373;
 
   /* Typography */
-  --font-pixel: 'Press Start 2P', cursive;
-  --font-retro: 'VT323', monospace;
-  --font-silkscreen: 'Silkscreen', cursive;
+  --font-pixel: "Press Start 2P", cursive;
+  --font-retro: "VT323", monospace;
+  --font-silkscreen: "Silkscreen", cursive;
 
-  /* Shadows for pixel depth */
-  --shadow-pixel: 4px 4px 0 rgba(0, 0, 0, 0.4);
-  --shadow-pixel-lg: 8px 8px 0 rgba(0, 0, 0, 0.4);
-  --shadow-pixel-sm: 2px 2px 0 rgba(0, 0, 0, 0.4);
-  --shadow-pixel-inset:
-    inset -2px -2px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 0 rgba(255, 255, 255, 0.2);
+  /* Shadows: Sharp White Glows (Subtle) */
+  --shadow-glow: 0 0 15px rgba(255, 255, 255, 0.15);
+  --shadow-glow-sm: 0 0 8px rgba(255, 255, 255, 0.1);
+  --shadow-panel: 0 4px 20px rgba(0, 0, 0, 0.8);
 
   /* Animations */
-  --animate-pixel-fade: pixelFadeIn 0.6s ease-out forwards;
-  --animate-float: float 3s ease-in-out infinite;
-  --animate-pulse-glow: pulseGlow 2s ease-in-out infinite;
-
+  --animate-pixel-fade: pixelFadeIn 0.8s ease-out forwards;
+  --animate-float: float 4s ease-in-out infinite;
+  
   @keyframes pixelFadeIn {
-    0% {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
-
+  
   @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  @keyframes pulseGlow {
-    0%,
-    100% {
-      box-shadow:
-        0 0 5px var(--color-accent),
-        0 0 10px var(--color-accent);
-    }
-    50% {
-      box-shadow:
-        0 0 10px var(--color-accent),
-        0 0 20px var(--color-accent);
-    }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
   }
 }
 
-/* Base resets & utilities */
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-
+  html { scroll-behavior: smooth; }
   body {
     @apply bg-pixel-bg-dark text-pixel-text-primary font-retro leading-relaxed antialiased;
     image-rendering: pixelated;
   }
+  
+  /* Selection color */
+  ::selection {
+    @apply bg-white text-black;
+  }
 }
 
-/* Custom Utilities if needed that can't be handled by theme */
+/* Custom Utilities */
+@utility bg-speech-bubble {
+  background-color: rgba(20, 20, 20, 0.9);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+}
+
 @utility text-shadow-pixel {
-  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.5);
-}
-
-@utility text-shadow-sm {
-  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 0 rgba(100, 100, 100, 0.5);
 }
