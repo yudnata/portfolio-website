@@ -123,7 +123,7 @@ export const educationList: Education[] = [
       'Information Technology Student with GPA 3.77/4.00. Actively engaged in student organizations focusing on design and publication.',
     icon: '/icons/unud.png',
     achievements: [
-      'GPA 3.77 / 4.00',
+      'GPA 3.82/ 4.00',
       'Head of Publication Documentation and Design KWU 2025',
       'Staff of Student Association – Bulletin Division 2025',
       'Staff of Publication Documentation and Design ITCC & Sporti 2024',
