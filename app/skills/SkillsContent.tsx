@@ -43,6 +43,16 @@ export default function SkillsContent() {
                 color="text-yellow-400"
               />
               <SkillChip
+                name="Vue"
+                iconSrc="/icons/Vue.png"
+                color="text-green-400"
+              />
+              <SkillChip
+                name="Laravel"
+                iconSrc="/icons/Laravel.png"
+                color="text-red-400"
+              />
+              <SkillChip
                 name="HTML"
                 iconSrc="/icons/HTML5.png"
                 color="text-orange-500"
@@ -84,6 +94,11 @@ export default function SkillsContent() {
                 name="Express"
                 iconSrc="/icons/Express.png"
                 color="text-gray-400"
+              />
+              <SkillChip
+                name="Laravel"
+                iconSrc="/icons/Laravel.png"
+                color="text-red-400"
               />
               <SkillChip
                 name="Python"
@@ -160,6 +175,11 @@ export default function SkillsContent() {
                 name="Git"
                 iconSrc="/icons/Git.png"
                 color="text-red-500"
+              />
+              <SkillChip
+                name="GitLab"
+                iconSrc="/icons/GitLab.png"
+                color="text-yellow-400"
               />
             </div>
           </div>
