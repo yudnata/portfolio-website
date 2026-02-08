@@ -108,7 +108,7 @@ export default function ContactContent() {
 
       <Header />
 
-      <main className="pt-[100px] pb-20 px-4 md:px-12 min-h-screen flex items-center justify-center">
+      <main className="pt-25 pb-20 px-4 md:px-12 min-h-screen flex items-center justify-center">
         <section className="w-full max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-start animate-pixel-fade anim-delay-800 transform transition-all duration-700">
             <div>

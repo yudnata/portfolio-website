@@ -14,14 +14,14 @@ export default function AboutContent() {
       />
       <Header />
 
-      <main className="pt-[100px] pb-20 px-4 md:px-12 min-h-screen max-w-7xl mx-auto flex flex-col justify-center">
+      <main className="pt-25 pb-20 px-4 md:px-12 min-h-screen max-w-7xl mx-auto flex flex-col justify-center">
         <h1 className="font-pixel text-2xl md:text-3xl text-white mb-10 animate-slide-up anim-delay-500">
           A bit about myself
         </h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-pixel-fade anim-delay-600">
           <div className="lg:col-span-1 h-full">
-            <figure className="relative w-full h-full min-h-[300px] bg-black/40 backdrop-blur-md rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
+            <figure className="relative w-full h-full min-h-75 bg-black/40 backdrop-blur-md rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
               <Image
                 src="/assets/me.png"
                 alt="Portrait of Yudhi Adinata"

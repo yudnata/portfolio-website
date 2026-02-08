@@ -16,7 +16,7 @@ export default function EducationContent() {
 
       <Header />
 
-      <main className="pt-[100px] pb-20 px-4 md:px-12 min-h-screen">
+      <main className="pt-25 pb-20 px-4 md:px-12 min-h-screen">
         <article className="max-w-4xl mx-auto">
           <header className="text-center mb-10 animate-slide-up anim-delay-800">
             <h1 className="font-pixel text-2xl md:text-3xl text-accent-alt text-shadow-pixel">
@@ -28,7 +28,7 @@ export default function EducationContent() {
           </header>
 
           <div className="relative pl-0 md:pl-4">
-            <div className="absolute left-[34px] top-0 bottom-0 w-[2px] bg-white/10 hidden md:block shadow-[0_0_10px_rgba(255,255,255,0.1)]" />
+            <div className="absolute left-8.5 top-0 bottom-0 w-0.5 bg-white/10 hidden md:block shadow-[0_0_10px_rgba(255,255,255,0.1)]" />
 
             {educationList.map((edu, index) => (
               <section
@@ -36,7 +36,7 @@ export default function EducationContent() {
                 className="relative md:pl-16 mb-10 last:mb-0 animate-pixel-fade"
                 style={{ animationDelay: `${0.8 + index * 0.2}s` }}
               >
-                <div className="absolute left-[26px] top-0 w-4 h-4 bg-primary rounded-full hidden md:block shadow-[0_0_15px_rgba(255,255,255,0.6)] border-2 border-primary-light z-10" />
+                <div className="absolute left-6.5 top-0 w-4 h-4 bg-primary rounded-full hidden md:block shadow-[0_0_15px_rgba(255,255,255,0.6)] border-2 border-primary-light z-10" />
 
                 <div className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl p-6 transition-all hover:bg-black/70 hover:shadow-[0_0_20px_rgba(0,0,0,0.3)] hover:-translate-x-1 group">
                   <div className="flex flex-col sm:flex-row items-start gap-4 mb-4">

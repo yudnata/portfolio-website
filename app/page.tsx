@@ -68,12 +68,12 @@ export default function HomePage() {
 
       <Header />
 
-      <main className="relative z-10 min-h-screen flex items-center justify-center p-4 md:p-12 pt-[100px] mb-20 md:mb-0 max-w-7xl mx-auto w-full">
+      <main className="relative z-10 min-h-screen flex items-center justify-center p-4 md:p-12 pt-25 mb-20 md:mb-0 max-w-7xl mx-auto w-full">
         <h1 className="sr-only">
           Gede Yudhi Adinata Putra Kurniawan - Fullstack Web Developer Portfolio
         </h1>
-        <section className="flex flex-col items-center text-center w-full relative h-[600px] lg:h-[700px] justify-end animate-pixel-fade anim-delay-700">
-          <figure className="absolute bottom-[200px] left-1/2 -translate-x-1/2 w-[300px] lg:w-[400px] pointer-events-none z-10 animate-float drop-shadow-[0_0_20px_rgba(255,255,255,0.2)] opacity-100 hover:scale-105 transition-transform duration-500">
+        <section className="flex flex-col items-center text-center w-full relative h-150 lg:h-175 justify-end animate-pixel-fade anim-delay-700">
+          <figure className="absolute bottom-50 left-1/2 -translate-x-1/2 w-75 lg:w-100 pointer-events-none z-10 animate-float drop-shadow-[0_0_20px_rgba(255,255,255,0.2)] opacity-100 hover:scale-105 transition-transform duration-500">
             <Image
               src="/assets/introduction.png"
               alt="Pixel art character illustration of Yudhi Adinata"
@@ -88,7 +88,7 @@ export default function HomePage() {
           </figure>
 
           <section
-            className="relative w-full max-w-2xl mx-auto bg-black/80 backdrop-blur-sm rounded-2xl p-6 cursor-pointer hover:bg-black/90 transition-colors shadow-2xl border border-white/5 z-20 mt-auto min-h-[160px]"
+            className="relative w-full max-w-2xl mx-auto bg-black/80 backdrop-blur-sm rounded-2xl p-6 cursor-pointer hover:bg-black/90 transition-colors shadow-2xl border border-white/5 z-20 mt-auto min-h-40"
             onClick={handleNextDialog}
             role="button"
             aria-label="Interactive dialogue box"

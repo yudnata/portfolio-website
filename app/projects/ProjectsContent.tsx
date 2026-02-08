@@ -53,7 +53,7 @@ export default function ProjectsContent() {
 
       <Header />
 
-      <main className="pt-[100px] pb-20 px-4 md:px-12 min-h-screen">
+      <main className="pt-25 pb-20 px-4 md:px-12 min-h-screen">
         <article className="max-w-7xl mx-auto">
           <header className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 animate-slide-up anim-delay-500">
             <div>
@@ -97,7 +97,7 @@ export default function ProjectsContent() {
               style={{ animationDelay: isFirstLoad ? '0.7s' : '0s' }}
             >
               <div className="flex flex-col lg:flex-row">
-                <div className="relative w-full lg:w-1/2 h-64 lg:h-auto lg:min-h-[400px] bg-gray-900 overflow-hidden">
+                <div className="relative w-full lg:w-1/2 h-64 lg:h-auto lg:min-h-100 bg-gray-900 overflow-hidden">
                   {featuredProject.image ? (
                     <Image
                       src={featuredProject.image}
