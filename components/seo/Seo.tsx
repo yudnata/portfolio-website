@@ -25,6 +25,9 @@ export const defaultMetadata: Metadata = {
   ],
   creator: 'Gede Yudhi Adinata Putra Kurniawan',
   publisher: 'Gede Yudhi Adinata Putra Kurniawan',
+  alternates: {
+    canonical: 'https://yudnata-portfolio.vercel.app',
+  },
   formatDetection: {
     email: false,
     address: false,
@@ -121,4 +124,32 @@ export const personJsonLd = {
     addressCountry: 'Indonesia',
   },
   knowsAbout: ['Web Development', 'React', 'Next.js', 'TypeScript', 'Node.js', 'UI/UX Design'],
+};
+
+export const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Yudhi Adinata Portfolio',
+  alternateName: 'Yudnata Portfolio',
+  url: 'https://yudnata-portfolio.vercel.app',
+  description:
+    'Portfolio website of Gede Yudhi Adinata Putra Kurniawan — Fullstack Developer from Bali, Indonesia.',
+  author: {
+    '@type': 'Person',
+    name: 'Gede Yudhi Adinata Putra Kurniawan',
+  },
+};
+
+export const navigationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SiteNavigationElement',
+  name: ['Home', 'About', 'Projects', 'Skills', 'Education', 'Contact'],
+  url: [
+    'https://yudnata-portfolio.vercel.app',
+    'https://yudnata-portfolio.vercel.app/about',
+    'https://yudnata-portfolio.vercel.app/projects',
+    'https://yudnata-portfolio.vercel.app/skills',
+    'https://yudnata-portfolio.vercel.app/education',
+    'https://yudnata-portfolio.vercel.app/contact',
+  ],
 };

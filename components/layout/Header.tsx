@@ -110,6 +110,7 @@ export default function Header() {
         </nav>
 
         <button
+          type="button"
           className="md:hidden bg-transparent text-white font-pixel cursor-pointer p-1  rounded-md hover:bg-white/10"
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
@@ -121,9 +122,9 @@ export default function Header() {
 
       <nav
         className={`
-          md:hidden fixed top-[60px] left-0 right-0 bg-pixel-bg-medium/98 backdrop-blur-md border-b border-white/10
+          md:hidden fixed top-15 left-0 right-0 bg-pixel-bg-medium/98 backdrop-blur-md border-b border-white/10
           overflow-hidden transition-all duration-300 ease-in-out z-190 shadow-2xl
-          ${isMobileMenuOpen ? 'max-h-[500px] opacity-100 py-4' : 'max-h-0 opacity-0 py-0'}
+          ${isMobileMenuOpen ? 'max-h-125 opacity-100 py-4' : 'max-h-0 opacity-0 py-0'}
         `}
       >
         <ul className="flex flex-col gap-2 px-4 container mx-auto max-w-7xl">
@@ -153,7 +154,7 @@ export default function Header() {
 
       {isMobileMenuOpen && (
         <div
-          className="md:hidden fixed inset-0 top-[60px] bg-black/80 backdrop-blur-sm z-180"
+          className="md:hidden fixed inset-0 top-15 bg-black/80 backdrop-blur-sm z-180"
           onClick={() => setIsMobileMenuOpen(false)}
           onKeyDown={(e) => e.key === 'Escape' && setIsMobileMenuOpen(false)}
           role="button"

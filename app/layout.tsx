@@ -1,7 +1,7 @@
 import React from 'react';
 import { Press_Start_2P, VT323, Silkscreen } from 'next/font/google';
 import '@/styles/globals.css';
-import { defaultMetadata, defaultViewport, personJsonLd } from '@/components/seo/Seo';
+import { defaultMetadata, defaultViewport, personJsonLd, websiteJsonLd, navigationJsonLd } from '@/components/seo/Seo';
 import TransitionLoader from '@/components/layout/TransitionLoader';
 
 const pressStart2P = Press_Start_2P({
@@ -43,6 +43,14 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(navigationJsonLd) }}
         />
       </head>
       <body className="antialiased">
