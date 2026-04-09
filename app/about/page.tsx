@@ -6,7 +6,7 @@ const BASE_URL = 'https://yudnata-portfolio.vercel.app';
 export const metadata: Metadata = {
   title: 'About Me — Fullstack Developer from Bali',
   description:
-    'About Gede Yudhi Adinata Putra Kurniawan (Yudnata) — Fullstack Developer & IT student at Udayana University, Bali. Specialized in React, Node.js, TypeScript, and modern web development. GPA 3.77.',
+    'About Gede Yudhi Adinata Putra Kurniawan (Yudnata) — Fullstack Developer & IT student at Udayana University, Bali. Specialized in React, Node.js, TypeScript, and modern web development. GPA 3.82.',
   keywords: [
     'Yudhi Adinata about',
     'Yudnata developer',
@@ -58,7 +58,7 @@ const aboutJsonLd = [
       alternateName: ['Yudhi Adinata', 'Yudnata'],
       jobTitle: 'Fullstack Developer',
       description:
-        'Information Technology student at Udayana University with GPA 3.77. Passionate about building modern, user-centered web applications.',
+        'Information Technology student at Udayana University with GPA 3.82. Passionate about building modern, user-centered web applications.',
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Denpasar',

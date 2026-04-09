@@ -44,7 +44,7 @@ export default function AboutContent() {
                 <strong className="text-white">Gede Yudhi Adinata Putra Kurniawan</strong>. I&apos;m
                 an Information Technology student at{' '}
                 <strong className="text-white">Udayana University</strong>, Bali with a current GPA
-                of 3.77. I&apos;m passionate about building{' '}
+                of 3.82. I&apos;m passionate about building{' '}
                 <span className="text-white font-bold">modern, user-centered web applications</span>{' '}
                 that solve real problems.
               </p>

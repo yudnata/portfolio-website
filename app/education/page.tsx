@@ -6,7 +6,7 @@ const BASE_URL = 'https://yudnata-portfolio.vercel.app';
 export const metadata: Metadata = {
   title: 'Education & Academic Background',
   description:
-    'Education background of Gede Yudhi Adinata Putra Kurniawan — Information Technology student at Udayana University, Bali with 3.77 GPA. Fullstack Developer training at Dicoding & Accenture Asah Program.',
+    'Education background of Gede Yudhi Adinata Putra Kurniawan — Information Technology student at Udayana University, Bali with 3.82 GPA. Fullstack Developer training at Dicoding & Accenture Asah Program.',
   keywords: [
     'Yudhi Adinata education',
     'Udayana University IT student',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Education & Academic Background | Yudhi Adinata',
     description:
-      'IT student at Udayana University (GPA 3.77). Fullstack Developer at Dicoding & Accenture.',
+      'IT student at Udayana University (GPA 3.82). Fullstack Developer at Dicoding & Accenture.',
     images: ['/images/education.webp'],
     creator: '@yudnata',
   },

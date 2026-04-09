@@ -81,7 +81,7 @@ export default function ProjectsContent() {
             </nav>
           </header>
 
-          <section className="flex flex-col gap-4">
+          <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {filteredProjects.map((project, index) => (
               <article
                 key={`${activeCategory}-${project.id}`}
@@ -91,36 +91,36 @@ export default function ProjectsContent() {
                   transition-all duration-300 hover:bg-black/70 hover:border-white/20 
                   hover:shadow-[0_0_30px_rgba(255,255,255,0.05)]
                   ${isDesktop ? 'cursor-pointer' : 'cursor-default'} 
-                  group animate-card-fade opacity-0 flex flex-col md:flex-row
+                  group animate-card-fade opacity-0 flex flex-col
                 `}
                 style={{
                   animationDelay: isFirstLoad ? `${0.7 + index * 0.1}s` : `${index * 0.05}s`,
                 }}
               >
-                <figure className="relative w-full md:w-64 lg:w-80 h-48 md:h-auto bg-gray-900 overflow-hidden shrink-0">
+                <figure className="relative w-full h-52 md:h-64 bg-gray-900 overflow-hidden shrink-0">
                   {project.image ? (
                     <Image
                       src={project.image}
                       alt={project.title}
                       fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 256px, 320px"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       quality={100}
-                      className="object-cover object-center transition-all duration-500 opacity-80 group-hover:opacity-100"
+                      className="object-cover object-center transition-all duration-500 opacity-80 group-hover:opacity-100 group-hover:scale-105"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-gray-800 to-black">
                       <span className="font-pixel text-[0.4rem] text-gray-500">NO IMAGE</span>
                     </div>
                   )}
-                  <div className="absolute top-3 left-3">
-                    <span className="font-pixel text-[0.4rem] bg-black/60 backdrop-blur-md text-white border border-white/20 px-2 py-1 rounded-full">
+                  <div className="absolute top-4 left-4">
+                    <span className="font-pixel text-[0.4rem] bg-black/60 backdrop-blur-md text-white border border-white/20 px-2.5 py-1 rounded-full uppercase tracking-tighter">
                       {project.category}
                     </span>
                   </div>
                 </figure>
 
-                <div className="p-4 md:py-5 md:px-8 flex flex-col justify-center flex-1 relative">
-                  <div className="flex items-center gap-2 mb-2">
+                <div className="p-6 flex flex-col flex-1 relative">
+                  <div className="flex items-center gap-2 mb-3">
                     <span
                       className={`font-pixel text-[0.4rem] px-2 py-0.5 rounded-full border ${
                         project.status === 'Completed'
@@ -140,13 +140,13 @@ export default function ProjectsContent() {
                   <h3 className="font-retro text-xl md:text-2xl text-white font-bold mb-1 group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
-                  <p className="font-pixel text-[0.5rem] text-gray-400 mb-2">{project.subtitle}</p>
-                  <p className="font-retro text-sm text-gray-400 leading-relaxed mb-4 line-clamp-2">
+                  <p className="font-pixel text-[0.5rem] text-gray-400 mb-3">{project.subtitle}</p>
+                  <p className="font-retro text-sm text-gray-400 leading-relaxed mb-6 line-clamp-2">
                     {project.description}
                   </p>
 
                   <div className="flex flex-wrap gap-1.5 mt-auto">
-                    {project.technologies.map((tech) => (
+                    {project.technologies.slice(0, 5).map((tech) => (
                       <span
                         key={tech}
                         className="font-pixel text-[0.4rem] text-gray-500 bg-white/5 border border-white/10 px-2.5 py-1 rounded-full"
@@ -154,12 +154,18 @@ export default function ProjectsContent() {
                         {tech}
                       </span>
                     ))}
+                    {project.technologies.length > 5 && (
+                      <span className="font-pixel text-[0.4rem] text-gray-600 self-center ml-1">
+                        +{project.technologies.length - 5}
+                      </span>
+                    )}
                   </div>
 
                   {isDesktop && (
-                    <div className="absolute bottom-5 right-6 font-pixel text-[0.45rem] text-gray-500 opacity-40 group-hover:opacity-100 group-hover:text-primary transition-all flex items-center gap-1 pointer-events-none">
-                      <span>Click to view details</span>
-                      <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    <div className="absolute top-6 right-6 font-pixel text-[0.45rem] text-gray-500 opacity-40 group-hover:opacity-100 group-hover:text-primary transition-all flex items-center gap-1 pointer-events-none">
+                      <span className="group-hover:translate-x-1 transition-transform">
+                        View Details →
+                      </span>
                     </div>
                   )}
                 </div>

@@ -6,7 +6,7 @@ const BASE_URL = 'https://yudnata-portfolio.vercel.app';
 export const metadata: Metadata = {
   title: 'Projects & Portfolio',
   description:
-    'Web development projects by Yudhi Adinata — LeadGo (CRM with ML), Cogika (real-time chat), CoreTI (e-commerce), LetMeCook (Android), Earth3D (Three.js), and more. Built with React, Node.js, TypeScript.',
+    'Web development projects by Yudhi Adinata — NATSTORE (Midtrans Store), LeadGo (CRM with ML), Advanced Information Retrieval (ASIR), and 6+ more. Built with React, Python, Node.js.',
   keywords: [
     'Yudhi Adinata projects',
     'Yudnata portfolio',
@@ -17,6 +17,9 @@ export const metadata: Metadata = {
     'Cogika chat app',
     'CoreTI e-commerce',
     'Next.js portfolio',
+    'NATSTORE Midtrans',
+    'Advanced Information Retrieval system',
+    'Python IR system',
   ],
   alternates: {
     canonical: `${BASE_URL}/projects`,
@@ -24,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Projects & Portfolio | Yudhi Adinata',
     description:
-      'Explore 7+ web development projects: CRM with ML, real-time chat, e-commerce, 3D visualization, and more. Built with React, Node.js, TypeScript.',
+      'Explore 9+ web development projects: NATSTORE (Midtrans Store), CRM with ML, Information Retrieval (ASIR), real-time chat, and more.',
     url: `${BASE_URL}/projects`,
     images: [
       {
@@ -40,7 +43,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Projects & Portfolio | Yudhi Adinata',
     description:
-      '7+ projects: CRM, real-time chat, e-commerce, 3D visualization. React, Node.js, TypeScript.',
+      '9+ projects: NATSTORE (Midtrans), CRM, IR System (ASIR), real-time chat, e-commerce. React, Python, Node.js.',
     images: ['/images/projects.webp'],
     creator: '@yudnata',
   },
@@ -64,43 +67,64 @@ const projectsJsonLd = [
           '@type': 'ListItem',
           position: 1,
           name: 'LeadGo — Predictive Lead Scoring Portal',
-          description: 'Full-stack CRM microservices with ML-based lead scoring, RBAC, and analytics dashboard.',
+          description:
+            'Full-stack CRM microservices with ML-based lead scoring, RBAC, and analytics dashboard.',
           url: 'https://github.com/yudnata/predictive-lead-scoring-portal',
         },
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Cogika — Real-time Chat Application',
-          description: 'Modern messaging platform with WebSocket, private/group chats, and friend system.',
-          url: 'https://github.com/yudnata/cogika',
+          name: 'NATSTORE — Midtrans Simulation Store',
+          description:
+            'Production-grade simulation store with Midtrans payment, GSAP animations, and Node.js backend.',
+          url: 'https://github.com/yudnata/midtrans-sims',
         },
         {
           '@type': 'ListItem',
           position: 3,
-          name: 'CoreTI — E-Commerce Platform',
-          description: 'Fullstack e-commerce with Admin Dashboard, inventory tracking, and order management.',
-          url: 'https://github.com/yudnata/CoreTI',
+          name: 'Cogika — Real-time Chat Application',
+          description:
+            'Modern messaging platform with WebSocket, private/group chats, and friend system.',
+          url: 'https://github.com/yudnata/cogika',
         },
         {
           '@type': 'ListItem',
           position: 4,
-          name: 'LetMeCook — Recipe Android App',
-          description: 'Native Android app with Kotlin, Clean MVVM, Lottie animations, and offline persistence.',
-          url: 'https://github.com/yudnata/LetMeCook',
+          name: 'CoreTI — E-Commerce Platform',
+          description:
+            'Fullstack e-commerce with Admin Dashboard, inventory tracking, and order management.',
+          url: 'https://github.com/yudnata/CoreTI',
         },
         {
           '@type': 'ListItem',
           position: 5,
+          name: 'LetMeCook — Recipe Android App',
+          description:
+            'Native Android app with Kotlin, Clean MVVM, Lottie animations, and offline persistence.',
+          url: 'https://github.com/yudnata/LetMeCook',
+        },
+        {
+          '@type': 'ListItem',
+          position: 6,
           name: 'Earth3D — Interactive 3D Earth Visualization',
           description: 'Immersive 3D visualization with React, Three.js, and React Three Fiber.',
           url: 'https://github.com/yudnata/imersif-globe-3d',
         },
         {
           '@type': 'ListItem',
-          position: 6,
+          position: 7,
           name: 'SentimentAPP — Sentiment Analysis',
-          description: 'Sentiment analysis with React, Flask, and Naive Bayes for Indonesian product reviews.',
+          description:
+            'Sentiment analysis with React, Flask, and Naive Bayes for Indonesian product reviews.',
           url: 'https://github.com/yudnata/sentiment-analysis-app',
+        },
+        {
+          '@type': 'ListItem',
+          position: 8,
+          name: 'Advanced Information Retrieval — Mathematical Text Search',
+          description:
+            'Text search system with GVSM, LSI, and Fuzzy IR algorithms implemented in Python.',
+          url: 'https://github.com/yudnata/advanced-ir-system',
         },
       ],
     },

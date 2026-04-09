@@ -34,6 +34,27 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/yudnata/predictive-lead-scoring-portal',
   },
   {
+    id: 'midtrans-sims',
+    title: 'NATSTORE',
+    subtitle: 'Midtrans Simulation Store',
+    description:
+      'A production-grade digital asset simulation platform with Midtrans payment integration, GSAP motion graphics, and a robust Node.js backend. Features hardened security and industrial UI.',
+    icon: '',
+    image: '/assets/projects/midtrans-sims.png',
+    technologies: [
+      'Next.js',
+      'Node.js',
+      'Midtrans',
+      'GSAP',
+      'Prisma',
+      'PostgreSQL',
+      'Tailwind CSS',
+    ],
+    category: 'Web App',
+    status: 'Completed',
+    githubUrl: 'https://github.com/yudnata/midtrans-sims',
+  },
+  {
     id: 'letmecook',
     title: 'LetMeCook',
     subtitle: 'Recipe App',
@@ -111,6 +132,19 @@ export const projects: Project[] = [
     status: 'Completed',
     githubUrl: 'https://github.com/yudnata/portfolio-website',
   },
+  {
+    id: 'asir-system',
+    title: 'Advanced Information Retrieval',
+    subtitle: 'Mathematical Text Search System',
+    description:
+      'A text search application utilizing advanced algorithms like Fuzzy IR, GVSM, and Latent Semantic Indexing (LSI) with detailed mathematical computations and GUI interface.',
+    icon: '',
+    image: '/assets/projects/ir-advance.png',
+    technologies: ['Python', 'NumPy', 'Sastrawi', 'Tkinter'],
+    category: 'Personal',
+    status: 'Completed',
+    githubUrl: 'https://github.com/yudnata/advanced-ir-system',
+  },
 ];
 
 export const educationList: Education[] = [
@@ -120,7 +154,7 @@ export const educationList: Education[] = [
     degree: 'Bachelor of Information Technology',
     period: 'Sep 2023 – Present',
     description:
-      'Information Technology Student with GPA 3.77/4.00. Actively engaged in student organizations focusing on design and publication.',
+      'Information Technology Student with GPA 3.82/4.00. Actively engaged in student organizations focusing on design and publication.',
     icon: '/icons/unud.png',
     achievements: [
       'GPA 3.82/ 4.00',
