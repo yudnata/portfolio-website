@@ -77,6 +77,11 @@ export default function SkillsContent() {
                 iconSrc="/icons/next.svg"
                 color="text-blue-500"
               />
+              <SkillChip
+                name="Flutter"
+                iconSrc="/icons/Flutter.png"
+                color="text-blue-400"
+              />
             </div>
           </div>
 
@@ -125,6 +130,11 @@ export default function SkillsContent() {
                 iconSrc="/icons/postman.png"
                 color="text-orange-500"
               />
+              <SkillChip
+                name="Go"
+                iconSrc="/icons/Go.png"
+                color="text-cyan-400"
+              />
             </div>
           </div>
 
@@ -163,7 +173,7 @@ export default function SkillsContent() {
 
           <div className="bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:bg-black/70 transition-colors shadow-lg">
             <h2 className="font-pixel text-sm text-white mb-6 flex items-center gap-3 border-l-4 border-red-500 pl-3">
-              DevOps
+              Tools
             </h2>
             <div className="flex flex-wrap gap-3">
               <SkillChip
@@ -180,6 +190,11 @@ export default function SkillsContent() {
                 name="GitLab"
                 iconSrc="/icons/GitLab.png"
                 color="text-yellow-400"
+              />
+              <SkillChip
+                name="Azure"
+                iconSrc="/icons/Azure.png"
+                color="text-blue-400"
               />
             </div>
           </div>

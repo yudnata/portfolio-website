@@ -6,7 +6,7 @@ const BASE_URL = 'https://yudnata-portfolio.vercel.app';
 export const metadata: Metadata = {
   title: 'Technical Skills & Tech Stack',
   description:
-    'Technical skills of Yudhi Adinata — React, Next.js, TypeScript, Node.js, Express, Laravel, PostgreSQL, MongoDB, Docker, Git, Figma, and more. Frontend, Backend, DevOps, and Design expertise.',
+    'Technical skills of Yudhi Adinata — React, Next.js, TypeScript, Node.js, Express, Laravel, Go, Flutter, PostgreSQL, MongoDB, Docker, Azure, Git, Figma, and more.',
   keywords: [
     'Yudhi Adinata skills',
     'Yudnata tech stack',
@@ -17,6 +17,9 @@ export const metadata: Metadata = {
     'web developer skills Indonesia',
     'Laravel developer Bali',
     'Next.js developer',
+    'Flutter developer',
+    'Go backend developer',
+    'Azure cloud skills',
   ],
   alternates: {
     canonical: `${BASE_URL}/skills`,
@@ -24,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Technical Skills & Tech Stack | Yudhi Adinata',
     description:
-      'Frontend: React, Next.js, TypeScript, Vue, Tailwind. Backend: Node.js, Express, Laravel, Python. DevOps: Docker, Git. Design: Figma, Photoshop.',
+      'Frontend: React, Next.js, TypeScript, Vue, Flutter. Backend: Node.js, Express, Laravel, Go. Tools: Docker, Azure, Git. Design: Figma, Photoshop.',
     url: `${BASE_URL}/skills`,
     images: [
       {
@@ -72,7 +75,10 @@ const skillsJsonLd = [
         'MySQL',
         'PostgreSQL',
         'MongoDB',
+        'Go',
+        'Flutter',
         'Docker',
+        'Azure',
         'Git',
         'Figma',
         'Adobe Photoshop',
