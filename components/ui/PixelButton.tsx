@@ -1,21 +1,25 @@
 'use client';
 
-import { ButtonHTMLAttributes, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import Link from 'next/link';
 
 type ButtonVariant = 'primary' | 'accent' | 'gold' | 'outline';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
-interface PixelButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface BaseProps {
   variant?: ButtonVariant;
   size?: ButtonSize;
   href?: string;
-  icon?: string;
+  icon?: React.ReactNode;
   isLoading?: boolean;
   fullWidth?: boolean;
 }
 
-const PixelButton = forwardRef<HTMLButtonElement, PixelButtonProps>(
+type PixelButtonProps = BaseProps &
+  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof BaseProps> &
+  Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof BaseProps>;
+
+const PixelButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, PixelButtonProps>(
   (
     {
       children,
@@ -64,10 +68,28 @@ const PixelButton = forwardRef<HTMLButtonElement, PixelButtonProps>(
     );
 
     if (href && !props.disabled) {
+      const isExternal = href.startsWith('http') || href.startsWith('mailto');
+
+      if (isExternal) {
+        return (
+          <a
+            href={href}
+            className={combinedClasses}
+            target="_blank"
+            rel="noopener noreferrer"
+            ref={ref as React.RefObject<HTMLAnchorElement>}
+            {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+          >
+            {content}
+          </a>
+        );
+      }
+
       return (
         <Link
           href={href}
           className={combinedClasses}
+          {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
         >
           {content}
         </Link>
@@ -76,10 +98,10 @@ const PixelButton = forwardRef<HTMLButtonElement, PixelButtonProps>(
 
     return (
       <button
-        ref={ref}
+        ref={ref as React.RefObject<HTMLButtonElement>}
         disabled={props.disabled || isLoading}
         className={combinedClasses}
-        {...props}
+        {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
       >
         {content}
       </button>

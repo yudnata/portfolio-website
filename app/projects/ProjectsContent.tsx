@@ -32,9 +32,6 @@ export default function ProjectsContent() {
   const filteredProjects =
     activeCategory === 'All' ? projects : projects.filter((p) => p.category === activeCategory);
 
-  const featuredProject = filteredProjects[0];
-  const restProjects = filteredProjects.slice(1);
-
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setSelectedProject(null);
@@ -53,9 +50,9 @@ export default function ProjectsContent() {
 
       <Header />
 
-      <main className="pt-25 pb-20 px-4 md:px-12 min-h-screen">
+      <main className="pt-20 pb-12 px-4 md:px-12 min-h-screen">
         <article className="max-w-7xl mx-auto">
-          <header className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 animate-slide-up anim-delay-500">
+          <header className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6 animate-slide-up anim-delay-500">
             <div>
               <h1 className="font-pixel text-2xl md:text-3xl text-white text-shadow-pixel">
                 My Projects
@@ -84,160 +81,87 @@ export default function ProjectsContent() {
             </nav>
           </header>
 
-          {featuredProject && (
-            <section
-              key={`featured-${activeCategory}-${featuredProject.id}`}
-              onClick={() => isDesktop && setSelectedProject(featuredProject)}
-              className={`
-                mb-8 bg-black/60 backdrop-blur-md border border-white/10 rounded-3xl overflow-hidden 
-                transition-all duration-300 hover:bg-black/70 hover:border-white/20 hover:shadow-[0_0_40px_rgba(255,255,255,0.1)]
-                ${isDesktop ? 'cursor-pointer' : 'cursor-default'}
-                group animate-card-fade opacity-0
-              `}
-              style={{ animationDelay: isFirstLoad ? '0.7s' : '0s' }}
-            >
-              <div className="flex flex-col lg:flex-row">
-                <div className="relative w-full lg:w-1/2 h-64 lg:h-auto lg:min-h-100 bg-gray-900 overflow-hidden">
-                  {featuredProject.image ? (
-                    <Image
-                      src={featuredProject.image}
-                      alt={featuredProject.title}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      priority
-                      quality={100}
-                      className="object-cover object-center transition-all duration-500 group-hover:scale-105"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-gray-800 to-black">
-                      <span className="font-pixel text-sm text-gray-500">NO IMAGE</span>
-                    </div>
-                  )}
-                  <div className="absolute top-4 left-4">
-                    <span className="font-pixel text-[0.5rem] bg-primary text-black px-3 py-1.5 rounded-full font-bold">
-                      FEATURED
-                    </span>
-                  </div>
-                </div>
-
-                <div className="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="font-pixel text-[0.55rem] text-gray-500 uppercase tracking-widest">
-                      {featuredProject.category}
-                    </span>
-                    <span
-                      className={`font-pixel text-[0.5rem] px-2 py-0.5 rounded-full border ${
-                        featuredProject.status === 'Completed'
-                          ? 'text-green-400 bg-green-500/20 border-green-500/30'
-                          : 'text-yellow-400 bg-yellow-500/20 border-yellow-500/30'
-                      }`}
-                    >
-                      {featuredProject.status}
-                    </span>
-                  </div>
-
-                  <h2 className="font-retro text-3xl lg:text-4xl text-white font-bold mb-2 group-hover:text-primary transition-colors">
-                    {featuredProject.title}
-                  </h2>
-                  <p className="font-pixel text-[0.6rem] text-gray-500 mb-4">
-                    {featuredProject.subtitle}
-                  </p>
-                  <p className="font-retro text-base text-gray-400 leading-relaxed mb-6">
-                    {featuredProject.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {featuredProject.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="font-pixel text-[0.5rem] text-gray-400 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  {isDesktop && (
-                    <div className="flex items-center gap-2 font-pixel text-[0.55rem] text-gray-500 group-hover:text-white transition-colors">
-                      <span>Click to view details</span>
-                      <span className="group-hover:translate-x-1 transition-transform">→</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </section>
-          )}
-          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {restProjects.map((project, index) => (
+          <section className="flex flex-col gap-4">
+            {filteredProjects.map((project, index) => (
               <article
                 key={`${activeCategory}-${project.id}`}
                 onClick={() => isDesktop && setSelectedProject(project)}
                 className={`
                   bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden 
                   transition-all duration-300 hover:bg-black/70 hover:border-white/20 
-                  hover:shadow-[0_0_25px_rgba(255,255,255,0.1)] hover:-translate-y-1
+                  hover:shadow-[0_0_30px_rgba(255,255,255,0.05)]
                   ${isDesktop ? 'cursor-pointer' : 'cursor-default'} 
-                  group animate-card-fade opacity-0 flex flex-col
+                  group animate-card-fade opacity-0 flex flex-col md:flex-row
                 `}
                 style={{
-                  animationDelay: isFirstLoad ? `${0.8 + index * 0.08}s` : `${index * 0.05}s`,
+                  animationDelay: isFirstLoad ? `${0.7 + index * 0.1}s` : `${index * 0.05}s`,
                 }}
               >
-                <figure className="relative w-full h-40 bg-gray-900 overflow-hidden">
+                <figure className="relative w-full md:w-64 lg:w-80 h-48 md:h-auto bg-gray-900 overflow-hidden shrink-0">
                   {project.image ? (
                     <Image
                       src={project.image}
                       alt={project.title}
                       fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 256px, 320px"
                       quality={100}
-                      className="object-cover object-center transition-all duration-500 opacity-80 group-hover:opacity-100 group-hover:scale-105"
+                      className="object-cover object-center transition-all duration-500 opacity-80 group-hover:opacity-100"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-gray-800 to-black">
-                      <span className="font-pixel text-xs text-gray-500">NO IMAGE</span>
+                      <span className="font-pixel text-[0.4rem] text-gray-500">NO IMAGE</span>
                     </div>
                   )}
-                  {isDesktop && (
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50">
-                      <span className="font-pixel text-[0.5rem] text-white border border-white/30 bg-black/60 px-3 py-1.5 rounded-full">
-                        View Details
-                      </span>
-                    </div>
-                  )}
-                </figure>
-
-                <div className="p-5 flex flex-col flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="font-pixel text-[0.5rem] text-gray-500 uppercase tracking-widest">
+                  <div className="absolute top-3 left-3">
+                    <span className="font-pixel text-[0.4rem] bg-black/60 backdrop-blur-md text-white border border-white/20 px-2 py-1 rounded-full">
                       {project.category}
                     </span>
-                    {project.status === 'Completed' && (
-                      <span className="font-pixel text-[0.4rem] text-green-400">✓</span>
+                  </div>
+                </figure>
+
+                <div className="p-4 md:py-5 md:px-8 flex flex-col justify-center flex-1 relative">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span
+                      className={`font-pixel text-[0.4rem] px-2 py-0.5 rounded-full border ${
+                        project.status === 'Completed'
+                          ? 'text-green-400 bg-green-500/20 border-green-500/30'
+                          : 'text-yellow-400 bg-yellow-500/20 border-yellow-500/30'
+                      }`}
+                    >
+                      {project.status}
+                    </span>
+                    {index === 0 && activeCategory === 'All' && (
+                      <span className="font-pixel text-[0.4rem] text-primary bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-full font-bold">
+                        FEATURED
+                      </span>
                     )}
                   </div>
-                  <h3 className="font-retro text-xl text-white font-bold mb-1 group-hover:text-primary transition-colors">
+
+                  <h3 className="font-retro text-xl md:text-2xl text-white font-bold mb-1 group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
-                  <p className="font-pixel text-[0.5rem] text-gray-500 mb-2">{project.subtitle}</p>
-                  <p className="font-retro text-sm text-gray-400 line-clamp-2 flex-1">
+                  <p className="font-pixel text-[0.5rem] text-gray-400 mb-2">{project.subtitle}</p>
+                  <p className="font-retro text-sm text-gray-400 leading-relaxed mb-4 line-clamp-2">
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-1.5 mt-4">
-                    {project.technologies.slice(0, 3).map((tech) => (
+
+                  <div className="flex flex-wrap gap-1.5 mt-auto">
+                    {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="font-pixel text-[0.45rem] text-gray-400 bg-white/5 border border-white/5 px-2 py-1 rounded-full"
+                        className="font-pixel text-[0.4rem] text-gray-500 bg-white/5 border border-white/10 px-2.5 py-1 rounded-full"
                       >
                         {tech}
                       </span>
                     ))}
-                    {project.technologies.length > 3 && (
-                      <span className="font-pixel text-[0.45rem] text-gray-500 px-1">
-                        +{project.technologies.length - 3}
-                      </span>
-                    )}
                   </div>
+
+                  {isDesktop && (
+                    <div className="absolute bottom-5 right-6 font-pixel text-[0.45rem] text-gray-500 opacity-40 group-hover:opacity-100 group-hover:text-primary transition-all flex items-center gap-1 pointer-events-none">
+                      <span>Click to view details</span>
+                      <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
+                  )}
                 </div>
               </article>
             ))}
