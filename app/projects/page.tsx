@@ -6,7 +6,7 @@ const BASE_URL = 'https://yudnata-portfolio.vercel.app';
 export const metadata: Metadata = {
   title: 'Projects & Portfolio',
   description:
-    'Web development projects by Yudhi Adinata — NATSTORE (Midtrans Store), LeadGo (CRM with ML), Advanced Information Retrieval (ASIR), and 6+ more. Built with React, Python, Node.js.',
+    'Explore 7 web development projects by Yudhi Adinata — LeadGo, NATSTORE, Cogika, CoreTI, LetMeCook, Earth3D, and Advanced Information Retrieval.',
   keywords: [
     'Yudhi Adinata projects',
     'Yudnata portfolio',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Projects & Portfolio | Yudhi Adinata',
     description:
-      'Explore 9+ web development projects: NATSTORE (Midtrans Store), CRM with ML, Information Retrieval (ASIR), real-time chat, and more.',
+      '7 projects: LeadGo, NATSTORE, Cogika, CoreTI, LetMeCook, Earth3D, and Advanced Information Retrieval.',
     url: `${BASE_URL}/projects`,
     images: [
       {
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Projects & Portfolio | Yudhi Adinata',
     description:
-      '9+ projects: NATSTORE (Midtrans), CRM, IR System (ASIR), real-time chat, e-commerce. React, Python, Node.js.',
+      '7 projects including LeadGo, NATSTORE, Cogika, CoreTI, LetMeCook, Earth3D, and Advanced Information Retrieval.',
     images: ['/images/projects.webp'],
     creator: '@yudnata',
   },
@@ -113,14 +113,6 @@ const projectsJsonLd = [
         {
           '@type': 'ListItem',
           position: 7,
-          name: 'SentimentAPP — Sentiment Analysis',
-          description:
-            'Sentiment analysis with React, Flask, and Naive Bayes for Indonesian product reviews.',
-          url: 'https://github.com/yudnata/sentiment-analysis-app',
-        },
-        {
-          '@type': 'ListItem',
-          position: 8,
           name: 'Advanced Information Retrieval — Mathematical Text Search',
           description:
             'Text search system with GVSM, LSI, and Fuzzy IR algorithms implemented in Python.',

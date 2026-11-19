@@ -40,13 +40,19 @@ export default function AboutContent() {
               aria-label="Introduction"
             >
               <p className="font-retro text-xl leading-relaxed text-gray-200">
-                Hi my name is{' '}
-                <strong className="text-white">Gede Yudhi Adinata Putra Kurniawan</strong>. I&apos;m
-                an Information Technology student at{' '}
-                <strong className="text-white">Udayana University</strong>, Bali with a current GPA
-                of 3.82. I&apos;m passionate about building{' '}
-                <span className="text-white font-bold">modern, user-centered web applications</span>{' '}
-                that solve real problems.
+                I&apos;m{' '}
+                <strong className="text-white">Gede Yudhi Adinata Putra Kurniawan</strong>, a
+                Fullstack and Mobile Developer based in Bali. I&apos;m studying Information
+                Technology at <strong className="text-white">Udayana University</strong> with a GPA
+                of 3.82/4.00. I build{' '}
+                <span className="text-white font-bold">user-centered web and cross-platform apps</span>{' '}
+                and have experience scaling backend systems and managing deployments. I currently
+                work part-time as a Full-Stack Web Developer at{' '}
+                <strong className="text-white">PT Viskal Karunia Saputra</strong>, maintaining the
+                10x, CRM, Ledger, and HRIS internal apps and managing Express.js services and VPS
+                deployments. I also freelance as a Mobile and Full-Stack Developer with{' '}
+                <strong className="text-white">PT Pley Nusantara Kreatif</strong>, building Flutter
+                apps and supporting Vue.js/Astro web platforms and Go-powered APIs.
               </p>
             </section>
 
@@ -85,18 +91,19 @@ export default function AboutContent() {
 
             <section
               className="bg-black/60 border border-white/5 rounded-2xl p-8 shadow-lg"
-              aria-label="Core Values"
+              aria-label="Focus and Strengths"
             >
               <span className="block font-pixel text-[0.6rem] text-gray-500 mb-4 uppercase tracking-wide">
-                Values
+                Focus &amp; Strengths
               </span>
               <div className="flex flex-wrap gap-3">
                 {[
-                  'Clean Design',
-                  'User First',
-                  'Continuous Learning',
-                  'Team Player',
-                  'Problem Solver',
+                  'User-Centered Applications',
+                  'Cross-Platform Mobile Apps',
+                  'Scalable Backend Systems',
+                  'Server Deployment',
+                  'Teamwork',
+                  'Organizational Leadership',
                 ].map((tag) => (
                   <span
                     key={tag}

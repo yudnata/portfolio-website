@@ -6,12 +6,14 @@ const BASE_URL = 'https://yudnata-portfolio.vercel.app';
 export const metadata: Metadata = {
   title: 'Education & Academic Background',
   description:
-    'Education background of Gede Yudhi Adinata Putra Kurniawan — Information Technology student at Udayana University, Bali with 3.82 GPA. Fullstack Developer training at Dicoding & Accenture Asah Program.',
+    'Gede Yudhi Adinata Putra Kurniawan studies Information Technology at Udayana University with a GPA of 3.82/4.00 and completed the Coding Camp 2026 AI Engineer cohort and Asah React–Backend cohort.',
   keywords: [
     'Yudhi Adinata education',
     'Udayana University IT student',
     'Information Technology Bali',
-    'Dicoding Asah Program',
+    'Coding Camp 2026 DBS Foundation',
+    'AI Engineer cohort',
+    'Dicoding Accenture Asah Program',
     'Fullstack Developer education',
     'web developer background',
     'Gede Yudhi Adinata Putra Kurniawan',
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Education & Academic Background | Yudhi Adinata',
     description:
-      'IT student at Udayana University, Bali (GPA 3.82). Fullstack Developer training through Dicoding & Accenture Asah Program. View academic achievements and certifications.',
+      'Information Technology student at Udayana University (GPA 3.82/4.00), with AI Engineer and React–Backend cohort experience in 2025–2026.',
     url: `${BASE_URL}/education`,
     images: [
       {
@@ -38,7 +40,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Education & Academic Background | Yudhi Adinata',
     description:
-      'IT student at Udayana University (GPA 3.82). Fullstack Developer at Dicoding & Accenture.',
+      'Udayana University IT student with a 3.82/4.00 GPA, Coding Camp 2026 AI Engineer cohort, and Asah React–Backend cohort.',
     images: ['/images/education.webp'],
     creator: '@yudnata',
   },
@@ -54,6 +56,8 @@ const educationJsonLd = [
     mainEntity: {
       '@type': 'Person',
       name: 'Gede Yudhi Adinata Putra Kurniawan',
+      description:
+        'Information Technology student at Udayana University with a GPA of 3.82/4.00.',
       alumniOf: [
         {
           '@type': 'CollegeOrUniversity',
@@ -68,29 +72,13 @@ const educationJsonLd = [
         },
         {
           '@type': 'EducationalOrganization',
-          name: 'Dicoding & Accenture - Asah Program',
-          description: 'Intensive Fullstack Development Program (React & Node.js)',
-        },
-      ],
-      hasCredential: [
-        {
-          '@type': 'EducationalOccupationalCredential',
-          name: 'Bachelor of Information Technology',
-          credentialCategory: 'degree',
-          educationalLevel: 'Bachelor',
-          recognizedBy: {
-            '@type': 'CollegeOrUniversity',
-            name: 'Udayana University',
-          },
+          name: 'Coding Camp 2026 Powered by DBS Foundation',
+          description: 'AI Engineer Cohort, Jan 2026 – Jun 2026',
         },
         {
-          '@type': 'EducationalOccupationalCredential',
-          name: 'React & Backend Cohort - Asah Program',
-          credentialCategory: 'certificate',
-          recognizedBy: {
-            '@type': 'Organization',
-            name: 'Dicoding & Accenture',
-          },
+          '@type': 'EducationalOrganization',
+          name: 'Asah Program led by Dicoding and Accenture',
+          description: 'React – Backend Cohort, Aug 2025 – Feb 2026',
         },
       ],
     },
