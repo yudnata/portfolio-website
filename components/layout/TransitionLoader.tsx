@@ -7,6 +7,7 @@ import type { ComponentProps } from 'react';
 import { waitForPageBackground } from '@/lib/page-transition';
 import PageLoadingIndicator from '@/components/ui/PageLoadingIndicator';
 import loadingStyles from '@/components/ui/page-loading.module.css';
+import { getPortfolioAudio } from '@/lib/portfolio-audio';
 
 const TransitionContext = createContext<((href: string) => void) | null>(null);
 const GRID_COLUMNS = 12;
@@ -79,6 +80,7 @@ export default function TransitionLoader({ children }: { children: ReactNode }) 
 
   const navigate = useCallback((href: string) => {
     if (pendingRef.current) return;
+    getPortfolioAudio().playPage();
     const overlay = overlayRef.current;
     if (!overlay) { router.push(href); return; }
     pendingRef.current = true;
@@ -108,6 +110,7 @@ export default function TransitionLoader({ children }: { children: ReactNode }) 
 
   useLayoutEffect(() => {
     if (previousPath.current === pathname) return;
+    if (!pendingRef.current) getPortfolioAudio().playPage();
     previousPath.current = pathname;
     const overlay = overlayRef.current;
     if (!overlay) return;

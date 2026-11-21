@@ -42,7 +42,7 @@
 .tileActive .artwork, .tile:hover .artwork { filter: saturate(1) brightness(1); transform: scale(1.04); }
 .tileWordmark { position: absolute; z-index: 1; inset: auto 9px 10px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; color: white; font-family: var(--font-vt323), 'VT323', monospace; font-size: 1.125rem; font-weight: 400; line-height: 1.1; overflow-wrap: anywhere; text-shadow: 0 1px 5px #000; }
 .projectPanel { display: flex; flex-direction: column; padding-top: 6px; }
-.projectInfo { min-width: 0; max-width: 610px; animation: revealInfo 380ms ease both; }
+.projectInfo { min-width: 0; max-width: 610px; margin-top: 16px; animation: revealInfo 380ms ease both; }
 .projectMeta { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; color: #c4d0dd; font-size: 1.125rem; }
 .metaDivider { height: 12px; width: 1px; background: #7b8999; }
 .projectTitle { margin: 0 0 10px; font-family: var(--font-press-start), 'Press Start 2P', cursive; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 400; letter-spacing: -.025em; line-height: 1.3; overflow-wrap: anywhere; }
@@ -109,6 +109,22 @@
   .technologySection { max-width: 100%; text-align: right; }
   .technologyLogos { justify-content: flex-end; }
 }
+@media (min-width: 1001px) and (min-height: 600px) {
+  .main { --project-overlay-width: clamp(300px, 32vw, 520px); }
+  .projectInfo { max-width: min(610px, calc(100% - var(--project-overlay-width) - 32px)); }
+  .projectControls { display: flex; padding-right: calc(var(--project-overlay-width) + 32px); }
+  .projectFooter {
+    position: fixed;
+    right: max(clamp(24px, 5.5vw, 88px), calc((100vw - 1600px) / 2 + 88px), env(safe-area-inset-right));
+    bottom: max(104px, calc(80px + env(safe-area-inset-bottom)));
+    z-index: 20;
+    width: var(--project-overlay-width);
+  }
+  .technologySection { width: 100%; }
+  .technologyLogos { flex-wrap: nowrap; height: 52px; overflow-x: auto; overflow-y: hidden; padding-bottom: 4px; overscroll-behavior-x: contain; scrollbar-width: thin; justify-content: flex-start; }
+  .technologyLogos li { flex-shrink: 0; }
+  .technologyLogos li:first-child { margin-left: auto; }
+}
 @media (min-width: 1500px) { .main { padding-top: 125px; } }
 @media (max-width: 1000px) {
   .libraryBar { gap: 24px; flex-wrap: wrap; }
@@ -131,7 +147,7 @@
   .tileWordmark { font-size: 1rem; inset-inline: 7px; bottom: 8px; }
   .tile:active .artwork { filter: brightness(1.1); }
   .projectPanel { min-width: 0; }
-  .projectInfo { width: 100%; max-width: 100%; }
+  .projectInfo { width: 100%; max-width: 100%; margin-top: 12px; }
   .projectMeta { flex-wrap: wrap; row-gap: 4px; }
   .projectTitle { max-width: 100%; font-size: clamp(1.5rem, 6.5vw, 2.5rem); text-wrap: balance; }
   .longTitle { font-size: clamp(1rem, 4.4vw, 1.5rem); line-height: 1.55; }

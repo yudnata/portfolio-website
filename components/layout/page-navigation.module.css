@@ -19,6 +19,7 @@
   color: #fff;
   box-shadow: 4px 4px 0 #050509;
   text-decoration: none;
+  cursor: pointer;
   transition: background 120ms ease, color 120ms ease;
 }
 
@@ -33,6 +34,11 @@
   box-shadow: 2px 2px 0 #050509;
 }
 
+.arrow[data-active='true'] {
+  background: #edf3f8;
+  color: #111a24;
+}
+
 .arrow:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 4px;
@@ -40,6 +46,7 @@
 
 .arrow[aria-disabled] {
   opacity: .35;
+  cursor: default;
 }
 
 .nextArrow {

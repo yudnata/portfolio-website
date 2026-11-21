@@ -6,6 +6,7 @@ import Header from '@/components/layout/Header';
 import { projects } from '@/data';
 import type { Project } from '@/types';
 import styles from './projects.module.css';
+import { getPortfolioAudio } from '@/lib/portfolio-audio';
 
 const categories = ['All', 'Personal', 'Web App', 'Enterprise'] as const;
 
@@ -84,6 +85,14 @@ export default function ProjectsContent() {
   const activeProject = filteredProjects.find((project) => project.id === activeId) ?? filteredProjects[0];
   const activeIndex = activeProject ? filteredProjects.findIndex((project) => project.id === activeProject.id) : -1;
   const hasRailOverflow = scrollAvailable.previous || scrollAvailable.next;
+  const previousProjectId = useRef(activeProject?.id);
+
+  useEffect(() => {
+    if (previousProjectId.current !== activeProject?.id) {
+      previousProjectId.current = activeProject?.id;
+      getPortfolioAudio().playProject();
+    }
+  }, [activeProject?.id]);
 
   useEffect(() => {
     if (!activeProject || railDragRef.current) return;
