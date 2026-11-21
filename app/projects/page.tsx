@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import ProjectsContent from '@/app/projects/ProjectsContent';
+import { projects } from '@/data';
 
 const BASE_URL = 'https://yudnata-portfolio.vercel.app';
+const projectDescription = `Explore ${projects.length} web, mobile, and desktop projects by Yudhi Adinata, including Notvas, Yudrive, Smart Campus Assistant, GIS Budaya Bali, and TravelHub.`;
 
 export const metadata: Metadata = {
   title: 'Projects & Portfolio',
-  description:
-    'Explore 7 web development projects by Yudhi Adinata — LeadGo, NATSTORE, Cogika, CoreTI, LetMeCook, Earth3D, and Advanced Information Retrieval.',
+  description: projectDescription,
   keywords: [
     'Yudhi Adinata projects',
     'Yudnata portfolio',
@@ -20,21 +21,25 @@ export const metadata: Metadata = {
     'NATSTORE Midtrans',
     'Advanced Information Retrieval system',
     'Python IR system',
+    'Notvas desktop app',
+    'Yudrive photo library',
+    'Smart Campus Assistant RAG',
+    'GIS Budaya Bali',
+    'TravelHub accommodation marketplace',
   ],
   alternates: {
     canonical: `${BASE_URL}/projects`,
   },
   openGraph: {
     title: 'Projects & Portfolio | Yudhi Adinata',
-    description:
-      '7 projects: LeadGo, NATSTORE, Cogika, CoreTI, LetMeCook, Earth3D, and Advanced Information Retrieval.',
+    description: projectDescription,
     url: `${BASE_URL}/projects`,
     images: [
       {
         url: '/images/projects.webp',
         width: 1200,
         height: 630,
-        alt: 'Web development projects by Yudhi Adinata',
+        alt: 'Web, mobile, and desktop projects by Yudhi Adinata',
       },
     ],
     type: 'website',
@@ -42,8 +47,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Projects & Portfolio | Yudhi Adinata',
-    description:
-      '7 projects including LeadGo, NATSTORE, Cogika, CoreTI, LetMeCook, Earth3D, and Advanced Information Retrieval.',
+    description: projectDescription,
     images: ['/images/projects.webp'],
     creator: '@yudnata',
   },
@@ -55,70 +59,21 @@ const projectsJsonLd = [
     '@type': 'CollectionPage',
     name: 'Projects - Yudhi Adinata',
     url: `${BASE_URL}/projects`,
-    description: 'Portfolio of web development projects by Gede Yudhi Adinata Putra Kurniawan.',
+    description: projectDescription,
     author: {
       '@type': 'Person',
       name: 'Gede Yudhi Adinata Putra Kurniawan',
     },
     mainEntity: {
       '@type': 'ItemList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'LeadGo — Predictive Lead Scoring Portal',
-          description:
-            'Full-stack CRM microservices with ML-based lead scoring, RBAC, and analytics dashboard.',
-          url: 'https://github.com/yudnata/predictive-lead-scoring-portal',
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'NATSTORE — Midtrans Simulation Store',
-          description:
-            'Production-grade simulation store with Midtrans payment, GSAP animations, and Node.js backend.',
-          url: 'https://github.com/yudnata/midtrans-sims',
-        },
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: 'Cogika — Real-time Chat Application',
-          description:
-            'Modern messaging platform with WebSocket, private/group chats, and friend system.',
-          url: 'https://github.com/yudnata/cogika',
-        },
-        {
-          '@type': 'ListItem',
-          position: 4,
-          name: 'CoreTI — E-Commerce Platform',
-          description:
-            'Fullstack e-commerce with Admin Dashboard, inventory tracking, and order management.',
-          url: 'https://github.com/yudnata/CoreTI',
-        },
-        {
-          '@type': 'ListItem',
-          position: 5,
-          name: 'LetMeCook — Recipe Android App',
-          description:
-            'Native Android app with Kotlin, Clean MVVM, Lottie animations, and offline persistence.',
-          url: 'https://github.com/yudnata/LetMeCook',
-        },
-        {
-          '@type': 'ListItem',
-          position: 6,
-          name: 'Earth3D — Interactive 3D Earth Visualization',
-          description: 'Immersive 3D visualization with React, Three.js, and React Three Fiber.',
-          url: 'https://github.com/yudnata/imersif-globe-3d',
-        },
-        {
-          '@type': 'ListItem',
-          position: 7,
-          name: 'Advanced Information Retrieval — Mathematical Text Search',
-          description:
-            'Text search system with GVSM, LSI, and Fuzzy IR algorithms implemented in Python.',
-          url: 'https://github.com/yudnata/advanced-ir-system',
-        },
-      ],
+      itemListElement: projects.map((project, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: project.subtitle ? `${project.title} - ${project.subtitle}` : project.title,
+        description: project.description,
+        url: project.githubUrl ?? project.liveUrl ?? `${BASE_URL}/projects`,
+        image: project.image ? `${BASE_URL}${project.image}` : undefined,
+      })),
     },
   },
   {

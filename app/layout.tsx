@@ -3,6 +3,7 @@ import { Press_Start_2P, VT323, Silkscreen } from 'next/font/google';
 import '../styles/globals.css';
 import { defaultMetadata, defaultViewport, personJsonLd, websiteJsonLd, navigationJsonLd } from '@/components/seo/Seo';
 import TransitionLoader from '@/components/layout/TransitionLoader';
+import PageNavigation from '@/components/layout/PageNavigation';
 
 const pressStart2P = Press_Start_2P({
   weight: '400',
@@ -61,7 +62,10 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <TransitionLoader>{children}</TransitionLoader>
+        <TransitionLoader>
+          {children}
+          <PageNavigation />
+        </TransitionLoader>
       </body>
     </html>
   );

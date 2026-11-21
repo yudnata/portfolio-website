@@ -9,6 +9,7 @@ export interface Project {
   liveUrl?: string;
   githubUrl?: string;
   image?: string;
+  imageNote?: string;
   subtitle?: string;
 }
 

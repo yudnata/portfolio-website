@@ -3,16 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { TransitionLink as Link } from './TransitionLoader';
 import { usePathname } from 'next/navigation';
-
-const navItems = [
-  { id: 'home', label: 'Home', href: '/' },
-  { id: 'about', label: 'About', href: '/about' },
-  { id: 'projects', label: 'Projects', href: '/projects' },
-  { id: 'experience', label: 'Experience', href: '/experience' },
-  { id: 'skills', label: 'Skills', href: '/skills' },
-  { id: 'education', label: 'Education', href: '/education' },
-  { id: 'contact', label: 'Contact', href: '/contact' },
-];
+import { navItems } from '@/data/navigation';
 
 export default function Header() {
   const pathname = usePathname();

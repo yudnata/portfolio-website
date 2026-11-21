@@ -1,2 +1,11 @@
 Midtrans: https://midtrans.com/assets/img/logo.svg
 Other SVGs: https://github.com/simple-icons/simple-icons (CC0-1.0)
+Rust: https://github.com/simple-icons/simple-icons/blob/develop/icons/rust.svg
+FastAPI: https://github.com/simple-icons/simple-icons/blob/develop/icons/fastapi.svg
+Cloudflare: https://github.com/simple-icons/simple-icons/blob/develop/icons/cloudflare.svg
+Express: https://github.com/simple-icons/simple-icons/blob/develop/icons/express.svg (white variant)
+Rust uses a white fill for dark backgrounds.
+Dart, Nuxt.js, Astro, FastAPI, Linux, Scikit-Learn, Pandas, PHP: https://github.com/devicons/devicon/tree/master/icons (MIT; see LICENSE-devicon.txt)
+Astro, Scikit-Learn, and Pandas use light foreground details for dark backgrounds; brand accent colors are retained.
+Linux is rasterized from the Devicon SVG at 96px.
+VPS uses an original server symbol; VPS has no single vendor logo.

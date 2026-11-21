@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
+import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react';
 import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import { projects } from '@/data';
@@ -8,6 +8,14 @@ import type { Project } from '@/types';
 import styles from './projects.module.css';
 
 const categories = ['All', 'Personal', 'Web App', 'Enterprise'] as const;
+
+type RailDrag = {
+  pointerId: number;
+  startX: number;
+  scrollLeft: number;
+  dragged: boolean;
+  captureTarget: HTMLElement;
+};
 
 const technologyIcons: Record<string, { src: string; monochrome?: boolean; wide?: boolean }> = {
   React: { src: '/icons/React.png' },
@@ -24,7 +32,7 @@ const technologyIcons: Record<string, { src: string; monochrome?: boolean; wide?
   Firebase: { src: '/icons/technology/firebase.svg', monochrome: true },
   Cloudinary: { src: '/icons/technology/cloudinary.svg', monochrome: true },
   Laravel: { src: '/icons/Laravel.png' },
-  PHP: { src: '/icons/technology/php.svg', monochrome: true },
+  PHP: { src: '/icons/technology/php.svg' },
   MySQL: { src: '/icons/MySQL.png' },
   JavaScript: { src: '/icons/JavaScript.png' },
   HTML: { src: '/icons/HTML5.png' },
@@ -35,6 +43,12 @@ const technologyIcons: Record<string, { src: string; monochrome?: boolean; wide?
   WebGL: { src: '/icons/technology/webgl.svg', monochrome: true, wide: true },
   Python: { src: '/icons/Python.png' },
   NumPy: { src: '/icons/technology/numpy.svg', monochrome: true },
+  'Vue.js': { src: '/icons/Vue.png' },
+  Flutter: { src: '/icons/Flutter.png' },
+  Go: { src: '/icons/Go.png' },
+  Rust: { src: '/icons/technology/rust.svg' },
+  FastAPI: { src: '/icons/technology/fastapi.svg' },
+  'Cloudflare R2': { src: '/icons/technology/cloudflare.svg', monochrome: true },
 };
 
 function ProjectArtwork({ project, backdrop = false, priority = false }: {
@@ -47,7 +61,7 @@ function ProjectArtwork({ project, backdrop = false, priority = false }: {
     return <span className={styles.artworkFallback}><span>{project.title}</span>{backdrop && <small>Project preview unavailable</small>}</span>;
   }
   return (
-    <Image src={project.image} alt="" fill
+    <Image src={project.image} alt="" fill draggable={false}
       sizes={backdrop ? '100vw' : '(max-width: 760px) 120px, 132px'}
       priority={priority} quality={75} className={`${styles.artwork} ${backdrop ? 'page-background-image' : ''}`}
       onLoad={(event) => { event.currentTarget.dataset.loaded = 'true'; }}
@@ -59,16 +73,20 @@ export default function ProjectsContent() {
   const [activeCategory, setActiveCategory] = useState<(typeof categories)[number]>('All');
   const [activeId, setActiveId] = useState(projects[0]?.id ?? '');
   const [detailsOpen, setDetailsOpen] = useState(false);
+  const [scrollAvailable, setScrollAvailable] = useState({ previous: false, next: false });
   const railRef = useRef<HTMLDivElement>(null);
+  const railDragRef = useRef<RailDrag | null>(null);
+  const suppressRailClickRef = useRef(false);
   const tileRefs = useRef(new Map<string, HTMLButtonElement>());
   const dialogRef = useRef<HTMLDialogElement>(null);
   const detailsButtonRef = useRef<HTMLButtonElement>(null);
   const filteredProjects = activeCategory === 'All' ? projects : projects.filter((project) => project.category === activeCategory);
   const activeProject = filteredProjects.find((project) => project.id === activeId) ?? filteredProjects[0];
   const activeIndex = activeProject ? filteredProjects.findIndex((project) => project.id === activeProject.id) : -1;
+  const hasRailOverflow = scrollAvailable.previous || scrollAvailable.next;
 
   useEffect(() => {
-    if (!activeProject) return;
+    if (!activeProject || railDragRef.current) return;
     const tile = tileRefs.current.get(activeProject.id);
     const rail = railRef.current;
     if (!tile || !rail) return;
@@ -84,6 +102,29 @@ export default function ProjectsContent() {
       });
     }
   }, [activeProject]);
+
+  useEffect(() => {
+    const rail = railRef.current;
+    if (!rail) return;
+    function updateScrollAvailable() {
+      if (!rail) return;
+      const previous = rail.scrollLeft > 1;
+      const next = rail.scrollLeft < rail.scrollWidth - rail.clientWidth - 1;
+      setScrollAvailable((current) => current.previous === previous && current.next === next
+        ? current : { previous, next });
+    }
+    const observer = new ResizeObserver(updateScrollAvailable);
+    observer.observe(rail);
+    const tile = activeProject ? tileRefs.current.get(activeProject.id) : undefined;
+    if (tile) observer.observe(tile);
+    rail.addEventListener('scroll', updateScrollAvailable, { passive: true });
+    const frame = requestAnimationFrame(updateScrollAvailable);
+    return () => {
+      observer.disconnect();
+      rail.removeEventListener('scroll', updateScrollAvailable);
+      cancelAnimationFrame(frame);
+    };
+  }, [activeProject, activeCategory]);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -115,6 +156,50 @@ export default function ProjectsContent() {
     tileRefs.current.get(filteredProjects[nextIndex].id)?.focus();
   }
 
+  function startRailDrag(event: PointerEvent<HTMLDivElement>) {
+    const rail = event.currentTarget;
+    if (event.pointerType !== 'mouse' || event.button !== 0 || !event.isPrimary
+      || rail.scrollWidth <= rail.clientWidth) return;
+    if (event.clientY - rail.getBoundingClientRect().top >= rail.clientHeight) return;
+    suppressRailClickRef.current = false;
+    rail.scrollTo({ left: rail.scrollLeft, behavior: 'instant' });
+    const captureTarget = (event.target as HTMLElement).closest<HTMLElement>('button') ?? rail;
+    railDragRef.current = {
+      pointerId: event.pointerId, startX: event.clientX, scrollLeft: rail.scrollLeft,
+      dragged: false, captureTarget,
+    };
+    captureTarget.setPointerCapture(event.pointerId);
+  }
+
+  function moveRailDrag(event: PointerEvent<HTMLDivElement>) {
+    const drag = railDragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    const distance = event.clientX - drag.startX;
+    if (!drag.dragged && Math.abs(distance) < 8) return;
+    drag.dragged = true;
+    event.currentTarget.dataset.dragging = 'true';
+    event.currentTarget.scrollLeft = drag.scrollLeft - distance;
+    event.preventDefault();
+  }
+
+  function finishRailDrag(event: PointerEvent<HTMLDivElement>) {
+    const drag = railDragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    suppressRailClickRef.current = drag.dragged;
+    railDragRef.current = null;
+    delete event.currentTarget.dataset.dragging;
+    if (drag.captureTarget.hasPointerCapture(event.pointerId)) {
+      drag.captureTarget.releasePointerCapture(event.pointerId);
+    }
+  }
+
+  function scrollRail(direction: number) {
+    const rail = railRef.current;
+    if (!rail) return;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    rail.scrollBy({ left: direction * rail.clientWidth * .75, behavior: reducedMotion ? 'instant' : 'smooth' });
+  }
+
   function closeDetails() {
     dialogRef.current?.close();
     setDetailsOpen(false);
@@ -143,7 +228,16 @@ export default function ProjectsContent() {
           </div>
         </div>
         <section className={styles.library} aria-label="Choose a project">
-          <div className={styles.rail} ref={railRef} role="tablist" aria-label="Projects" aria-orientation="horizontal">
+          <div className={styles.rail} ref={railRef} role="tablist" aria-label="Projects" aria-orientation="horizontal"
+            onPointerDown={startRailDrag} onPointerMove={moveRailDrag}
+            onPointerUp={finishRailDrag} onPointerCancel={finishRailDrag} onLostPointerCapture={finishRailDrag}
+            onClickCapture={(event) => {
+              if (suppressRailClickRef.current && event.detail !== 0) {
+                event.preventDefault();
+                event.stopPropagation();
+                suppressRailClickRef.current = false;
+              }
+            }}>
             {filteredProjects.map((project, index) => {
               const selected = project.id === activeProject?.id;
               return (
@@ -154,7 +248,8 @@ export default function ProjectsContent() {
                   aria-controls="project-panel" tabIndex={selected ? 0 : -1}
                   aria-label={project.title}
                   className={`${styles.tile} ${selected ? styles.tileActive : ''}`}
-                  onPointerEnter={(event) => { if (event.pointerType === 'mouse') setActiveId(project.id); }} onFocus={() => setActiveId(project.id)}
+                  onPointerEnter={(event) => { if (event.pointerType === 'mouse' && !railDragRef.current && !suppressRailClickRef.current) setActiveId(project.id); }}
+                  onFocus={() => { if (!railDragRef.current) setActiveId(project.id); }}
                   onClick={() => setActiveId(project.id)} onKeyDown={(event) => handleTileKeyDown(event, index)}>
                   <span className={styles.tileArtwork}>
                     <ProjectArtwork project={project} />
@@ -164,17 +259,27 @@ export default function ProjectsContent() {
               );
             })}
           </div>
-          {activeProject && (
-            <p className={styles.mobileHint}>
-              <span>Swipe to browse. Tap to select.</span>
-              <span>{activeIndex + 1} / {filteredProjects.length}</span>
-            </p>
-          )}
         </section>
         {activeProject ? (
           <section id="project-panel" role="tabpanel" aria-labelledby={`project-tab-${activeProject.id}`} tabIndex={0} className={styles.projectPanel}>
-            <div key={activeProject.id} className={styles.projectInfo}>
+            <div className={styles.railUtility}>
               <div className={styles.projectMeta}><span>{activeProject.category}</span><span className={styles.metaDivider} aria-hidden="true" /><span>{activeProject.status}</span></div>
+              {hasRailOverflow && (
+                <p className={styles.railHint}>
+                  <span className={styles.swipeHint}>Swipe to see more</span>
+                  <span className={styles.dragHint}>Drag to see more</span>
+                  <span aria-hidden="true"> →</span>
+                </p>
+              )}
+              <p className={styles.mobileHint}>
+                <span className={styles.mobileBrowseActions}>
+                  <button type="button" onClick={() => scrollRail(-1)} disabled={!scrollAvailable.previous} aria-label="Scroll projects left">←</button>
+                  <button type="button" onClick={() => scrollRail(1)} disabled={!scrollAvailable.next} aria-label="Scroll projects right">→</button>
+                  <span>{activeIndex + 1} / {filteredProjects.length}</span>
+                </span>
+              </p>
+            </div>
+            <div key={activeProject.id} className={styles.projectInfo}>
               <h2 className={`${styles.projectTitle} ${activeProject.title.length > 22 ? styles.longTitle : ''}`}>{activeProject.title}</h2>
               <p className={styles.subtitle}>{activeProject.subtitle}</p>
               <p className={styles.description}>{activeProject.description}</p>
@@ -204,7 +309,11 @@ export default function ProjectsContent() {
                   })}
                 </ul>
               </div>
-              <p className={styles.keyboardHint}><kbd>←</kbd><kbd>→</kbd><span>Browse projects</span><span className={styles.position}>{activeIndex + 1} / {filteredProjects.length}</span></p>
+              <p className={styles.keyboardHint}>
+                <button type="button" onClick={() => scrollRail(-1)} disabled={!scrollAvailable.previous} aria-label="Scroll projects left">←</button>
+                <button type="button" onClick={() => scrollRail(1)} disabled={!scrollAvailable.next} aria-label="Scroll projects right">→</button>
+                <span>Browse projects</span><span className={styles.position}>{activeIndex + 1} / {filteredProjects.length}</span>
+              </p>
               </div>
             </div>
           </section>
@@ -220,6 +329,13 @@ export default function ProjectsContent() {
             <p className={styles.projectMeta}>{activeProject.category} / {activeProject.status}</p>
             <h2 id="project-details-title">{activeProject.title}</h2>
             <p className={styles.dialogSubtitle}>{activeProject.subtitle}</p>
+            {activeProject.image && (
+              <a href={activeProject.image} target="_blank" rel="noopener noreferrer"
+                className={styles.screenshotLink} aria-label={`Open full-size screenshot of ${activeProject.title}`}>
+                <Image src={activeProject.image} alt={`${activeProject.title} screenshot`} fill sizes="(max-width: 760px) 90vw, 640px" quality={100} />
+              </a>
+            )}
+            {activeProject.imageNote && <p className={styles.imageNote}>{activeProject.imageNote}</p>}
             <p>{activeProject.description}</p>
             <h3>Technologies</h3>
             <ul className={styles.technologies}>{activeProject.technologies.map((technology) => <li key={technology}>{technology}</li>)}</ul>

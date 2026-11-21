@@ -16,40 +16,50 @@ export interface ResumeSkill {
 
 export const skillGroups: { title: string; accent: string; skills: ResumeSkill[] }[] = [
   { title: 'Programming Languages', accent: 'border-blue-400', skills: [
-    { name: 'Dart' }, { name: 'Go', iconSrc: '/icons/Go.png' },
+    { name: 'Dart', iconSrc: '/icons/technology/dart.svg' }, { name: 'Go', iconSrc: '/icons/Go.png' },
     { name: 'JavaScript', iconSrc: '/icons/JavaScript.png' },
     { name: 'Python', iconSrc: '/icons/Python.png' },
     { name: 'PHP', iconSrc: '/icons/technology/php.svg' },
   ] },
-  { title: 'Frontend', accent: 'border-cyan-400', skills: [
-    { name: 'Vue.js', iconSrc: '/icons/Vue.png' }, { name: 'Nuxt.js' },
-    { name: 'Astro' }, { name: 'Next.js', iconSrc: '/icons/next.svg' },
-    { name: 'React.js', iconSrc: '/icons/React.png' },
+  { title: 'Design', accent: 'border-purple-400', skills: [
+    { name: 'Figma', iconSrc: '/icons/Figma.png' },
+    { name: 'Photoshop', iconSrc: '/icons/AdobePhotoshop.png' },
+    { name: 'Adobe Illustrator', iconSrc: '/icons/AdobeIllustrator.png' },
+    { name: 'Premiere Pro', iconSrc: '/icons/AdobePremierePro.png' },
+    { name: 'Canva', iconSrc: '/icons/Canva.png' },
+  ] },
+  { title: 'DevOps & Tools', accent: 'border-orange-400', skills: [
+    { name: 'Docker', iconSrc: '/icons/docker.png' }, { name: 'Git', iconSrc: '/icons/Git.png' },
+    { name: 'GitHub', iconSrc: '/icons/GitHub.png' },
+    { name: 'GitLab', iconSrc: '/icons/GitLab.png' },
+    { name: 'Postman', iconSrc: '/icons/postman.png' },
+    { name: 'Azure', iconSrc: '/icons/Azure.png' },
+    { name: 'VPS', iconSrc: '/icons/technology/vps.svg' },
+    { name: 'Linux', iconSrc: '/icons/technology/linux.png' },
   ] },
   { title: 'Backend', accent: 'border-green-400', skills: [
-    { name: 'Express.js', iconSrc: '/icons/Express.png' },
-    { name: 'Go Fiber', iconSrc: '/icons/Go.png' }, { name: 'FastAPI' }, { name: 'Rust' },
-  ] },
-  { title: 'Mobile', accent: 'border-sky-400', skills: [
-    { name: 'Flutter', iconSrc: '/icons/Flutter.png' },
+    { name: 'Express.js', iconSrc: '/icons/technology/express.svg' },
+    { name: 'Go Fiber', iconSrc: '/icons/Go.png' },
+    { name: 'FastAPI', iconSrc: '/icons/technology/fastapi.svg' },
+    { name: 'Rust', iconSrc: '/icons/technology/rust.svg' },
   ] },
   { title: 'Databases', accent: 'border-indigo-400', skills: [
     { name: 'PostgreSQL', iconSrc: '/icons/PostgresSQL.png' },
     { name: 'MySQL', iconSrc: '/icons/MySQL.png' },
     { name: 'MongoDB', iconSrc: '/icons/MongoDB.png' },
   ] },
-  { title: 'DevOps & Tools', accent: 'border-orange-400', skills: [
-    { name: 'Docker', iconSrc: '/icons/docker.png' }, { name: 'Git', iconSrc: '/icons/Git.png' },
-    { name: 'GitHub', iconSrc: '/icons/GitHub.png' }, { name: 'VPS' }, { name: 'Linux' },
+  { title: 'Frontend', accent: 'border-cyan-400', skills: [
+    { name: 'Vue.js', iconSrc: '/icons/Vue.png' }, { name: 'Nuxt.js', iconSrc: '/icons/technology/nuxtjs.svg' },
+    { name: 'Astro', iconSrc: '/icons/technology/astro.svg' }, { name: 'Next.js', iconSrc: '/icons/next.svg' },
+    { name: 'React.js', iconSrc: '/icons/React.png' },
   ] },
   { title: 'Machine Learning', accent: 'border-lime-400', skills: [
-    { name: 'Scikit-Learn' }, { name: 'Pandas' }, { name: 'NumPy', iconSrc: '/icons/technology/numpy.svg' },
+    { name: 'Scikit-Learn', iconSrc: '/icons/technology/scikitlearn.svg' },
+    { name: 'Pandas', iconSrc: '/icons/technology/pandas.svg' },
+    { name: 'NumPy', iconSrc: '/icons/technology/numpy.svg' },
   ] },
-  { title: 'Design', accent: 'border-purple-400', skills: [
-    { name: 'Figma', iconSrc: '/icons/Figma.png' },
-    { name: 'Photoshop', iconSrc: '/icons/AdobePhotoshop.png' },
-    { name: 'Premiere Pro', iconSrc: '/icons/AdobePremierePro.png' },
-    { name: 'Canva', iconSrc: '/icons/Canva.png' },
+  { title: 'Mobile', accent: 'border-sky-400', skills: [
+    { name: 'Flutter', iconSrc: '/icons/Flutter.png' },
   ] },
 ];
 
