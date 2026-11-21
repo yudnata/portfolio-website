@@ -1,20 +1,18 @@
-'use client';
-
-import { Header } from '@/components/layout';
-import { PageBackground } from '@/components/ui';
+import PageBackground from '@/components/ui/PageBackground';
 import Image from 'next/image';
 import { TransitionLink } from '@/components/layout/TransitionLoader';
 import { profile } from '@/data/resume';
+import portrait from '@/public/assets/me.png';
+import background from '@/public/images/about-me.webp';
 
 export default function AboutContent() {
   return (
     <>
       <PageBackground
-        imageSrc="/images/about-me.webp"
+        imageSrc={background}
         alt="About page background"
         overlayOpacity={0.6}
       />
-      <Header />
 
       <main id="main-content" className="pt-25 pb-20 px-4 md:px-12 min-h-screen max-w-7xl mx-auto flex flex-col justify-center">
         <h1 className="font-pixel text-2xl md:text-3xl text-white mb-10 animate-slide-up anim-delay-500">
@@ -25,12 +23,12 @@ export default function AboutContent() {
           <div className="lg:col-span-1 h-full">
             <figure className="relative w-full h-full min-h-75 bg-black/40 backdrop-blur-md rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
               <Image
-                src="/assets/me.png"
+                src={portrait}
                 alt="Portrait of Yudhi Adinata"
                 fill
                 sizes="(min-width: 1280px) 373px, (min-width: 1024px) 30vw, (min-width: 768px) calc(100vw - 96px), calc(100vw - 32px)"
                 className="object-cover object-center transition-all duration-500 scale-100 group-hover:scale-105"
-                priority
+                preload
               />
               <figcaption className="sr-only">
                 Portrait of Gede Yudhi Adinata Putra Kurniawan

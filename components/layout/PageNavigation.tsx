@@ -5,6 +5,7 @@ import { navItems } from '@/data/navigation';
 import { TransitionLink } from './TransitionLoader';
 import styles from './page-navigation.module.css';
 import AudioControls from './AudioControls';
+import MusicVisualizer from './MusicVisualizer';
 
 export default function PageNavigation() {
   const pathname = usePathname();
@@ -13,7 +14,10 @@ export default function PageNavigation() {
 
   return (
     <nav aria-label="Previous and next pages" className={styles.navigation}>
-      <AudioControls className={styles.arrow} />
+      <div className={styles.audioGroup}>
+        <MusicVisualizer />
+        <AudioControls className={styles.arrow} />
+      </div>
       {([-1, 1] as const).map((direction) => {
         const page = navItems[currentIndex + direction];
         const label = direction === -1 ? 'Previous page' : 'Next page';

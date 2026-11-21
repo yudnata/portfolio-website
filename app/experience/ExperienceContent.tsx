@@ -1,13 +1,12 @@
 import Image from 'next/image';
-import { Header } from '@/components/layout';
-import { PageBackground } from '@/components/ui';
+import PageBackground from '@/components/ui/PageBackground';
 import { workExperience } from '@/data/resume';
+import background from '@/public/images/education.webp';
 
 export default function ExperienceContent() {
   return (
     <div className="relative min-h-screen">
-      <PageBackground imageSrc="/images/education.webp" alt="Pixel art workspace" overlayOpacity={0.7} />
-      <Header />
+      <PageBackground imageSrc={background} alt="Pixel art workspace" overlayOpacity={0.7} />
       <main id="main-content" className="mx-auto min-h-screen max-w-6xl px-4 pb-16 pt-25 sm:px-6 lg:px-10">
         <header className="mb-8 animate-slide-up">
           <h1 className="font-pixel text-xl leading-relaxed text-white sm:text-3xl">Experience</h1>

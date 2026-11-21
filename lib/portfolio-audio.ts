@@ -2,12 +2,15 @@ const STEP_SECONDS = 60 / 96 / 2;
 const MELODY = [76, 0, 79, 0, 83, 81, 79, 0, 74, 0, 78, 0, 81, 79, 78, 0,
   72, 0, 76, 0, 79, 78, 76, 0, 74, 0, 78, 0, 81, 0, 78, 0];
 const ROOTS = [52, 50, 48, 50];
+const MUSIC_BANDS = [90, 190, 300, 450, 650, 900, 1400, 2400, 4800];
 
 class PortfolioAudio {
   private context: AudioContext | null = null;
   private master: GainNode | null = null;
   private musicGain: GainNode | null = null;
   private effectsGain: GainNode | null = null;
+  private analyser: AnalyserNode | null = null;
+  private frequencyData: Uint8Array<ArrayBuffer> | null = null;
   private timer: ReturnType<typeof setInterval> | null = null;
   private musicVoices = new Set<OscillatorNode>();
   private effectVoices = new Set<OscillatorNode>();
@@ -45,7 +48,14 @@ class PortfolioAudio {
         this.master.connect(this.context.destination);
         this.musicGain = this.context.createGain();
         this.musicGain.gain.value = .5;
-        this.musicGain.connect(this.master);
+        this.analyser = this.context.createAnalyser();
+        this.analyser.fftSize = 1024;
+        this.analyser.smoothingTimeConstant = .5;
+        this.analyser.minDecibels = -90;
+        this.analyser.maxDecibels = -25;
+        this.frequencyData = new Uint8Array(this.analyser.frequencyBinCount);
+        this.musicGain.connect(this.analyser);
+        this.analyser.connect(this.master);
         this.effectsGain = this.context.createGain();
         this.effectsGain.gain.value = .7;
         this.effectsGain.connect(this.master);
@@ -101,6 +111,24 @@ class PortfolioAudio {
 
   playProject() {
     this.requestEffect('project');
+  }
+
+  readMusicLevels(levels: Float32Array) {
+    const context = this.context;
+    if (!this.enabled || context?.state !== 'running' || !this.analyser || !this.frequencyData) {
+      levels.fill(0);
+      return;
+    }
+    this.analyser.getByteFrequencyData(this.frequencyData);
+    const binWidth = context.sampleRate / this.analyser.fftSize;
+    levels.fill(0);
+    for (let band = 0; band < Math.min(levels.length, MUSIC_BANDS.length - 1); band++) {
+      const start = Math.floor(MUSIC_BANDS[band] / binWidth);
+      const end = Math.min(this.frequencyData.length, Math.ceil(MUSIC_BANDS[band + 1] / binWidth));
+      let peak = 0;
+      for (let bin = start; bin < end; bin++) peak = Math.max(peak, this.frequencyData[bin]);
+      levels[band] = peak / 255;
+    }
   }
 
   private requestEffect(kind: 'page' | 'project') {

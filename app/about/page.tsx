@@ -2,12 +2,12 @@ import { skillNames } from '@/data/resume';
 import type { Metadata } from 'next';
 import AboutContent from '@/app/about/AboutContent';
 
-const BASE_URL = 'https://yudnata-portfolio.vercel.app';
+import { BASE_URL, SOCIAL_IMAGE_SIZE } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'About Me — Full-Stack & Mobile Developer from Bali',
   description:
-    'Gede Yudhi Adinata Putra Kurniawan is a Full-Stack Web Developer at PT Viskal Karunia Saputra and a freelance Mobile and Full-Stack Developer at PT Pley Nusantara Kreatif, with a 3.82/4.00 GPA at Udayana University.',
+    'Meet Yudhi Adinata, a full-stack and mobile developer in Bali, working with Viskal and PLEY while studying Information Technology at Udayana University.',
   keywords: [
     'Yudhi Adinata about',
     'Yudnata developer',
@@ -30,8 +30,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/images/about-me.webp',
-        width: 1200,
-        height: 630,
+        ...SOCIAL_IMAGE_SIZE,
         alt: 'About Yudhi Adinata - Full-Stack and Mobile Developer',
       },
     ],

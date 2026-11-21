@@ -28,8 +28,8 @@
   --color-pixel-text-muted: #737373;
 
   /* Typography */
-  --font-pixel: 'Press Start 2P', cursive;
-  --font-retro: 'VT323', monospace;
+  --font-pixel: var(--font-press-start), 'Press Start 2P', cursive;
+  --font-retro: var(--font-vt323), 'VT323', monospace;
   --font-silkscreen: 'Silkscreen', cursive;
 
   /* Shadows: Sharp White Glows (Subtle) */
@@ -183,11 +183,6 @@
 }
 
 .page-background-image {
-  opacity: 0;
-  transition: opacity 380ms ease-out;
-}
-
-.page-background-image[data-loaded='true'] {
   opacity: 1;
 }
 

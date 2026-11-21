@@ -7,6 +7,9 @@
   gap: 12px;
 }
 
+.audioGroup { display: flex; align-items: center; gap: 8px; }
+.visualizer { display: block; width: 40px; height: 28px; image-rendering: pixelated; pointer-events: none; }
+
 .arrow {
   position: relative;
   display: grid;

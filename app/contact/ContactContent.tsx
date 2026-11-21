@@ -1,9 +1,7 @@
-'use client';
-
-import { Header } from '@/components/layout';
-import { PageBackground } from '@/components/ui';
+import PageBackground from '@/components/ui/PageBackground';
 import Image from 'next/image';
 import { profile } from '@/data/resume';
+import background from '@/public/images/contact.webp';
 
 const socialLinks = [
   {
@@ -102,12 +100,10 @@ export default function ContactContent() {
   return (
     <div className="relative min-h-screen">
       <PageBackground
-        imageSrc="/images/contact.webp"
+        imageSrc={background}
         alt="Contact page background"
         overlayOpacity={0.6}
       />
-
-      <Header />
 
       <main id="main-content" className="pt-25 pb-20 px-4 md:px-12 min-h-screen flex items-center justify-center">
         <section className="w-full max-w-5xl mx-auto">

@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import ContactContent from '@/app/contact/ContactContent';
 
-const BASE_URL = 'https://yudnata-portfolio.vercel.app';
+import { BASE_URL, SOCIAL_IMAGE_SIZE } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Contact & Hire Me',
   description:
-    'Contact Gede Yudhi Adinata Putra Kurniawan (Yudnata) — Full-Stack & Mobile Developer available for freelance projects, collaborations, and job opportunities. Based in Denpasar, Bali, Indonesia.',
+    'Contact Yudhi Adinata, a full-stack and mobile developer in Denpasar, Bali, for freelance projects, collaborations, and job opportunities.',
   keywords: [
     'contact Yudhi Adinata',
     'hire Yudnata',
@@ -27,8 +27,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/images/contact.webp',
-        width: 1200,
-        height: 630,
+        ...SOCIAL_IMAGE_SIZE,
         alt: 'Contact Yudhi Adinata - Full-Stack & Mobile Developer',
       },
     ],

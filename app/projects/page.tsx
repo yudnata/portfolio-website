@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ProjectsContent from '@/app/projects/ProjectsContent';
 import { projects } from '@/data';
 
-const BASE_URL = 'https://yudnata-portfolio.vercel.app';
+import { BASE_URL, SOCIAL_IMAGE_SIZE } from '@/lib/site';
 const projectDescription = `Explore ${projects.length} web, mobile, and desktop projects by Yudhi Adinata, including Notvas, Yudrive, Smart Campus Assistant, GIS Budaya Bali, and TravelHub.`;
 
 export const metadata: Metadata = {
@@ -37,8 +37,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/images/projects.webp',
-        width: 1200,
-        height: 630,
+        ...SOCIAL_IMAGE_SIZE,
         alt: 'Web, mobile, and desktop projects by Yudhi Adinata',
       },
     ],

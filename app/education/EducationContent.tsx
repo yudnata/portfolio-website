@@ -1,21 +1,17 @@
-'use client';
-
-import { Header } from '@/components/layout';
-import { PageBackground } from '@/components/ui';
+import PageBackground from '@/components/ui/PageBackground';
 import { educationList } from '@/data';
 import { organizationExperience, publication } from '@/data/resume';
 import Image from 'next/image';
+import background from '@/public/images/education.webp';
 
 export default function EducationContent() {
   return (
     <div className="relative min-h-screen">
       <PageBackground
-        imageSrc="/images/education.webp"
+        imageSrc={background}
         alt="Education page background"
         overlayOpacity={0.45}
       />
-
-      <Header />
 
       <main id="main-content" className="mx-auto min-h-screen max-w-6xl px-4 pb-16 pt-25 sm:px-6 lg:px-10">
         <article>
@@ -46,7 +42,6 @@ export default function EducationContent() {
                             width={144}
                             height={64}
                             className="h-full w-full object-contain"
-                            unoptimized
                             quality={100}
                           />
                         ) : (

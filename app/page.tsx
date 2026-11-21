@@ -1,14 +1,12 @@
 import type { Metadata } from 'next';
 import HomeContent from '@/app/HomeContent';
-import { profile } from '@/data/resume';
-
-const BASE_URL = 'https://yudnata-portfolio.vercel.app';
+import { BASE_URL, SITE_DESCRIPTION, SOCIAL_IMAGE_SIZE } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: {
     absolute: 'Gede Yudhi Adinata Putra Kurniawan | Full-Stack & Mobile Developer Portfolio',
   },
-  description: `${profile.name}. ${profile.summary}`,
+  description: SITE_DESCRIPTION,
   keywords: [
     'Gede Yudhi Adinata Putra Kurniawan',
     'Yudhi Adinata',
@@ -35,8 +33,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/images/home.webp',
-        width: 1200,
-        height: 630,
+        ...SOCIAL_IMAGE_SIZE,
         alt: 'Gede Yudhi Adinata Putra Kurniawan - Full-Stack & Mobile Developer Portfolio',
       },
     ],

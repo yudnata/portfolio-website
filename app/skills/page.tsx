@@ -2,12 +2,12 @@ import { skillNames } from '@/data/resume';
 import type { Metadata } from 'next';
 import SkillsContent from '@/app/skills/SkillsContent';
 
-const BASE_URL = 'https://yudnata-portfolio.vercel.app';
+import { BASE_URL, SOCIAL_IMAGE_SIZE } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Technical Skills & Tech Stack',
   description:
-    'Yudhi Adinata’s resume highlights Dart, Go, JavaScript, Python, PHP, Vue, Nuxt, Astro, Next.js, React, Express, Go Fiber, FastAPI, Rust, Flutter, databases, Docker, Linux, machine learning, and design.',
+    'Explore Yudhi Adinata’s skills in web and mobile development, Rust, databases, DevOps, machine learning, and design, with tools from his latest resume.',
   keywords: [
     'Yudhi Adinata skills',
     'Yudnata tech stack',
@@ -32,8 +32,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/images/skills.webp',
-        width: 1200,
-        height: 630,
+        ...SOCIAL_IMAGE_SIZE,
         alt: 'Technical skills of Yudhi Adinata - Fullstack Developer',
       },
     ],

@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react';
 import Image from 'next/image';
-import Header from '@/components/layout/Header';
 import { projects } from '@/data';
 import type { Project } from '@/types';
 import styles from './projects.module.css';
@@ -52,21 +51,57 @@ const technologyIcons: Record<string, { src: string; monochrome?: boolean; wide?
   'Cloudflare R2': { src: '/icons/technology/cloudflare.svg', monochrome: true },
 };
 
-function ProjectArtwork({ project, backdrop = false, priority = false }: {
+function ProjectArtwork({ project, backdrop = false, priority = false, onReady }: {
   project: Project;
   backdrop?: boolean;
   priority?: boolean;
+  onReady?: () => void;
 }) {
   const [failed, setFailed] = useState(false);
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const image = imageRef.current;
+    if (!project.image || failed || (image?.complete && image.naturalWidth > 0)) onReady?.();
+  }, [failed, onReady, project.image]);
+
   if (!project.image || failed) {
     return <span className={styles.artworkFallback}><span>{project.title}</span>{backdrop && <small>Project preview unavailable</small>}</span>;
   }
   return (
-    <Image src={project.image} alt="" fill draggable={false}
+    <Image ref={imageRef} src={project.image} alt="" fill draggable={false}
       sizes={backdrop ? '100vw' : '(max-width: 760px) 120px, 132px'}
-      priority={priority} quality={75} className={`${styles.artwork} ${backdrop ? 'page-background-image' : ''}`}
-      onLoad={(event) => { event.currentTarget.dataset.loaded = 'true'; }}
-      onError={() => setFailed(true)} />
+      preload={priority} loading={backdrop && !priority ? 'eager' : undefined}
+      quality={75} className={`${styles.artwork} ${backdrop ? 'page-background-image' : ''}`}
+      onLoad={(event) => { event.currentTarget.dataset.loaded = 'true'; onReady?.(); }}
+      onError={() => { setFailed(true); onReady?.(); }} />
+  );
+}
+
+function ProjectBackdrops({ project }: { project: Project }) {
+  const [layers, setLayers] = useState<{ current: Project; previous: Project | null }>(() => ({ current: project, previous: null }));
+  const renderedProjects = [layers.previous, layers.current, project].filter((item, index, items): item is Project =>
+    item !== null && items.findIndex((candidate) => candidate?.id === item.id) === index);
+
+  return (
+    <div className={styles.backdrops} aria-hidden="true">
+      {renderedProjects.map((item) => (
+        <div key={item.id} data-page-background={item.id === project.id ? 'active' : 'inactive'}
+          className={`${styles.backdrop} ${item.id === layers.current.id ? styles.backdropActive : ''}`}
+          onTransitionEnd={(event) => {
+            if (event.target === event.currentTarget && event.propertyName === 'opacity') {
+              setLayers((current) => current.previous?.id === item.id ? { ...current, previous: null } : current);
+            }
+          }}>
+          <ProjectArtwork project={item} backdrop priority={item.id === projects[0]?.id}
+            onReady={() => {
+              if (item.id === project.id) {
+                setLayers((current) => current.current.id === item.id ? current : { current: item, previous: current.current });
+              }
+            }} />
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -217,14 +252,7 @@ export default function ProjectsContent() {
 
   return (
     <div className={styles.page}>
-      <div className={styles.backdrops} aria-hidden="true">
-        {projects.map((project, index) => (
-          <div key={project.id} data-page-background={activeProject?.id === project.id ? 'active' : 'inactive'} className={`${styles.backdrop} ${activeProject?.id === project.id ? styles.backdropActive : ''}`}>
-            <ProjectArtwork project={project} backdrop priority={index === 0} />
-          </div>
-        ))}
-      </div>
-      <Header />
+      <ProjectBackdrops project={activeProject ?? projects[0]} />
       <main id="main-content" className={styles.main}>
         <div className={styles.libraryBar}>
           <h1 className={styles.libraryTitle}>Project library</h1>
@@ -332,7 +360,7 @@ export default function ProjectsContent() {
         <span className="sr-only" role="status">{activeProject ? `${activeProject.title} selected` : 'No projects found'}</span>
       </main>
       <dialog ref={dialogRef} className={styles.dialog} aria-labelledby="project-details-title" onCancel={(event) => { event.preventDefault(); closeDetails(); }} onClose={() => setDetailsOpen(false)} onClick={(event) => { if (event.target === event.currentTarget) closeDetails(); }}>
-        {activeProject && (
+        {activeProject && detailsOpen && (
           <div className={styles.dialogContent}>
             <div className={styles.dialogHeading}><span>Project details</span><button type="button" onClick={closeDetails} aria-label="Close project details">×</button></div>
             <p className={styles.projectMeta}>{activeProject.category} / {activeProject.status}</p>

@@ -1,9 +1,10 @@
 'use client';
 
 import Image from 'next/image';
+import type { StaticImageData } from 'next/image';
 
 interface PageBackgroundProps {
-  imageSrc: string;
+  imageSrc: string | StaticImageData;
   alt: string;
   overlayOpacity?: number;
   priority?: boolean;
@@ -21,7 +22,7 @@ export default function PageBackground({
         src={imageSrc}
         alt={alt}
         fill
-        priority={priority}
+        preload={priority}
         quality={75}
         sizes="100vw"
         className="page-background-image object-cover object-center"

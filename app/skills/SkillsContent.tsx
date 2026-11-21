@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { Header } from '@/components/layout';
-import { PageBackground } from '@/components/ui';
+import PageBackground from '@/components/ui/PageBackground';
+import background from '@/public/images/skills.webp';
 
 import { skillGroups, type ResumeSkill } from '@/data/resume';
 
@@ -8,12 +8,10 @@ export default function SkillsContent() {
   return (
     <div className="relative min-h-screen">
       <PageBackground
-        imageSrc="/images/skills.webp"
+        imageSrc={background}
         alt="Skills page background"
         overlayOpacity={0.45}
       />
-
-      <Header />
 
       <main id="main-content" className="pt-25 pb-20 px-4 md:px-12 min-h-screen max-w-7xl mx-auto flex flex-col justify-center">
         <header className="text-center mb-10 animate-slide-up anim-delay-500">

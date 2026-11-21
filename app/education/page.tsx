@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { profile, publication } from '@/data/resume';
 import EducationContent from '@/app/education/EducationContent';
 
-const BASE_URL = 'https://yudnata-portfolio.vercel.app';
+import { BASE_URL, SOCIAL_IMAGE_SIZE } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Education, Publications & Organizations',
@@ -30,8 +30,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/images/education.webp',
-        width: 1200,
-        height: 630,
+        ...SOCIAL_IMAGE_SIZE,
         alt: 'Education background of Yudhi Adinata - Udayana University',
       },
     ],

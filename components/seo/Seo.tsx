@@ -1,13 +1,15 @@
 import type { Metadata, Viewport } from 'next';
 import { profile, skillNames, workExperience } from '@/data/resume';
+import { navItems } from '@/data/navigation';
+import { BASE_URL, SITE_DESCRIPTION, SOCIAL_IMAGE_SIZE } from '@/lib/site';
 
 export const defaultMetadata: Metadata = {
-  metadataBase: new URL('https://yudnata-portfolio.vercel.app'),
+  metadataBase: new URL(BASE_URL),
   title: {
     default: 'Gede Yudhi Adinata Putra Kurniawan | Full-Stack & Mobile Developer Portfolio',
     template: '%s | Yudhi Adinata',
   },
-  description: `${profile.name}. ${profile.summary}`,
+  description: SITE_DESCRIPTION,
   keywords: [
     'Gede Yudhi Adinata Putra Kurniawan',
     'Yudhi Adinata',
@@ -21,12 +23,12 @@ export const defaultMetadata: Metadata = {
     'Pixel Art Portfolio',
   ],
   authors: [
-    { name: 'Gede Yudhi Adinata Putra Kurniawan', url: 'https://yudnata-portfolio.vercel.app' },
+    { name: profile.name, url: BASE_URL },
   ],
   creator: 'Gede Yudhi Adinata Putra Kurniawan',
   publisher: 'Gede Yudhi Adinata Putra Kurniawan',
   alternates: {
-    canonical: 'https://yudnata-portfolio.vercel.app',
+    canonical: BASE_URL,
   },
   formatDetection: {
     email: false,
@@ -37,7 +39,7 @@ export const defaultMetadata: Metadata = {
     type: 'profile',
     locale: 'en_US',
     alternateLocale: 'id_ID',
-    url: 'https://yudnata-portfolio.vercel.app',
+    url: BASE_URL,
     siteName: 'Yudhi Adinata Portfolio',
     title: 'Gede Yudhi Adinata Putra Kurniawan | Full-Stack & Mobile Developer',
     description:
@@ -48,8 +50,7 @@ export const defaultMetadata: Metadata = {
     images: [
       {
         url: '/images/home.webp',
-        width: 1200,
-        height: 630,
+        ...SOCIAL_IMAGE_SIZE,
         alt: 'Gede Yudhi Adinata Putra Kurniawan Portfolio',
       },
     ],
@@ -105,7 +106,7 @@ export const personJsonLd = {
   name: 'Gede Yudhi Adinata Putra Kurniawan',
   alternateName: ['Yudhi Adinata', 'Yudnata'],
   url: profile.website,
-  image: 'https://yudnata-portfolio.vercel.app/assets/me.png',
+  image: `${BASE_URL}/assets/me.png`,
   email: profile.email,
   telephone: profile.phone,
   sameAs: [
@@ -136,7 +137,7 @@ export const websiteJsonLd = {
   '@type': 'WebSite',
   name: 'Yudhi Adinata Portfolio',
   alternateName: 'Yudnata Portfolio',
-  url: 'https://yudnata-portfolio.vercel.app',
+  url: BASE_URL,
   description:
     'Portfolio website of Gede Yudhi Adinata Putra Kurniawan — Full-Stack & Mobile Developer from Bali, Indonesia.',
   author: {
@@ -148,14 +149,6 @@ export const websiteJsonLd = {
 export const navigationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'SiteNavigationElement',
-  name: ['Home', 'About', 'Projects', 'Experience', 'Skills', 'Education', 'Contact'],
-  url: [
-    'https://yudnata-portfolio.vercel.app',
-    'https://yudnata-portfolio.vercel.app/about',
-    'https://yudnata-portfolio.vercel.app/projects',
-    'https://yudnata-portfolio.vercel.app/experience',
-    'https://yudnata-portfolio.vercel.app/skills',
-    'https://yudnata-portfolio.vercel.app/education',
-    'https://yudnata-portfolio.vercel.app/contact',
-  ],
+  name: navItems.map((item) => item.label),
+  url: navItems.map((item) => new URL(item.href, BASE_URL).href),
 };

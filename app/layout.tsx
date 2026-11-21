@@ -4,6 +4,7 @@ import '../styles/globals.css';
 import { defaultMetadata, defaultViewport, personJsonLd, websiteJsonLd, navigationJsonLd } from '@/components/seo/Seo';
 import TransitionLoader from '@/components/layout/TransitionLoader';
 import PageNavigation from '@/components/layout/PageNavigation';
+import Header from '@/components/layout/Header';
 
 const pressStart2P = Press_Start_2P({
   weight: '400',
@@ -20,7 +21,7 @@ const vt323 = VT323({
 });
 
 const silkscreen = Silkscreen({
-  weight: ['400', '700'],
+  weight: '400',
   subsets: ['latin'],
   variable: '--font-silkscreen',
   display: 'swap',
@@ -58,11 +59,12 @@ export default function RootLayout({
       <body className="antialiased">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 px-4 py-2 bg-primary text-white font-pixel"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-10001 px-4 py-2 bg-primary text-white font-pixel"
         >
           Skip to main content
         </a>
         <TransitionLoader>
+          <Header />
           {children}
           <PageNavigation />
         </TransitionLoader>

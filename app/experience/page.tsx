@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ExperienceContent from './ExperienceContent';
 import { profile, workExperience } from '@/data/resume';
 
-const BASE_URL = 'https://yudnata-portfolio.vercel.app';
+import { BASE_URL, SOCIAL_IMAGE_SIZE } from '@/lib/site';
 const description = 'Yudhi Adinata’s full-stack and mobile development experience at Viskal, PLEY, and Jinom.';
 
 export const metadata: Metadata = {
@@ -12,7 +12,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Work Experience | Yudhi Adinata', description,
     url: `${BASE_URL}/experience`, type: 'website',
-    images: [{ url: '/images/education.webp', width: 1200, height: 630, alt: 'Yudhi Adinata’s work experience' }],
+    images: [{ url: '/images/education.webp', ...SOCIAL_IMAGE_SIZE, alt: 'Yudhi Adinata’s work experience' }],
+  },
+  twitter: {
+    card: 'summary_large_image', title: 'Work Experience | Yudhi Adinata', description,
+    images: ['/images/education.webp'], creator: '@yudnata',
   },
 };
 

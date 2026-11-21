@@ -1,55 +1,19 @@
-'use client';
-
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import PageBackground from '@/components/ui/PageBackground';
-import Header from '@/components/layout/Header';
 import PixelButton from '@/components/ui/PixelButton';
-import { introDialogs } from '@/data';
+import IntroDialogue from '@/components/ui/IntroDialogue';
+import introduction from '@/public/assets/introduction.png';
+import background from '@/public/images/home.webp';
 
 export default function HomeContent() {
-  const [dialogIndex, setDialogIndex] = useState(0);
-  const [displayedText, setDisplayedText] = useState('');
-  const isTyping = displayedText.length < introDialogs[dialogIndex].text.length;
-
-  useEffect(() => {
-    let timeoutId: ReturnType<typeof setTimeout>;
-    const fullText = introDialogs[dialogIndex].text;
-
-    if (displayedText.length < fullText.length) {
-      timeoutId = setTimeout(() => {
-        setDisplayedText(fullText.slice(0, displayedText.length + 1));
-      }, 30);
-    }
-
-    return () => clearTimeout(timeoutId);
-  }, [dialogIndex, displayedText]);
-
-  const handleNextDialog = () => {
-    if (isTyping) {
-      setDisplayedText(introDialogs[dialogIndex].text);
-      return;
-    }
-
-    if (dialogIndex < introDialogs.length - 1) {
-      setDialogIndex((prev) => prev + 1);
-      setDisplayedText('');
-    } else {
-      setDialogIndex(0);
-      setDisplayedText('');
-    }
-  };
-
   return (
     <div className="relative min-h-screen overflow-hidden select-none">
       <PageBackground
-        imageSrc="/images/home.webp"
+        imageSrc={background}
         alt="Home page background"
         overlayOpacity={0.4}
         priority={true}
       />
-
-      <Header />
 
       <main id="main-content" className="relative z-10 min-h-screen flex flex-col items-center justify-center p-6 md:p-12 pt-20 max-w-7xl mx-auto w-full">
         <h1 className="sr-only">
@@ -64,41 +28,19 @@ export default function HomeContent() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center justify-center w-full min-h-[70vh]">
             {/* Left Column: Image & Dialogue */}
-            <div className="flex flex-col items-center justify-center animate-pixel-fade anim-delay-500 order-1 relative pt-4 lg:pt-0">
+            <div className="flex flex-col items-center justify-center order-1 relative pt-4 lg:pt-0">
               <div className="relative flex flex-col items-center w-full max-w-sm lg:max-w-lg">
                 <figure className="relative w-72 md:w-80 lg:w-[480px] -mb-12 lg:-mb-16 z-10 animate-float pointer-events-none drop-shadow-[0_0_40px_rgba(255,255,255,0.2)] transition-transform duration-500">
                   <Image
-                    src="/assets/introduction.png"
+                    src={introduction}
                     alt="Pixel art character illustration of Yudhi Adinata"
-                    width={800}
-                    height={1000}
-                    priority
+                    sizes="(min-width: 1024px) 480px, (min-width: 768px) 320px, 288px"
+                    preload
                     className="w-full h-auto object-contain contrast-110"
                   />
                 </figure>
 
-                <section
-                  className="relative w-full bg-black/85 backdrop-blur-md rounded-2xl p-6 md:p-8 cursor-pointer hover:bg-black/95 transition-all shadow-2xl border border-white/10 z-20"
-                  onClick={handleNextDialog}
-                  role="button"
-                  aria-label="Interactive dialogue box"
-                  tabIndex={0}
-                >
-                  <span className="block font-pixel text-[0.65rem] text-primary mb-3 uppercase tracking-widest opacity-90">
-                    {introDialogs[dialogIndex].speaker}
-                  </span>
-                  <p className="font-retro text-lg md:text-xl text-white leading-relaxed min-h-24">
-                    {displayedText}
-                    {displayedText !== introDialogs[dialogIndex].text && (
-                      <span className="inline-block w-2 h-5 bg-primary ml-1 animate-pulse align-middle" />
-                    )}
-                  </p>
-                  <div
-                    className={`absolute bottom-5 right-8 font-pixel text-[0.5rem] text-gray-500 opacity-50 ${displayedText === introDialogs[dialogIndex].text ? 'animate-bounce text-primary opacity-100' : ''}`}
-                  >
-                    ▼
-                  </div>
-                </section>
+                <IntroDialogue />
               </div>
             </div>
 
@@ -120,18 +62,9 @@ export default function HomeContent() {
                     View my Projects
                   </PixelButton>
 
-                  <PixelButton
-                    variant="outline"
-                    size="lg"
-                    href="/contact"
-                    fullWidth
-                  >
-                    Send Message
-                  </PixelButton>
-
                   <div className="grid grid-cols-2 gap-4 w-full mt-2">
                     <PixelButton
-                      variant="accent"
+                      variant="outline"
                       size="md"
                       href="https://github.com/yudnata"
                       fullWidth
@@ -151,7 +84,7 @@ export default function HomeContent() {
                     </PixelButton>
 
                     <PixelButton
-                      variant="accent"
+                      variant="outline"
                       size="md"
                       href="https://linkedin.com/in/yudnata"
                       fullWidth
