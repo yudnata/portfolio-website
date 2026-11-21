@@ -1,20 +1,20 @@
 import type { Metadata } from 'next';
 import HomeContent from '@/app/HomeContent';
+import { profile } from '@/data/resume';
 
 const BASE_URL = 'https://yudnata-portfolio.vercel.app';
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Gede Yudhi Adinata Putra Kurniawan | Fullstack Developer Portfolio',
+    absolute: 'Gede Yudhi Adinata Putra Kurniawan | Full-Stack & Mobile Developer Portfolio',
   },
-  description:
-    'Portfolio of Gede Yudhi Adinata Putra Kurniawan (Yudnata) — Fullstack Developer & IT student at Udayana University, Bali. Building modern web apps with React, Next.js, Node.js, and TypeScript.',
+  description: `${profile.name}. ${profile.summary}`,
   keywords: [
     'Gede Yudhi Adinata Putra Kurniawan',
     'Yudhi Adinata',
     'Yudnata',
     'Yudnata portfolio',
-    'Fullstack Developer',
+    'Full-Stack & Mobile Developer',
     'Web Developer Bali',
     'React Developer Indonesia',
     'Node.js Developer',
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
     canonical: BASE_URL,
   },
   openGraph: {
-    title: 'Gede Yudhi Adinata Putra Kurniawan | Fullstack Developer Portfolio',
+    title: 'Gede Yudhi Adinata Putra Kurniawan | Full-Stack & Mobile Developer Portfolio',
     description:
-      'Explore the portfolio of Yudhi Adinata — Fullstack Developer from Bali, Indonesia. High-performance web applications with React, Next.js, and Node.js.',
+      'Explore Yudhi Adinata’s web and mobile apps, work at Viskal, PLEY, and Jinom, and RAG research published at IEEE ICoDSA 2026.',
     url: BASE_URL,
     type: 'profile',
     images: [
@@ -37,15 +37,15 @@ export const metadata: Metadata = {
         url: '/images/home.webp',
         width: 1200,
         height: 630,
-        alt: 'Gede Yudhi Adinata Putra Kurniawan - Fullstack Developer Portfolio',
+        alt: 'Gede Yudhi Adinata Putra Kurniawan - Full-Stack & Mobile Developer Portfolio',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Gede Yudhi Adinata Putra Kurniawan | Fullstack Developer',
+    title: 'Gede Yudhi Adinata Putra Kurniawan | Full-Stack & Mobile Developer',
     description:
-      'Fullstack Developer Portfolio — React, Next.js, Node.js, TypeScript. Based in Bali, Indonesia.',
+      'Full-Stack & Mobile Developer — Flutter, Vue.js, Astro, Go, backend systems, and production deployments. Based in Bali, Indonesia.',
     images: ['/images/home.webp'],
     creator: '@yudnata',
   },

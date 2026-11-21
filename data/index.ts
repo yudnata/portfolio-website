@@ -7,15 +7,15 @@ export const introDialogs: DialogSegment[] = [
   },
   {
     speaker: 'Yudhi',
-    text: "I'm Yudhi Adinata, a passionate Web Developer based in Bali, Indonesia",
+    text: "I'm Yudhi Adinata, a Full-Stack and Mobile Developer based in Bali, Indonesia.",
   },
   {
     speaker: 'Yudhi',
-    text: 'focused on creating modern web applications that simplify complexity.',
+    text: 'I build web and Flutter apps, scalable APIs, and production deployments. I also study Information Technology at Udayana University.',
   },
   {
     speaker: 'Yudhi',
-    text: 'My work turns challenging technical problems into clean, intuitive, and delightful digital experiences for users.',
+    text: 'Explore my work at Viskal, PLEY, and Jinom, my projects, and my research on RAG-based campus assistants.',
   },
 ];
 
@@ -127,15 +127,12 @@ export const educationList: Education[] = [
     institution: 'Udayana University, Bali',
     degree: 'Bachelor of Information Technology',
     period: 'Sep 2023 – Present',
+    location: 'Bali, Indonesia',
     description:
-      'Information Technology student with a GPA of 3.82/4.00.',
+      'Information Technology student with a GPA of 3.82/4.00. Coursework includes Data Structures & Algorithms, Database Systems, Machine Learning, Software Engineering, and Web & Mobile Programming.',
     icon: '/icons/unud.png',
     achievements: [
-      'GPA 3.82/4.00',
-      'Head of Publication Documentation, Design KWU — Jul–Sep 2025',
-      'Staff of Student Association, Bulletin Division — Jan–Dec 2025',
-      'Staff of Publication Documentation, Design ITCC — Jun–Nov 2024',
-      'Staff of Publication Documentation, Design Sporti — Feb–May 2024',
+      'Thesis: Design and Development of an Integrated Capstone Project Service System with a RAG-Based Chatbot (Case Study: Information Technology, Udayana University)',
     ],
   },
   {
@@ -143,9 +140,10 @@ export const educationList: Education[] = [
     institution: 'Coding Camp 2026 Powered by DBS Foundation',
     degree: 'AI Engineer Cohort',
     period: 'Jan 2026 – Jun 2026',
+    location: 'Remote',
     description:
       'AI Engineer cohort focused on Python, data cleaning, exploratory data analysis, and supervised and unsupervised learning with Scikit-Learn, Pandas, and NumPy.',
-    icon: '',
+    icon: '/icons/coding-camp.webp',
     achievements: [
       'Predictive modeling with regression, classification, and clustering',
     ],
@@ -155,12 +153,13 @@ export const educationList: Education[] = [
     institution: 'Asah Program led by Dicoding and Accenture',
     degree: 'React – Backend Cohort',
     period: 'Aug 2025 – Feb 2026',
+    location: 'Remote',
     description:
       'Fullstack web development cohort focused on React.js, Node.js, Agile SDLC, UI/UX improvements, and backend API integration.',
     icon: '/icons/asah.png',
     achievements: [
-      'Awarded Best Capstone Project',
       'Developed full-stack web applications with React.js and Node.js',
+      'Applied Agile SDLC and iterative mentor feedback to improve UI/UX',
       'Supported API integration and frontend/backend data flow',
     ],
   },
@@ -170,8 +169,8 @@ export const contactLinks: ContactLink[] = [
   {
     id: 'email',
     platform: 'Email',
-    value: 'hello@yudnata.dev',
-    url: 'mailto:hello@yudnata.dev',
+    value: 'yudhinata04@gmail.com',
+    url: 'mailto:yudhinata04@gmail.com',
     icon: '',
     color: '',
   },
@@ -192,10 +191,10 @@ export const contactLinks: ContactLink[] = [
     color: '',
   },
   {
-    id: 'twitter',
-    platform: 'Twitter',
-    value: '@yudnata',
-    url: 'https://twitter.com/yudnata',
+    id: 'website',
+    platform: 'Website',
+    value: 'yudnata.tech',
+    url: 'https://yudnata.tech',
     icon: '',
     color: '',
   },

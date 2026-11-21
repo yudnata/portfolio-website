@@ -6,7 +6,7 @@ const BASE_URL = 'https://yudnata-portfolio.vercel.app';
 export const metadata: Metadata = {
   title: 'Contact & Hire Me',
   description:
-    'Contact Gede Yudhi Adinata Putra Kurniawan (Yudnata) — Fullstack Developer available for freelance projects, collaborations, and job opportunities. Based in Denpasar, Bali, Indonesia.',
+    'Contact Gede Yudhi Adinata Putra Kurniawan (Yudnata) — Full-Stack & Mobile Developer available for freelance projects, collaborations, and job opportunities. Based in Denpasar, Bali, Indonesia.',
   keywords: [
     'contact Yudhi Adinata',
     'hire Yudnata',
@@ -22,14 +22,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Contact & Hire Me | Yudhi Adinata',
     description:
-      'Get in touch with Yudhi Adinata for freelance projects, collaborations, and opportunities. Fullstack Developer based in Bali, Indonesia.',
+      'Get in touch with Yudhi Adinata for freelance projects, collaborations, and opportunities. Full-Stack & Mobile Developer based in Bali, Indonesia.',
     url: `${BASE_URL}/contact`,
     images: [
       {
         url: '/images/contact.webp',
         width: 1200,
         height: 630,
-        alt: 'Contact Yudhi Adinata - Fullstack Developer',
+        alt: 'Contact Yudhi Adinata - Full-Stack & Mobile Developer',
       },
     ],
     type: 'website',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Contact & Hire Me | Yudhi Adinata',
     description:
-      'Freelance Fullstack Developer available for projects. Based in Bali, Indonesia.',
+      'Freelance Full-Stack & Mobile Developer available for projects. Based in Bali, Indonesia.',
     images: ['/images/contact.webp'],
     creator: '@yudnata',
   },
@@ -50,7 +50,7 @@ const contactJsonLd = [
     '@type': 'ContactPage',
     name: 'Contact Yudhi Adinata',
     url: `${BASE_URL}/contact`,
-    description: 'Contact page of Gede Yudhi Adinata Putra Kurniawan — Fullstack Developer.',
+    description: 'Contact page of Gede Yudhi Adinata Putra Kurniawan — Full-Stack & Mobile Developer.',
     mainEntity: {
       '@type': 'Person',
       name: 'Gede Yudhi Adinata Putra Kurniawan',

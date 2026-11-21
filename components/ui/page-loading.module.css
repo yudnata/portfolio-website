@@ -1,0 +1,63 @@
+.indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #f5f7fa;
+  filter: drop-shadow(0 1px 6px #0009);
+}
+
+.spinner {
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  animation: orbit 900ms linear infinite;
+}
+
+.label {
+  font-family: var(--font-silkscreen), 'Silkscreen', cursive;
+  font-size: .75rem;
+  line-height: 1.5;
+}
+
+.feedback {
+  position: fixed;
+  right: max(24px, env(safe-area-inset-right));
+  bottom: max(24px, env(safe-area-inset-bottom));
+  z-index: 10000;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 140ms ease, visibility 0s linear 140ms;
+}
+
+.feedback[data-visible='true'] {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.fallback {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 24px;
+  padding-right: max(24px, env(safe-area-inset-right));
+  padding-bottom: max(24px, env(safe-area-inset-bottom));
+  background: #0a0a0a;
+}
+
+@keyframes orbit {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 600px) {
+  .spinner { flex-basis: 32px; width: 32px; height: 32px; }
+  .indicator { gap: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner { animation: none; }
+  .feedback { transition: none; }
+}

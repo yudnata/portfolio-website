@@ -51,9 +51,9 @@ export default function HomeContent() {
 
       <Header />
 
-      <main className="relative z-10 min-h-screen flex flex-col items-center justify-center p-6 md:p-12 pt-20 max-w-7xl mx-auto w-full">
+      <main id="main-content" className="relative z-10 min-h-screen flex flex-col items-center justify-center p-6 md:p-12 pt-20 max-w-7xl mx-auto w-full">
         <h1 className="sr-only">
-          Gede Yudhi Adinata Putra Kurniawan - Fullstack Web Developer Portfolio
+          Gede Yudhi Adinata Putra Kurniawan - Full-Stack and Mobile Developer Portfolio
         </h1>
 
         <div className="w-full flex flex-col items-center">

@@ -94,92 +94,105 @@
 /* Animation Utilities */
 @utility animate-slide-up {
   opacity: 0;
-  animation: slideUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: slideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @utility animate-pixel-fade {
   opacity: 0;
-  animation: pixelFade 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: pixelFade 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @utility animate-card-fade {
   opacity: 0;
-  animation: cardFade 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: cardFade 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* Animation Delay Utilities */
 @utility anim-delay-300 {
-  animation-delay: 300ms;
+  animation-delay: 40ms;
 }
 
 @utility anim-delay-500 {
-  animation-delay: 500ms;
+  animation-delay: 80ms;
 }
 
 @utility anim-delay-600 {
-  animation-delay: 600ms;
+  animation-delay: 100ms;
 }
 
 @utility anim-delay-700 {
-  animation-delay: 700ms;
+  animation-delay: 120ms;
 }
 
 @utility anim-delay-800 {
-  animation-delay: 800ms;
+  animation-delay: 140ms;
 }
 
 @utility anim-delay-900 {
-  animation-delay: 900ms;
+  animation-delay: 160ms;
 }
 
 @utility anim-delay-1000 {
-  animation-delay: 1000ms;
+  animation-delay: 180ms;
 }
 
 @utility anim-delay-1100 {
-  animation-delay: 1100ms;
+  animation-delay: 200ms;
 }
 
 @utility anim-delay-1200 {
-  animation-delay: 1200ms;
+  animation-delay: 220ms;
 }
 
 /* Animation Keyframes - Smoother transitions */
 @keyframes slideUp {
   0% {
     opacity: 0;
-    transform: translateY(30px);
-    filter: blur(4px);
+    transform: translateY(10px);
   }
   100% {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
   }
 }
 
 @keyframes pixelFade {
   0% {
     opacity: 0;
-    transform: translateY(20px) scale(0.98);
-    filter: blur(3px);
+    transform: translateY(8px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
+    transform: translateY(0);
   }
 }
 
 @keyframes cardFade {
   0% {
     opacity: 0;
-    transform: translateY(15px) scale(0.95);
-    filter: blur(2px);
+    transform: translateY(8px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
+    transform: translateY(0);
   }
+}
+
+.page-background-image {
+  opacity: 0;
+  transition: opacity 380ms ease-out;
+}
+
+.page-background-image[data-loaded='true'] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-slide-up, .animate-pixel-fade, .animate-card-fade {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .page-background-image { transition: none; }
 }

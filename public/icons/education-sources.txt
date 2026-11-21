@@ -1,0 +1,8 @@
+Coding Camp powered by DBS Foundation logo
+Requested reference: https://www.linkedin.com/company/coding-camp-powered-by-dbs-foundation
+LinkedIn blocks direct image downloads in this environment (HTTP 403).
+Public copy downloaded from: https://vxxpsjgamefkzmrdjxpk.supabase.co/storage/v1/object/public/media/logo/coding_camp_dbs_foundation.webp
+Public copy referenced by: https://ridwaanhall.com/about/
+Saved unchanged as: coding-camp.webp
+Retrieved: 2026-11-21
+The logo belongs to Coding Camp / DBS Foundation and identifies the education program.

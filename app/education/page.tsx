@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
+import { profile, publication } from '@/data/resume';
 import EducationContent from '@/app/education/EducationContent';
 
 const BASE_URL = 'https://yudnata-portfolio.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'Education & Academic Background',
+  title: 'Education, Publications & Organizations',
   description:
-    'Gede Yudhi Adinata Putra Kurniawan studies Information Technology at Udayana University with a GPA of 3.82/4.00 and completed the Coding Camp 2026 AI Engineer cohort and Asah React–Backend cohort.',
+    'Yudhi Adinata’s education at Udayana University (GPA 3.82/4.00), Coding Camp and Asah cohorts, IEEE ICoDSA publication, and organization experience.',
   keywords: [
     'Yudhi Adinata education',
     'Udayana University IT student',
@@ -22,9 +23,9 @@ export const metadata: Metadata = {
     canonical: `${BASE_URL}/education`,
   },
   openGraph: {
-    title: 'Education & Academic Background | Yudhi Adinata',
+    title: 'Education, Publications & Organizations | Yudhi Adinata',
     description:
-      'Information Technology student at Udayana University (GPA 3.82/4.00), with AI Engineer and React–Backend cohort experience in 2025–2026.',
+      'Udayana University IT student (GPA 3.82/4.00), AI Engineer and React–Backend cohorts, IEEE ICoDSA publication, and organization experience.',
     url: `${BASE_URL}/education`,
     images: [
       {
@@ -38,16 +39,24 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Education & Academic Background | Yudhi Adinata',
+    title: 'Education, Publications & Organizations | Yudhi Adinata',
     description:
-      'Udayana University IT student with a 3.82/4.00 GPA, Coding Camp 2026 AI Engineer cohort, and Asah React–Backend cohort.',
+      'Education, IEEE ICoDSA research publication, and organization experience of Yudhi Adinata, an Information Technology student at Udayana University.',
     images: ['/images/education.webp'],
     creator: '@yudnata',
   },
 };
 
-// JSON-LD Structured Data — ini yang bikin Google tampilkan rich result
 const educationJsonLd = [
+  {
+    '@context': 'https://schema.org', '@type': 'ScholarlyArticle',
+    name: publication.title, url: publication.url, sameAs: publication.url,
+    identifier: publication.doi, datePublished: '2026-11',
+    author: { '@type': 'Person', name: profile.name },
+    publisher: { '@type': 'Organization', name: 'IEEE' },
+    isPartOf: { '@type': 'PublicationVolume', name: publication.venue },
+  },
+
   {
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',
@@ -58,18 +67,18 @@ const educationJsonLd = [
       name: 'Gede Yudhi Adinata Putra Kurniawan',
       description:
         'Information Technology student at Udayana University with a GPA of 3.82/4.00.',
-      alumniOf: [
-        {
-          '@type': 'CollegeOrUniversity',
-          name: 'Udayana University',
-          url: 'https://www.unud.ac.id',
-          address: {
-            '@type': 'PostalAddress',
-            addressLocality: 'Denpasar',
-            addressRegion: 'Bali',
-            addressCountry: 'ID',
-          },
+      memberOf: {
+        '@type': 'CollegeOrUniversity',
+        name: 'Udayana University',
+        url: 'https://www.unud.ac.id',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Denpasar',
+          addressRegion: 'Bali',
+          addressCountry: 'ID',
         },
+      },
+      alumniOf: [
         {
           '@type': 'EducationalOrganization',
           name: 'Coding Camp 2026 Powered by DBS Foundation',

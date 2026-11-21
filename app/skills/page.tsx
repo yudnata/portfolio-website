@@ -1,3 +1,4 @@
+import { skillNames } from '@/data/resume';
 import type { Metadata } from 'next';
 import SkillsContent from '@/app/skills/SkillsContent';
 
@@ -6,7 +7,7 @@ const BASE_URL = 'https://yudnata-portfolio.vercel.app';
 export const metadata: Metadata = {
   title: 'Technical Skills & Tech Stack',
   description:
-    'Yudhi Adinata’s resume highlights Vue.js, Express.js, Next.js, Go Fiber, Astro, Laravel, Flutter, Docker and VPS deployments, AI/ML, databases, and design tools.',
+    'Yudhi Adinata’s resume highlights Dart, Go, JavaScript, Python, PHP, Vue, Nuxt, Astro, Next.js, React, Express, Go Fiber, FastAPI, Rust, Flutter, databases, Docker, Linux, machine learning, and design.',
   keywords: [
     'Yudhi Adinata skills',
     'Yudnata tech stack',
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Technical Skills & Tech Stack | Yudhi Adinata',
     description:
-      'Web: Vue.js, Express.js, Next.js, Go Fiber, Astro, and Laravel. Mobile: Flutter. DevOps: Docker, Git, and VPS deployments.',
+      'Vue.js, Nuxt.js, Astro, Next.js, React, Express.js, Go Fiber, FastAPI, Rust, Flutter, Docker, Linux, and machine learning.',
     url: `${BASE_URL}/skills`,
     images: [
       {
@@ -57,43 +58,7 @@ const skillsJsonLd = [
     mainEntity: {
       '@type': 'Person',
       name: 'Gede Yudhi Adinata Putra Kurniawan',
-      knowsAbout: [
-        'Vue.js',
-        'Express.js',
-        'Next.js',
-        'Go Fiber',
-        'Astro',
-        'Laravel',
-        'React.js',
-        'Node.js',
-        'JavaScript',
-        'HTML',
-        'CSS',
-        'Flutter',
-        'Python',
-        'Scikit-Learn',
-        'Pandas',
-        'NumPy',
-        'Data cleaning',
-        'Exploratory data analysis',
-        'Supervised learning',
-        'Unsupervised learning',
-        'Regression',
-        'Classification',
-        'Clustering',
-        'MySQL',
-        'MongoDB',
-        'PostgreSQL',
-        'Docker',
-        'Git',
-        'VPS deployment',
-        'Figma',
-        'Adobe Photoshop',
-        'Adobe Premiere Pro',
-        'Canva',
-        'CapCut',
-        'GitHub',
-      ],
+      knowsAbout: skillNames,
       knowsLanguage: [
         { '@type': 'Language', name: 'Indonesian', alternateName: 'id' },
         { '@type': 'Language', name: 'English', alternateName: 'en' },

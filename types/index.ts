@@ -29,6 +29,7 @@ export interface Education {
   institution: string;
   degree: string;
   period: string;
+  location?: string;
   description: string;
   icon: string;
   achievements?: string[];

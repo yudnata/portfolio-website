@@ -3,6 +3,7 @@
 import { Header } from '@/components/layout';
 import { PageBackground } from '@/components/ui';
 import Image from 'next/image';
+import { profile } from '@/data/resume';
 
 const socialLinks = [
   {
@@ -28,8 +29,8 @@ const socialLinks = [
 const contactInfo = [
   {
     label: 'Email',
-    value: 'yudhinata04@gmail.com',
-    link: 'mailto:yudhinata04@gmail.com',
+    value: profile.email,
+    link: `mailto:${profile.email}`,
     icon: (
       <svg
         className="w-5 h-5 text-white"
@@ -49,7 +50,7 @@ const contactInfo = [
   },
   {
     label: 'Phone',
-    value: '+62 8966 9760 121',
+    value: profile.phone,
     link: 'tel:+6289669760121',
     icon: (
       <svg
@@ -70,7 +71,7 @@ const contactInfo = [
   },
   {
     label: 'Location',
-    value: 'Denpasar, Bali',
+    value: profile.location,
     link: null,
     icon: (
       <svg
@@ -108,9 +109,9 @@ export default function ContactContent() {
 
       <Header />
 
-      <main className="pt-25 pb-20 px-4 md:px-12 min-h-screen flex items-center justify-center">
+      <main id="main-content" className="pt-25 pb-20 px-4 md:px-12 min-h-screen flex items-center justify-center">
         <section className="w-full max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-start animate-pixel-fade anim-delay-800 transform transition-all duration-700">
+          <div className="grid md:grid-cols-2 gap-12 items-start animate-card-fade">
             <div>
               <h1 className="font-pixel text-2xl md:text-3xl font-bold mb-4 text-white text-shadow-pixel mt-10">
                 Get In Touch
@@ -135,14 +136,15 @@ export default function ContactContent() {
                       className="group flex flex-col items-center gap-3 transition-transform hover:scale-105"
                       aria-label={`Visit ${social.name} profile`}
                     >
-                      <div className="w-16 h-16 rounded-2xl flex items-center justify-center overflow-hidden bg-white/5 border border-white/10 group-hover:bg-white/10 group-hover:border-white/20 transition-all shadow-lg">
+                      <div className="w-16 h-16 rounded-2xl flex items-center justify-center overflow-hidden bg-black/40 border border-white/5 group-hover:bg-black/60 group-hover:border-white/10 transition-colors shadow-lg">
                         {social.logo ? (
                           <div className="relative w-8 h-8">
                             <Image
                               src={social.logo}
                               alt=""
                               fill
-                              className="object-contain drop-shadow-md"
+                              sizes="32px"
+                              className={`object-contain drop-shadow-md ${social.name === 'GitHub' ? 'brightness-0 invert' : ''}`}
                             />
                           </div>
                         ) : (
@@ -162,11 +164,10 @@ export default function ContactContent() {
             </div>
 
             <address className="not-italic space-y-2">
-              {contactInfo.map((info, idx) => (
+              {contactInfo.map((info) => (
                 <div
                   key={info.label}
-                  className="rounded-2xl p-6 flex items-start gap-5 bg-black/40 border border-white/5 hover:bg-black/60 hover:border-white/10 transition-colors shadow-lg animate-pixel-fade opacity-0"
-                  style={{ animationDelay: `${0.8 + idx * 0.1}s` }}
+                  className="rounded-2xl p-6 flex items-start gap-5 bg-black/40 border border-white/5 hover:bg-black/60 hover:border-white/10 transition-colors shadow-lg"
                 >
                   <div className="mt-1 p-2 bg-white/10 rounded-lg">{info.icon}</div>
                   <div>

@@ -16,7 +16,7 @@ export default function PageBackground({
   priority = true,
 }: PageBackgroundProps) {
   return (
-    <div className="fixed inset-0 w-full h-full -z-10 overflow-hidden bg-pixel-bg-dark pointer-events-none">
+    <div data-page-background="active" className="fixed inset-0 w-full h-full -z-10 overflow-hidden bg-pixel-bg-dark pointer-events-none">
       <Image
         src={imageSrc}
         alt={alt}
@@ -24,7 +24,9 @@ export default function PageBackground({
         priority={priority}
         quality={75}
         sizes="100vw"
-        className="object-cover object-center opacity-100"
+        className="page-background-image object-cover object-center"
+        onLoad={(event) => { event.currentTarget.dataset.loaded = 'true'; }}
+        onError={(event) => { event.currentTarget.dataset.loaded = 'true'; }}
       />
       <div
         className="absolute inset-0 w-full h-full bg-black transition-opacity duration-500"

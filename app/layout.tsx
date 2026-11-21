@@ -1,6 +1,6 @@
 import React from 'react';
 import { Press_Start_2P, VT323, Silkscreen } from 'next/font/google';
-import '@/styles/globals.css';
+import '../styles/globals.css';
 import { defaultMetadata, defaultViewport, personJsonLd, websiteJsonLd, navigationJsonLd } from '@/components/seo/Seo';
 import TransitionLoader from '@/components/layout/TransitionLoader';
 
@@ -37,6 +37,7 @@ export default function RootLayout({
     <html
       lang="en"
       dir="ltr"
+      data-scroll-behavior="smooth"
       className={`${pressStart2P.variable} ${vt323.variable} ${silkscreen.variable}`}
     >
       <head>
@@ -60,8 +61,7 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <TransitionLoader />
-        {children}
+        <TransitionLoader>{children}</TransitionLoader>
       </body>
     </html>
   );

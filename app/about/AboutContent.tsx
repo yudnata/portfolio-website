@@ -3,6 +3,8 @@
 import { Header } from '@/components/layout';
 import { PageBackground } from '@/components/ui';
 import Image from 'next/image';
+import { TransitionLink } from '@/components/layout/TransitionLoader';
+import { profile } from '@/data/resume';
 
 export default function AboutContent() {
   return (
@@ -14,7 +16,7 @@ export default function AboutContent() {
       />
       <Header />
 
-      <main className="pt-25 pb-20 px-4 md:px-12 min-h-screen max-w-7xl mx-auto flex flex-col justify-center">
+      <main id="main-content" className="pt-25 pb-20 px-4 md:px-12 min-h-screen max-w-7xl mx-auto flex flex-col justify-center">
         <h1 className="font-pixel text-2xl md:text-3xl text-white mb-10 animate-slide-up anim-delay-500">
           A bit about myself
         </h1>
@@ -26,6 +28,7 @@ export default function AboutContent() {
                 src="/assets/me.png"
                 alt="Portrait of Yudhi Adinata"
                 fill
+                sizes="(min-width: 1280px) 373px, (min-width: 1024px) 30vw, (min-width: 768px) calc(100vw - 96px), calc(100vw - 32px)"
                 className="object-cover object-center transition-all duration-500 scale-100 group-hover:scale-105"
                 priority
               />
@@ -42,18 +45,21 @@ export default function AboutContent() {
               <p className="font-retro text-xl leading-relaxed text-gray-200">
                 I&apos;m{' '}
                 <strong className="text-white">Gede Yudhi Adinata Putra Kurniawan</strong>, a
-                Fullstack and Mobile Developer based in Bali. I&apos;m studying Information
+                Full-Stack and Mobile Developer based in Bali. I study Information
                 Technology at <strong className="text-white">Udayana University</strong> with a GPA
-                of 3.82/4.00. I build{' '}
-                <span className="text-white font-bold">user-centered web and cross-platform apps</span>{' '}
-                and have experience scaling backend systems and managing deployments. I currently
-                work part-time as a Full-Stack Web Developer at{' '}
-                <strong className="text-white">PT Viskal Karunia Saputra</strong>, maintaining the
-                10x, CRM, Ledger, and HRIS internal apps and managing Express.js services and VPS
-                deployments. I also freelance as a Mobile and Full-Stack Developer with{' '}
-                <strong className="text-white">PT Pley Nusantara Kreatif</strong>, building Flutter
-                apps and supporting Vue.js/Astro web platforms and Go-powered APIs.
+                of 3.82/4.00.
               </p>
+              <p className="mt-4 font-retro text-xl leading-relaxed text-gray-200">
+                I build web and Flutter apps and handle backend APIs and deployments.
+                I work part-time at <strong className="text-white">Viskal</strong> and
+                freelance with <strong className="text-white">PLEY</strong>.
+              </p>
+              <TransitionLink href="/experience" className="mt-4 inline-flex min-h-11 items-center font-silkscreen text-xs text-white underline underline-offset-4">
+                View work experience ↗
+              </TransitionLink>
+              <a href={profile.website} target="_blank" rel="noopener noreferrer" className="ml-5 inline-flex min-h-11 items-center font-retro text-lg text-gray-300 hover:text-white">
+                yudnata.tech ↗
+              </a>
             </section>
 
             <section
@@ -89,31 +95,6 @@ export default function AboutContent() {
               </a>
             </section>
 
-            <section
-              className="bg-black/60 border border-white/5 rounded-2xl p-8 shadow-lg"
-              aria-label="Focus and Strengths"
-            >
-              <span className="block font-pixel text-[0.6rem] text-gray-500 mb-4 uppercase tracking-wide">
-                Focus &amp; Strengths
-              </span>
-              <div className="flex flex-wrap gap-3">
-                {[
-                  'User-Centered Applications',
-                  'Cross-Platform Mobile Apps',
-                  'Scalable Backend Systems',
-                  'Server Deployment',
-                  'Teamwork',
-                  'Organizational Leadership',
-                ].map((tag) => (
-                  <span
-                    key={tag}
-                    className="font-retro text-base px-4 py-2 bg-white/5 border border-white/10 rounded-full text-gray-300 hover:bg-white/10 hover:text-white transition-colors"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </section>
           </div>
         </div>
       </main>

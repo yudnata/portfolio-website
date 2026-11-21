@@ -2,85 +2,7 @@ import Image from 'next/image';
 import { Header } from '@/components/layout';
 import { PageBackground } from '@/components/ui';
 
-type Skill = { name: string; iconSrc?: string };
-
-type SkillGroup = { title: string; accent: string; skills: Skill[] };
-
-const skillGroups: SkillGroup[] = [
-  {
-    title: 'Web Development',
-    accent: 'border-blue-400',
-    skills: [
-      { name: 'Vue.js', iconSrc: '/icons/Vue.png' },
-      { name: 'Express.js', iconSrc: '/icons/Express.png' },
-      { name: 'Next.js', iconSrc: '/icons/next.svg' },
-      { name: 'Go Fiber', iconSrc: '/icons/Go.png' },
-      { name: 'Astro' },
-      { name: 'Laravel', iconSrc: '/icons/Laravel.png' },
-      { name: 'React.js', iconSrc: '/icons/React.png' },
-      { name: 'Node.js', iconSrc: '/icons/Node.js.png' },
-      { name: 'JavaScript', iconSrc: '/icons/JavaScript.png' },
-      { name: 'HTML', iconSrc: '/icons/HTML5.png' },
-      { name: 'CSS', iconSrc: '/icons/css.png' },
-    ],
-  },
-  {
-    title: 'Mobile Development',
-    accent: 'border-cyan-400',
-    skills: [{ name: 'Flutter', iconSrc: '/icons/Flutter.png' }],
-  },
-  {
-    title: 'AI & Machine Learning',
-    accent: 'border-green-500',
-    skills: [
-      { name: 'Python', iconSrc: '/icons/Python.png' },
-      { name: 'Scikit-Learn' },
-      { name: 'Pandas' },
-      { name: 'NumPy' },
-      { name: 'Data Cleaning' },
-      { name: 'Exploratory Data Analysis' },
-      { name: 'Supervised Learning' },
-      { name: 'Unsupervised Learning' },
-      { name: 'Regression' },
-      { name: 'Classification' },
-      { name: 'Clustering' },
-    ],
-  },
-  {
-    title: 'Databases',
-    accent: 'border-indigo-400',
-    skills: [
-      { name: 'MySQL', iconSrc: '/icons/MySQL.png' },
-      { name: 'MongoDB', iconSrc: '/icons/MongoDB.png' },
-      { name: 'PostgreSQL', iconSrc: '/icons/PostgresSQL.png' },
-    ],
-  },
-  {
-    title: 'DevOps & Deployment',
-    accent: 'border-orange-500',
-    skills: [
-      { name: 'Docker', iconSrc: '/icons/docker.png' },
-      { name: 'Git', iconSrc: '/icons/Git.png' },
-      { name: 'VPS' },
-    ],
-  },
-  {
-    title: 'Design Tools',
-    accent: 'border-purple-500',
-    skills: [
-      { name: 'Figma', iconSrc: '/icons/Figma.png' },
-      { name: 'Adobe Photoshop', iconSrc: '/icons/AdobePhotoshop.png' },
-      { name: 'Adobe Premiere Pro', iconSrc: '/icons/AdobePremierePro.png' },
-      { name: 'Canva', iconSrc: '/icons/Canva.png' },
-      { name: 'CapCut' },
-    ],
-  },
-  {
-    title: 'Version Control',
-    accent: 'border-red-500',
-    skills: [{ name: 'GitHub', iconSrc: '/icons/GitHub.png' }],
-  },
-];
+import { skillGroups, type ResumeSkill } from '@/data/resume';
 
 export default function SkillsContent() {
   return (
@@ -93,7 +15,7 @@ export default function SkillsContent() {
 
       <Header />
 
-      <main className="pt-25 pb-20 px-4 md:px-12 min-h-screen max-w-7xl mx-auto flex flex-col justify-center">
+      <main id="main-content" className="pt-25 pb-20 px-4 md:px-12 min-h-screen max-w-7xl mx-auto flex flex-col justify-center">
         <header className="text-center mb-10 animate-slide-up anim-delay-500">
           <h1 className="font-pixel text-2xl md:text-3xl text-white text-shadow-pixel mb-2">
             Technical Skills
@@ -128,7 +50,7 @@ export default function SkillsContent() {
             id="languages-title"
             className="font-pixel text-sm text-white mb-4 flex items-center gap-3 border-l-4 border-yellow-400 pl-3"
           >
-            Languages
+            Spoken Languages
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <LanguageCard language="Indonesian" proficiency="Native" code="ID" />
@@ -144,12 +66,12 @@ export default function SkillsContent() {
   );
 }
 
-function SkillChip({ name, iconSrc }: Skill) {
+function SkillChip({ name, iconSrc }: ResumeSkill) {
   return (
     <div className="flex items-center gap-2 bg-white/5 border border-white/5 px-3 py-2 rounded-xl hover:bg-white/10 hover:border-white/10 transition-all cursor-default group">
       {iconSrc && (
         <div className="relative w-5 h-5 shrink-0">
-          <Image src={iconSrc} alt="" fill className="object-contain" />
+          <Image src={iconSrc} alt="" fill sizes="20px" className="object-contain" />
         </div>
       )}
       <span className="font-retro text-sm text-gray-300 group-hover:text-white transition-colors">

@@ -1,7 +1,7 @@
 'use client';
 
 import { forwardRef } from 'react';
-import Link from 'next/link';
+import { TransitionLink as Link } from '@/components/layout/TransitionLoader';
 
 type ButtonVariant = 'primary' | 'accent' | 'gold' | 'outline';
 type ButtonSize = 'sm' | 'md' | 'lg';

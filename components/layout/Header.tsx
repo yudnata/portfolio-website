@@ -1,13 +1,14 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
+import { TransitionLink as Link } from './TransitionLoader';
 import { usePathname } from 'next/navigation';
 
 const navItems = [
   { id: 'home', label: 'Home', href: '/' },
   { id: 'about', label: 'About', href: '/about' },
   { id: 'projects', label: 'Projects', href: '/projects' },
+  { id: 'experience', label: 'Experience', href: '/experience' },
   { id: 'skills', label: 'Skills', href: '/skills' },
   { id: 'education', label: 'Education', href: '/education' },
   { id: 'contact', label: 'Contact', href: '/contact' },
@@ -62,7 +63,7 @@ export default function Header() {
   }, [pathname]);
 
   const headerBaseClass =
-    'fixed top-0 left-0 right-0 py-4 px-6 md:px-8 z-200 transition-all duration-300 select-none';
+    'fixed top-0 left-0 right-0 py-2 lg:py-4 px-4 sm:px-6 md:px-8 z-200 transition-all duration-300 select-none';
   const headerScrolledClass = isScrolled
     ? 'bg-pixel-bg-medium/95 shadow-md backdrop-blur-sm'
     : 'bg-linear-to-b from-pixel-bg-medium/95 to-transparent';
@@ -81,7 +82,7 @@ export default function Header() {
         </Link>
 
         <nav
-          className="hidden md:block"
+          className="hidden lg:block"
           role="navigation"
         >
           <ul className="flex gap-2 p-0 m-0 list-none">
@@ -111,20 +112,25 @@ export default function Header() {
 
         <button
           type="button"
-          className="md:hidden bg-transparent text-white font-pixel cursor-pointer p-1  rounded-md hover:bg-white/10"
+          className="lg:hidden flex items-center justify-center gap-2 min-h-11 min-w-11 px-3 bg-transparent text-white font-pixel text-[0.625rem] cursor-pointer rounded-md hover:bg-white/10"
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-navigation"
         >
-          {isMobileMenuOpen ? '✕' : '☰'}
+          <span aria-hidden="true" className="text-base">{isMobileMenuOpen ? '✕' : '☰'}</span>
+          <span>{isMobileMenuOpen ? 'Close' : 'Menu'}</span>
         </button>
       </div>
 
       <nav
+        id="mobile-navigation"
+        aria-label="Mobile navigation"
+        inert={!isMobileMenuOpen}
         className={`
-          md:hidden fixed top-15 left-0 right-0 bg-pixel-bg-medium/98 backdrop-blur-md border-b border-white/10
-          overflow-hidden transition-all duration-300 ease-in-out z-190 shadow-2xl
-          ${isMobileMenuOpen ? 'max-h-125 opacity-100 py-4' : 'max-h-0 opacity-0 py-0'}
+          lg:hidden fixed top-15 left-0 right-0 bg-pixel-bg-medium/98 backdrop-blur-md border-b border-white/10
+          overflow-x-hidden transition-all duration-300 ease-in-out z-190 shadow-2xl
+          ${isMobileMenuOpen ? 'max-h-[calc(100dvh-3.75rem)] overflow-y-auto opacity-100 py-4' : 'max-h-0 overflow-y-hidden opacity-0 py-0'}
         `}
       >
         <ul className="flex flex-col gap-2 px-4 container mx-auto max-w-7xl">
@@ -135,7 +141,7 @@ export default function Header() {
                 <Link
                   href={item.href}
                   className={`
-                    flex items-center gap-3 p-3 font-pixel text-[0.7rem] no-underline transition-all border-l-2 rounded-r-lg
+                    flex items-center gap-3 min-h-11 p-3 font-pixel text-[0.7rem] no-underline transition-all border-l-2 rounded-r-lg
                     ${
                       isActive
                         ? 'bg-white/10 text-white border-white'
@@ -154,7 +160,7 @@ export default function Header() {
 
       {isMobileMenuOpen && (
         <div
-          className="md:hidden fixed inset-0 top-15 bg-black/80 backdrop-blur-sm z-180"
+          className="lg:hidden fixed inset-0 top-15 bg-black/80 backdrop-blur-sm z-180"
           onClick={() => setIsMobileMenuOpen(false)}
           onKeyDown={(e) => e.key === 'Escape' && setIsMobileMenuOpen(false)}
           role="button"

@@ -1,3 +1,4 @@
+import { skillNames } from '@/data/resume';
 import type { Metadata } from 'next';
 import AboutContent from '@/app/about/AboutContent';
 
@@ -67,43 +68,11 @@ const aboutJsonLd = [
         addressRegion: 'Bali',
         addressCountry: 'ID',
       },
-      alumniOf: {
+      memberOf: {
         '@type': 'CollegeOrUniversity',
         name: 'Udayana University',
       },
-      knowsAbout: [
-        'Vue.js',
-        'Express.js',
-        'Next.js',
-        'Go Fiber',
-        'Astro',
-        'Laravel',
-        'React.js',
-        'Node.js',
-        'JavaScript',
-        'HTML',
-        'CSS',
-        'Flutter',
-        'Python',
-        'Scikit-Learn',
-        'Pandas',
-        'NumPy',
-        'Data cleaning',
-        'Exploratory data analysis',
-        'Supervised and unsupervised learning',
-        'MySQL',
-        'MongoDB',
-        'PostgreSQL',
-        'Docker',
-        'Git',
-        'VPS deployment',
-        'Figma',
-        'Adobe Photoshop',
-        'Adobe Premiere Pro',
-        'Canva',
-        'CapCut',
-        'GitHub',
-      ],
+      knowsAbout: skillNames,
     },
   },
   {

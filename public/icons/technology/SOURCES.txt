@@ -1,0 +1,2 @@
+Midtrans: https://midtrans.com/assets/img/logo.svg
+Other SVGs: https://github.com/simple-icons/simple-icons (CC0-1.0)

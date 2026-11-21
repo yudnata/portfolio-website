@@ -1,263 +1,235 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import Image from 'next/image';
-import { Header } from '@/components/layout';
-import { PageBackground } from '@/components/ui';
+import Header from '@/components/layout/Header';
 import { projects } from '@/data';
-import { Project } from '@/types';
+import type { Project } from '@/types';
+import styles from './projects.module.css';
 
-const categories = ['All', 'Personal', 'Web App', 'Enterprise'];
+const categories = ['All', 'Personal', 'Web App', 'Enterprise'] as const;
+
+const technologyIcons: Record<string, { src: string; monochrome?: boolean; wide?: boolean }> = {
+  React: { src: '/icons/React.png' },
+  'Next.js': { src: '/icons/next.svg' },
+  'Node.js': { src: '/icons/Node.js.png' },
+  PostgreSQL: { src: '/icons/PostgresSQL.png' },
+  Docker: { src: '/icons/docker.png' },
+  'Tailwind CSS': { src: '/icons/Tailwind CSS.png' },
+  Midtrans: { src: '/icons/technology/midtrans.svg', wide: true },
+  GSAP: { src: '/icons/technology/gsap.svg', monochrome: true },
+  Prisma: { src: '/icons/technology/prisma.svg', monochrome: true },
+  Kotlin: { src: '/icons/technology/kotlin.svg', monochrome: true },
+  Android: { src: '/icons/technology/android.svg', monochrome: true },
+  Firebase: { src: '/icons/technology/firebase.svg', monochrome: true },
+  Cloudinary: { src: '/icons/technology/cloudinary.svg', monochrome: true },
+  Laravel: { src: '/icons/Laravel.png' },
+  PHP: { src: '/icons/technology/php.svg', monochrome: true },
+  MySQL: { src: '/icons/MySQL.png' },
+  JavaScript: { src: '/icons/JavaScript.png' },
+  HTML: { src: '/icons/HTML5.png' },
+  CSS: { src: '/icons/css.png' },
+  TypeScript: { src: '/icons/typescript.png' },
+  'Socket.IO': { src: '/icons/technology/socketdotio.svg', monochrome: true },
+  'Three.js': { src: '/icons/technology/threedotjs.svg', monochrome: true },
+  WebGL: { src: '/icons/technology/webgl.svg', monochrome: true, wide: true },
+  Python: { src: '/icons/Python.png' },
+  NumPy: { src: '/icons/technology/numpy.svg', monochrome: true },
+};
+
+function ProjectArtwork({ project, backdrop = false, priority = false }: {
+  project: Project;
+  backdrop?: boolean;
+  priority?: boolean;
+}) {
+  const [failed, setFailed] = useState(false);
+  if (!project.image || failed) {
+    return <span className={styles.artworkFallback}><span>{project.title}</span>{backdrop && <small>Project preview unavailable</small>}</span>;
+  }
+  return (
+    <Image src={project.image} alt="" fill
+      sizes={backdrop ? '100vw' : '(max-width: 760px) 120px, 132px'}
+      priority={priority} quality={75} className={`${styles.artwork} ${backdrop ? 'page-background-image' : ''}`}
+      onLoad={(event) => { event.currentTarget.dataset.loaded = 'true'; }}
+      onError={() => setFailed(true)} />
+  );
+}
 
 export default function ProjectsContent() {
-  const [activeCategory, setActiveCategory] = useState('All');
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<(typeof categories)[number]>('All');
+  const [activeId, setActiveId] = useState(projects[0]?.id ?? '');
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  const railRef = useRef<HTMLDivElement>(null);
+  const tileRefs = useRef(new Map<string, HTMLButtonElement>());
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const detailsButtonRef = useRef<HTMLButtonElement>(null);
+  const filteredProjects = activeCategory === 'All' ? projects : projects.filter((project) => project.category === activeCategory);
+  const activeProject = filteredProjects.find((project) => project.id === activeId) ?? filteredProjects[0];
+  const activeIndex = activeProject ? filteredProjects.findIndex((project) => project.id === activeProject.id) : -1;
 
   useEffect(() => {
-    const checkIsDesktop = () => setIsDesktop(window.innerWidth >= 768);
-    checkIsDesktop();
-    window.addEventListener('resize', checkIsDesktop);
-    return () => window.removeEventListener('resize', checkIsDesktop);
-  }, []);
+    if (!activeProject) return;
+    const tile = tileRefs.current.get(activeProject.id);
+    const rail = railRef.current;
+    if (!tile || !rail) return;
+    const left = tile.offsetLeft - rail.offsetLeft;
+    const right = left + tile.offsetWidth;
+    const visibleLeft = rail.scrollLeft;
+    const visibleRight = visibleLeft + rail.clientWidth;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (left < visibleLeft + 8 || right > visibleRight - 8) {
+      rail.scrollTo({
+        left: left < visibleLeft + 8 ? left - 12 : right - rail.clientWidth + 12,
+        behavior: reducedMotion ? 'instant' : 'smooth',
+      });
+    }
+  }, [activeProject]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsFirstLoad(false);
-    }, 1500);
-    return () => clearTimeout(timer);
-  }, []);
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    if (detailsOpen) {
+      dialog.showModal();
+      const previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => { document.body.style.overflow = previousOverflow; };
+    }
+    if (dialog.open) dialog.close();
+  }, [detailsOpen]);
 
-  const filteredProjects =
-    activeCategory === 'All' ? projects : projects.filter((p) => p.category === activeCategory);
+  function changeCategory(category: (typeof categories)[number]) {
+    setActiveCategory(category);
+    setActiveId(projects.find((project) => category === 'All' || project.category === category)?.id ?? '');
+  }
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setSelectedProject(null);
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  function handleTileKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
+    let nextIndex: number;
+    switch (event.key) {
+      case 'ArrowRight': nextIndex = (index + 1) % filteredProjects.length; break;
+      case 'ArrowLeft': nextIndex = (index - 1 + filteredProjects.length) % filteredProjects.length; break;
+      case 'Home': nextIndex = 0; break;
+      case 'End': nextIndex = filteredProjects.length - 1; break;
+      default: return;
+    }
+    event.preventDefault();
+    tileRefs.current.get(filteredProjects[nextIndex].id)?.focus();
+  }
+
+  function closeDetails() {
+    dialogRef.current?.close();
+    setDetailsOpen(false);
+    detailsButtonRef.current?.focus();
+  }
 
   return (
-    <div className="relative min-h-screen">
-      <PageBackground
-        imageSrc="/images/projects.webp"
-        alt="Projects page background"
-        overlayOpacity={0.5}
-      />
-
+    <div className={styles.page}>
+      <div className={styles.backdrops} aria-hidden="true">
+        {projects.map((project, index) => (
+          <div key={project.id} data-page-background={activeProject?.id === project.id ? 'active' : 'inactive'} className={`${styles.backdrop} ${activeProject?.id === project.id ? styles.backdropActive : ''}`}>
+            <ProjectArtwork project={project} backdrop priority={index === 0} />
+          </div>
+        ))}
+      </div>
       <Header />
-
-      <main className="pt-20 pb-12 px-4 md:px-12 min-h-screen">
-        <article className="max-w-7xl mx-auto">
-          <header className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6 animate-slide-up anim-delay-500">
-            <div>
-              <h1 className="font-pixel text-2xl md:text-3xl text-white text-shadow-pixel">
-                My Projects
-              </h1>
-              <p className="font-retro text-lg text-gray-400 mt-2">
-                Explore my work across various domains
-              </p>
-            </div>
-            <nav className="flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={`
-                    font-pixel text-[0.55rem] px-4 py-2 cursor-pointer transition-all duration-300 rounded-full border backdrop-blur-sm
-                    ${
-                      activeCategory === category
-                        ? 'bg-white text-black border-white font-bold'
-                        : 'bg-black/40 text-gray-400 border-white/10 hover:border-white/30 hover:text-white'
-                    }
-                  `}
-                >
-                  {category}
-                </button>
-              ))}
-            </nav>
-          </header>
-
-          <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {filteredProjects.map((project, index) => (
-              <article
-                key={`${activeCategory}-${project.id}`}
-                onClick={() => isDesktop && setSelectedProject(project)}
-                className={`
-                  bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden 
-                  transition-all duration-300 hover:bg-black/70 hover:border-white/20 
-                  hover:shadow-[0_0_30px_rgba(255,255,255,0.05)]
-                  ${isDesktop ? 'cursor-pointer' : 'cursor-default'} 
-                  group animate-card-fade opacity-0 flex flex-col
-                `}
-                style={{
-                  animationDelay: isFirstLoad ? `${0.7 + index * 0.1}s` : `${index * 0.05}s`,
-                }}
-              >
-                <figure className="relative w-full h-52 md:h-64 bg-gray-900 overflow-hidden shrink-0">
-                  {project.image ? (
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      quality={100}
-                      className="object-cover object-center transition-all duration-500 opacity-80 group-hover:opacity-100 group-hover:scale-105"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-gray-800 to-black">
-                      <span className="font-pixel text-[0.4rem] text-gray-500">NO IMAGE</span>
-                    </div>
-                  )}
-                  <div className="absolute top-4 left-4">
-                    <span className="font-pixel text-[0.4rem] bg-black/60 backdrop-blur-md text-white border border-white/20 px-2.5 py-1 rounded-full uppercase tracking-tighter">
-                      {project.category}
-                    </span>
-                  </div>
-                </figure>
-
-                <div className="p-6 flex flex-col flex-1 relative">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span
-                      className={`font-pixel text-[0.4rem] px-2 py-0.5 rounded-full border ${
-                        project.status === 'Completed'
-                          ? 'text-green-400 bg-green-500/20 border-green-500/30'
-                          : 'text-yellow-400 bg-yellow-500/20 border-yellow-500/30'
-                      }`}
-                    >
-                      {project.status}
-                    </span>
-                    {index === 0 && activeCategory === 'All' && (
-                      <span className="font-pixel text-[0.4rem] text-primary bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-full font-bold">
-                        FEATURED
-                      </span>
-                    )}
-                  </div>
-
-                  <h3 className="font-retro text-xl md:text-2xl text-white font-bold mb-1 group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="font-pixel text-[0.5rem] text-gray-400 mb-3">{project.subtitle}</p>
-                  <p className="font-retro text-sm text-gray-400 leading-relaxed mb-6 line-clamp-2">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5 mt-auto">
-                    {project.technologies.slice(0, 5).map((tech) => (
-                      <span
-                        key={tech}
-                        className="font-pixel text-[0.4rem] text-gray-500 bg-white/5 border border-white/10 px-2.5 py-1 rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.technologies.length > 5 && (
-                      <span className="font-pixel text-[0.4rem] text-gray-600 self-center ml-1">
-                        +{project.technologies.length - 5}
-                      </span>
-                    )}
-                  </div>
-
-                  {isDesktop && (
-                    <div className="absolute top-6 right-6 font-pixel text-[0.45rem] text-gray-500 opacity-40 group-hover:opacity-100 group-hover:text-primary transition-all flex items-center gap-1 pointer-events-none">
-                      <span className="group-hover:translate-x-1 transition-transform">
-                        View Details →
-                      </span>
-                    </div>
-                  )}
-                </div>
-              </article>
+      <main id="main-content" className={styles.main}>
+        <div className={styles.libraryBar}>
+          <h1 className={styles.libraryTitle}>Project library</h1>
+          <div className={styles.categories} role="group" aria-label="Filter projects by category">
+            {categories.map((category) => (
+              <button key={category} type="button" aria-pressed={activeCategory === category} onClick={() => changeCategory(category)}>
+                {category === 'All' ? 'All projects' : category}
+              </button>
             ))}
-          </section>
-
-          {filteredProjects.length === 0 && (
-            <div className="text-center py-20 font-retro text-2xl text-gray-500">
-              No projects found in this category... yet!
-            </div>
-          )}
-        </article>
-      </main>
-      {selectedProject && (
-        <div
-          className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200"
-          onClick={() => setSelectedProject(null)}
-        >
-          <div
-            className="bg-pixel-bg-dark border border-white/10 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-in zoom-in-95 duration-200"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {selectedProject.image && (
-              <div className="relative w-full h-64 md:h-80 bg-gray-900">
-                <Image
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  fill
-                  className="object-cover object-center"
-                />
-              </div>
-            )}
-            <div className="p-6 md:p-8">
-              <div className="flex items-center gap-3 mb-3">
-                <span className="font-pixel text-[0.55rem] text-gray-500 uppercase tracking-widest">
-                  {selectedProject.category}
-                </span>
-                <span
-                  className={`font-pixel text-[0.5rem] px-2 py-0.5 rounded-full border ${
-                    selectedProject.status === 'Completed'
-                      ? 'text-green-400 bg-green-500/20 border-green-500/30'
-                      : 'text-yellow-400 bg-yellow-500/20 border-yellow-500/30'
-                  }`}
-                >
-                  {selectedProject.status}
-                </span>
-              </div>
-
-              <h2 className="font-retro text-3xl md:text-4xl text-white font-bold mb-2">
-                {selectedProject.title}
-              </h2>
-              <p className="font-pixel text-[0.6rem] text-gray-500 mb-4">
-                {selectedProject.subtitle}
-              </p>
-              <p className="font-retro text-base text-gray-300 leading-relaxed mb-6">
-                {selectedProject.description}
-              </p>
-
-              <div className="flex flex-wrap gap-2 mb-6">
-                {selectedProject.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="font-pixel text-[0.5rem] text-gray-300 bg-white/10 border border-white/10 px-3 py-1.5 rounded-full"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex gap-3">
-                {selectedProject.githubUrl && (
-                  <a
-                    href={selectedProject.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-pixel text-[0.6rem] bg-white text-black px-5 py-2.5 rounded-full hover:bg-gray-200 transition-colors no-underline"
-                  >
-                    View on GitHub →
-                  </a>
-                )}
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  className="font-pixel text-[0.6rem] text-gray-400 border border-white/10 px-5 py-2.5 rounded-full hover:bg-white/5 transition-colors cursor-pointer"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
           </div>
         </div>
-      )}
+        <section className={styles.library} aria-label="Choose a project">
+          <div className={styles.rail} ref={railRef} role="tablist" aria-label="Projects" aria-orientation="horizontal">
+            {filteredProjects.map((project, index) => {
+              const selected = project.id === activeProject?.id;
+              return (
+                <button key={project.id} ref={(node) => {
+                  if (node) tileRefs.current.set(project.id, node);
+                  else tileRefs.current.delete(project.id);
+                }} type="button" id={`project-tab-${project.id}`} role="tab" aria-selected={selected}
+                  aria-controls="project-panel" tabIndex={selected ? 0 : -1}
+                  aria-label={project.title}
+                  className={`${styles.tile} ${selected ? styles.tileActive : ''}`}
+                  onPointerEnter={(event) => { if (event.pointerType === 'mouse') setActiveId(project.id); }} onFocus={() => setActiveId(project.id)}
+                  onClick={() => setActiveId(project.id)} onKeyDown={(event) => handleTileKeyDown(event, index)}>
+                  <span className={styles.tileArtwork}>
+                    <ProjectArtwork project={project} />
+                    <span className={styles.tileWordmark} aria-hidden="true">{project.title}</span>
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+          {activeProject && (
+            <p className={styles.mobileHint}>
+              <span>Swipe to browse. Tap to select.</span>
+              <span>{activeIndex + 1} / {filteredProjects.length}</span>
+            </p>
+          )}
+        </section>
+        {activeProject ? (
+          <section id="project-panel" role="tabpanel" aria-labelledby={`project-tab-${activeProject.id}`} tabIndex={0} className={styles.projectPanel}>
+            <div key={activeProject.id} className={styles.projectInfo}>
+              <div className={styles.projectMeta}><span>{activeProject.category}</span><span className={styles.metaDivider} aria-hidden="true" /><span>{activeProject.status}</span></div>
+              <h2 className={`${styles.projectTitle} ${activeProject.title.length > 22 ? styles.longTitle : ''}`}>{activeProject.title}</h2>
+              <p className={styles.subtitle}>{activeProject.subtitle}</p>
+              <p className={styles.description}>{activeProject.description}</p>
+            </div>
+            <div className={styles.projectControls}>
+              <div className={styles.actions}>
+                {activeProject.githubUrl && <a href={activeProject.githubUrl} target="_blank" rel="noopener noreferrer" className={styles.primaryAction}>
+                  <Image src="/icons/GitHub.png" alt="" width={20} height={20} className={styles.repositoryIcon} />
+                  View repository
+                </a>}
+                {activeProject.liveUrl && <a href={activeProject.liveUrl} target="_blank" rel="noopener noreferrer" className={styles.secondaryAction}>Open live project</a>}
+                <button ref={detailsButtonRef} type="button" className={styles.detailsAction} aria-label={`More about ${activeProject.title}`} aria-haspopup="dialog" onClick={() => setDetailsOpen(true)}><span aria-hidden="true">···</span></button>
+              </div>
+              <div className={styles.projectFooter}>
+              <div className={styles.technologySection}>
+                <span className={styles.footerLabel}>Built with</span>
+                <ul className={styles.technologyLogos} aria-label={`${activeProject.title} technologies`}>
+                  {activeProject.technologies.map((technology) => {
+                    const icon = technologyIcons[technology];
+                    if (!icon) return null;
+                    return (
+                      <li key={technology} title={technology} className={icon.wide ? styles.wideLogo : undefined}>
+                        <Image src={icon.src} alt={technology} width={icon.wide ? 88 : 36} height={36}
+                          className={icon.monochrome ? styles.monochromeLogo : undefined} />
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+              <p className={styles.keyboardHint}><kbd>←</kbd><kbd>→</kbd><span>Browse projects</span><span className={styles.position}>{activeIndex + 1} / {filteredProjects.length}</span></p>
+              </div>
+            </div>
+          </section>
+        ) : (
+          <div className={styles.emptyState}><h2>No projects in this category yet.</h2><button type="button" onClick={() => changeCategory('All')}>Show all projects</button></div>
+        )}
+        <span className="sr-only" role="status">{activeProject ? `${activeProject.title} selected` : 'No projects found'}</span>
+      </main>
+      <dialog ref={dialogRef} className={styles.dialog} aria-labelledby="project-details-title" onCancel={(event) => { event.preventDefault(); closeDetails(); }} onClose={() => setDetailsOpen(false)} onClick={(event) => { if (event.target === event.currentTarget) closeDetails(); }}>
+        {activeProject && (
+          <div className={styles.dialogContent}>
+            <div className={styles.dialogHeading}><span>Project details</span><button type="button" onClick={closeDetails} aria-label="Close project details">×</button></div>
+            <p className={styles.projectMeta}>{activeProject.category} / {activeProject.status}</p>
+            <h2 id="project-details-title">{activeProject.title}</h2>
+            <p className={styles.dialogSubtitle}>{activeProject.subtitle}</p>
+            <p>{activeProject.description}</p>
+            <h3>Technologies</h3>
+            <ul className={styles.technologies}>{activeProject.technologies.map((technology) => <li key={technology}>{technology}</li>)}</ul>
+            {activeProject.githubUrl && <a href={activeProject.githubUrl} target="_blank" rel="noopener noreferrer" className={styles.primaryAction}>
+              <Image src="/icons/GitHub.png" alt="" width={20} height={20} className={styles.repositoryIcon} />
+              View repository
+            </a>}
+          </div>
+        )}
+      </dialog>
     </div>
   );
 }
